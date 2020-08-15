@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{d9a5ad55-b0e9-459c-99f7-f76ac06e6920}">
+		<property name="assetPath">
+			<value>Sci-Fi Sounds/Weapons/Weapon 13 Reload 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.6329705215419501</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8faaa0d1-9d83-432e-818f-613f4b85f783}</destination>
+		</relationship>
+	</object>
+</objects>

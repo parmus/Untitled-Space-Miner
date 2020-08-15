@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="EncodableAsset" id="{a5497410-8c07-4f9c-8ae3-8b96da832124}">
+		<property name="assetPath">
+			<value>Sci-Fi Sounds/Doors and Portals/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8faaa0d1-9d83-432e-818f-613f4b85f783}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,81 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace SpaceGame.ShuttleSystems.UI {
+    [AddComponentMenu("Shuttle Systems/Power System HUD")]
+    public class PowerSystemHUD : MonoBehaviour {
+        [SerializeField] private UnityEvent<float> _onChargeChange = default;
+        [SerializeField] private UnityEvent<float> _onCapacityChange = default;
+        
+        [Header("Power Level Messages")]
+        [SerializeField] private float _lowPowerThreshold = 15f;
+        [SerializeField] private UnityEvent _onPowerLevelNormal = default;
+        [SerializeField] private UnityEvent _onPowerLevelLow = default;
+        [SerializeField] private UnityEvent _onPowerLevelLost = default;
+
+        private PowerLevel _powerLevel = PowerLevel.Lost;
+
+        private PowerSystem.PowerSystem _powerSystem = default;
+
+        public void SetPowerSystem(PowerSystem.PowerSystem powerSystem) {
+            if (_powerSystem) {
+                _powerSystem.OnCapacityChange -= OnCapacityChange;
+                _powerSystem.OnChargeChange -= OnChargeChange;
+            }
+            _powerSystem = powerSystem;
+            if (_powerSystem) {
+                _powerSystem.OnCapacityChange += OnCapacityChange;
+                _powerSystem.OnChargeChange += OnChargeChange;
+                OnCapacityChange(_powerSystem.Capacity);
+                OnChargeChange(_powerSystem.Charge);
+            } else {
+                OnCapacityChange(0f);
+                OnChargeChange(0f);
+            }
+        }
+
+        private void OnDestroy() {
+            if (_powerSystem) _powerSystem.OnChargeChange -= OnChargeChange;
+        }
+
+        private void OnCapacityChange(float capacity) {
+            _onCapacityChange.Invoke(capacity);
+            UpdatePowerLevel();
+        }
+
+        private void OnChargeChange(float charge) {
+            _onChargeChange.Invoke(charge);
+            UpdatePowerLevel();
+        }
+
+        private void UpdatePowerLevel() {
+            var newPowerLevel = !_powerSystem || _powerSystem.Charge > _lowPowerThreshold ?
+                PowerLevel.Normal :
+                _powerSystem.IsEmpty ? PowerLevel.Lost : PowerLevel.Low;
+            if (newPowerLevel == _powerLevel) return;
+            _powerLevel = newPowerLevel;
+            switch(_powerLevel) {
+                case PowerLevel.Normal:
+                    _onPowerLevelNormal.Invoke();
+                    break;
+                case PowerLevel.Low:
+                    _onPowerLevelLow.Invoke();
+                    break;
+                case PowerLevel.Lost:
+                    _onPowerLevelLost.Invoke();
+                    break;
+
+                default:
+                    Debug.LogError("It looks like you forgot an enum in the switch-block");
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private enum PowerLevel {
+            Normal,
+            Low,
+            Lost
+        }
+    }
+}
