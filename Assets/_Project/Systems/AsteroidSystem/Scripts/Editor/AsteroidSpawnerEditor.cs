@@ -35,18 +35,13 @@ namespace SpaceGame.AsteroidSystem.Editor
         }
 
         private void Clear() {
-            ClearResources();
-            foreach(var asteroid in _spawner.GetComponentsInChildren<Asteroid>()) {
-                DestroyImmediate(asteroid.gameObject);
-            }
-            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            _spawner.transform.DestroyAllChildrenImmediate();
+            EditorSceneManager.MarkSceneDirty(_spawner.gameObject.scene);
         }
 
         private void ClearResources() {
-            foreach(var resource in _spawner.GetComponentsInChildren<ResourceDeposit>()){
-                DestroyImmediate(resource.gameObject);
-            }
-            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            _spawner.transform.DestroyAllChildrenImmediate<ResourceDeposit>();
+            EditorSceneManager.MarkSceneDirty(_spawner.gameObject.scene);
         }
 
         private void RegenerateAsteroids() {
@@ -64,14 +59,14 @@ namespace SpaceGame.AsteroidSystem.Editor
                     continue;
                 }
 
-                var asteroid = PrefabUtility.InstantiatePrefab(_spawner.AsteroidPrefabs.PickRandom().gameObject) as GameObject;
+                var asteroid = PrefabUtility.InstantiatePrefab(_spawner.AsteroidPrefabs.PickRandom()) as GameObject;
                 Assert.IsNotNull(asteroid);
                 asteroid.transform.position = spawnPosition.Value;
                 asteroid.transform.rotation = Random.rotation;
                 asteroid.transform.parent = _spawner.transform;
                 asteroid.name = $"Asteroid {i}";
             }
-            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            EditorSceneManager.MarkSceneDirty(_spawner.gameObject.scene);
         }
 
         private void RegenerateResources() {
@@ -87,17 +82,17 @@ namespace SpaceGame.AsteroidSystem.Editor
                     var point = Random.onUnitSphere;
                     Physics.Raycast(asteroid.transform.position + point * maxAxis, -point, out var hit, maxAxis);
 
-                    var resource = PrefabUtility.InstantiatePrefab(_spawner.ResourceTypes.PickRandom().gameObject) as GameObject;
+                    var resource = PrefabUtility.InstantiatePrefab(_spawner.ResourceTypes.PickRandom()) as ResourceDeposit;
                     Assert.IsNotNull(resource);
                     resource.transform.SetPositionAndRotation(
                         hit.point,
                         Quaternion.LookRotation(Vector3.up, hit.normal)
                     );
                     resource.transform.SetParent(asteroid.transform);
-                    resource.name = $"Resource {j}";
+                    resource.gameObject.name = $"Resource {j}";
                 }
             }
-            EditorSceneManager.MarkSceneDirty(UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+            EditorSceneManager.MarkSceneDirty(_spawner.gameObject.scene);
         }
 
         private Vector3? RandomPlacement() {

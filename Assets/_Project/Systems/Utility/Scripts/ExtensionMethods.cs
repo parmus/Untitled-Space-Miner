@@ -14,6 +14,28 @@ namespace SpaceGame.Utility
             }
         }
         
+        public static void DestroyAllChildrenImmediate(this Transform transform) {
+            foreach(Transform child in transform) {
+                Object.DestroyImmediate(child.gameObject);
+            }
+        }
+
+        public static void DestroyAllChildren<T>(this Transform transform) where T: MonoBehaviour
+        {
+            foreach (var child in transform.GetComponentsInChildren<T>())
+            {
+                Object.Destroy(child.gameObject);
+            }
+        }
+
+        public static void DestroyAllChildrenImmediate<T>(this Transform transform) where T: MonoBehaviour
+        {
+            foreach (var child in transform.GetComponentsInChildren<T>())
+            {
+                Object.DestroyImmediate(child.gameObject);
+            }
+        }
+        
         public static void Swap<T>(ref T a, ref T b) {
             var tmp = a;
             a = b;
