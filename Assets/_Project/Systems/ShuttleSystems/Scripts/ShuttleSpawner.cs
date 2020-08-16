@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {
     [AddComponentMenu("Shuttle Systems/Shuttle Spawner")]
     public class ShuttleSpawner : MonoBehaviour {
+        [SerializeField] private Shuttle _shuttlePrefab = default;
         [SerializeField] private float _respawnDelay = 3.0f;
 
+        public static event Action<Shuttle> OnNewShuttleSpawned;
+        public static Shuttle CurrentShuttle { get; private set; }
+        
         private Transform _spawnPoint;
 
         private void Awake() => _spawnPoint = transform;
@@ -14,7 +19,7 @@ namespace SpaceGame.ShuttleSystems {
 
         private void SpawnNewShuttle()
         {
-            var shuttle = ShuttleConfigurationManager.Instance.SpawnNewShuttle(_spawnPoint.position, _spawnPoint.rotation);
+            var shuttle = SpawnNewShuttle(_spawnPoint.position, _spawnPoint.rotation);
             shuttle.CurrentState.OnChange += state => {
                 if (state is ShuttleStates.ShutdownState) StartCoroutine(_onShuttleLost());
             };
@@ -25,5 +30,13 @@ namespace SpaceGame.ShuttleSystems {
             yield return new WaitForSeconds(_respawnDelay);
             SpawnNewShuttle();
         }
+
+        private Shuttle SpawnNewShuttle(Vector3 position, Quaternion rotation) {
+            CurrentShuttle = Instantiate(_shuttlePrefab, position, rotation);
+            OnNewShuttleSpawned?.Invoke(CurrentShuttle);
+
+            return CurrentShuttle;
+        }
+        
     }
 }

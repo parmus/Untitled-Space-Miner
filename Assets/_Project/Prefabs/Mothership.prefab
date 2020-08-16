@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e2010ec6751da418e2ddf4b3d6ff65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _shuttlePrefab: {fileID: 4380200423970701858, guid: 5cd758c1ed659a649afa1d5a68b7733f,
+    type: 3}
   _respawnDelay: 3
 --- !u!114 &2835356400336405105
 MonoBehaviour:

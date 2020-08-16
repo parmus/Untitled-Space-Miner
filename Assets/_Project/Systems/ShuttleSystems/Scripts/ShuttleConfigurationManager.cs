@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {
     public class ShuttleConfigurationManager : Singleton<ShuttleConfigurationManager> {
-        [SerializeField] private Shuttle _shuttlePrefab = default;
-        
         [SerializeField] private Hull.HullUpgrade _hullUpgrade = default;
         [SerializeField] private InertiaDampers.InertiaDamperUpgrade _inertiaDamperUpgrade = default;
         [SerializeField] private MiningTool.MiningToolUpgrade _miningToolUpgrade = default;
@@ -91,9 +89,6 @@ namespace SpaceGame.ShuttleSystems {
         #endregion
 
         
-        public static event Action<Shuttle> OnNewShuttleSpawned;
-        public static Shuttle CurrentShuttle { get; private set; }
-
         public static void Clear() {
             Instance._hullUpgrade = null;
             Instance._inertiaDamperUpgrade = null;
@@ -107,13 +102,6 @@ namespace SpaceGame.ShuttleSystems {
 
         private void Reset() => gameObject.name = GetType().Name;
 
-        public Shuttle SpawnNewShuttle(Vector3 position, Quaternion rotation) {
-            CurrentShuttle = Instantiate(_shuttlePrefab, position, rotation);
-            OnNewShuttleSpawned?.Invoke(CurrentShuttle);
-
-            return CurrentShuttle;
-        }
-       
         private void OnValidate() => OnChange?.Invoke();
     }
 }

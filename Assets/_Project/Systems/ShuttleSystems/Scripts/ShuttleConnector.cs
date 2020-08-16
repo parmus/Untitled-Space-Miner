@@ -16,12 +16,12 @@ namespace SpaceGame.ShuttleSystems
         
 
         private void Awake() {
-            ShuttleConfigurationManager.OnNewShuttleSpawned += OnNewShuttleSpawned;
-            OnNewShuttleSpawned(ShuttleConfigurationManager.CurrentShuttle);
+            ShuttleSpawner.OnNewShuttleSpawned += OnNewShuttleSpawned;
+            OnNewShuttleSpawned(ShuttleSpawner.CurrentShuttle);
         }
 
         private void OnDestroy() {
-            ShuttleConfigurationManager.OnNewShuttleSpawned -= OnNewShuttleSpawned;
+            ShuttleSpawner.OnNewShuttleSpawned -= OnNewShuttleSpawned;
         }
 
 
