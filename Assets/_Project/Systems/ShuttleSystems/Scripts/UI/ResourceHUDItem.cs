@@ -19,8 +19,8 @@ namespace SpaceGame.ShuttleSystems.UI {
             var resourceDeposit = _resourceScannerItem.ResourceDeposit;
             _healthBar.maxValue = resourceDeposit.MaxHealth;
 
-            resourceDeposit.OnDamaged += OnResourceDepositDamaged;
-            OnResourceDepositDamaged(resourceDeposit.Health);
+            resourceDeposit.Health.OnChange += OnResourceDepositDamaged;
+            OnResourceDepositDamaged(resourceDeposit.Health.Value);
 
             _resourceTypeLabel.text = resourceDeposit.Type.name;
             _resourceScannerItem.OnDestroy += OnResourceScannerItemDestroy;
@@ -52,7 +52,7 @@ namespace SpaceGame.ShuttleSystems.UI {
 
         private void OnDestroy() {
             _resourceScannerItem.OnDestroy -= OnResourceScannerItemDestroy;
-            _resourceScannerItem.ResourceDeposit.OnDamaged -= OnResourceDepositDamaged;
+            _resourceScannerItem.ResourceDeposit.Health.OnChange -= OnResourceDepositDamaged;
         }
     }
 }
