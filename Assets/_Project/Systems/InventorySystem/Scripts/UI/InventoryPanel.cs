@@ -7,7 +7,10 @@ namespace SpaceGame.InventorySystem.UI {
         [SerializeField] private RectTransform _content = default;
         [SerializeField] private InventorySlot _slotPrefab = default;
 
-        private void Awake() => _content.DestroyAllChildren();
+        private void Awake()
+        {
+            if (_inventory == null) _content.DestroyAllChildren();
+        }
 
         private IInventory _inventory = null;
         public IInventory Inventory {
@@ -17,9 +20,9 @@ namespace SpaceGame.InventorySystem.UI {
                 {
                     _inventory.OnChange -= OnInventoryChange;
                     _inventory.OnResize -= OnInventoryResize;
-                    _content.DestroyAllChildren();
-                    _slots.Clear();
                 }
+                _content.DestroyAllChildren();
+                _slots.Clear();
                 _inventory = value;
                 if (_inventory == null) return;
                 _inventory.OnChange += OnInventoryChange;
