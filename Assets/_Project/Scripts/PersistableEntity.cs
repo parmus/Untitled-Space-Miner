@@ -37,16 +37,15 @@ namespace SpaceGame
         }
 
         
-        public static void SaveTo(Dictionary<string, object> state)
+        public static void CaptureStates(Dictionary<string, object> state)
         {
-            state.Clear();
             foreach (var persistableEntity in _runtimeSet)
             {
                 state[persistableEntity.ID] = persistableEntity.CaptureState();
             }
         }
 
-        public static void LoadFrom(Dictionary<string, object> state)
+        public static void RestoreStates(Dictionary<string, object> state)
         {
             foreach (var persistableEntity in _runtimeSet)
             {

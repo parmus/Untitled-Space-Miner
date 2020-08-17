@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SpaceGame.InventorySystem;
+﻿using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -15,22 +13,22 @@ namespace SpaceGame
             _currentSession = new Session();
         }
         
-        private readonly Dictionary<string, object> _savedState = new Dictionary<string, object>();
-
-        public void Save() => PersistableEntity.SaveTo(_savedState);
-
-        public void Load() => PersistableEntity.LoadFrom(_savedState);
+        private readonly SavingSystem _savingSystem = new SavingSystem();
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 Debug.Log("Saving state...");
-                Save();
+                _savingSystem.Save("savegame");
             } else if (Input.GetKeyDown(KeyCode.F2))
             {
                 Debug.Log("Loading state...");
-                Load();
+                _savingSystem.Load("savegame");
+            } else if (Input.GetKeyDown(KeyCode.F3))
+            {
+                Debug.Log("Deleting state...");
+                _savingSystem.Delete("savegame");
             }
         }
 
