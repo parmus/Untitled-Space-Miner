@@ -30,7 +30,7 @@ namespace SpaceGame
             PersistableEntity.RestoreStates(LoadFile(saveFile));
         }
 
-        public void Delete(string saveFile)
+        public static void Delete(string saveFile)
         {
             File.Delete(GetPathFromSaveFile(saveFile));
         }

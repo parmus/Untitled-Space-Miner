@@ -28,7 +28,7 @@ namespace SpaceGame
             } else if (Input.GetKeyDown(KeyCode.F3))
             {
                 Debug.Log("Deleting state...");
-                _savingSystem.Delete("savegame");
+                SavingSystem.Delete("savegame");
             }
         }
 
