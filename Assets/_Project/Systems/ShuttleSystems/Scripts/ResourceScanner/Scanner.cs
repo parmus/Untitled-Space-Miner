@@ -13,22 +13,22 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner
         private readonly HashSet<Collider> _toDelete = new HashSet<Collider>();
 
         public void Scan(Transform origin, float range, LayerMask layerMask = default) {
-            T behaviour;
-
             _toDelete.Clear();
             _toDelete.UnionWith(_colliderRuntimeSet.Keys);
             foreach(var collider in Physics.OverlapSphere(origin.position, range, layerMask)) {
                 _toDelete.Remove(collider);
                 if (_colliderRuntimeSet.ContainsKey(collider)) continue;
-                behaviour = collider.GetComponentInParent<T>();
-                _colliderRuntimeSet.Add(collider, behaviour);
-                if (behaviour) OnEnter?.Invoke(behaviour);
+                var component = collider.GetComponentInParent<T>();
+                _colliderRuntimeSet.Add(collider, component);
+                if (component) OnEnter?.Invoke(component);
             }
 
 
             foreach(var collider in _toDelete) {
-                _colliderRuntimeSet.TryGetValue(collider, out behaviour);
-                if (behaviour) OnLeave?.Invoke(behaviour);
+                if (_colliderRuntimeSet.TryGetValue(collider, out var component))
+                {
+                    OnLeave?.Invoke(component);
+                }
                 _colliderRuntimeSet.Remove(collider);
             }
         }
