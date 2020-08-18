@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using SpaceGame.Utility;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace SpaceGame.AsteroidSystem
 {
