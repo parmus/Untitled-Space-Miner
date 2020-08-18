@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: _id
       value: d59fd9e2-3497-4c58-9bd8-8de7c30c7cee
       objectReference: {fileID: 0}
+    - target: {fileID: 4231601547661778113, guid: 376af3f7be045b44abeed91a9ae87d4d,
+        type: 3}
+      propertyPath: _amount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5706779716186316472, guid: 376af3f7be045b44abeed91a9ae87d4d,
         type: 3}
       propertyPath: _id

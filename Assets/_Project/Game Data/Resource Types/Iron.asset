@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _thumbnail: {fileID: 21300000, guid: 3849516eb69b414459fa31258d9d2a1e, type: 3}
   _stackSize: 5
-  _depositPrefabs:
-  - {fileID: 7557966426485060591, guid: 7c47f488ff9e943469f57dfe473dec37, type: 3}
+  _hardness: 200
