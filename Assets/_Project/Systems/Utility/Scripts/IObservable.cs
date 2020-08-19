@@ -8,5 +8,7 @@ namespace SpaceGame.Utility
         
         T Value { get; set; }
         void Set(T value);
+        void Subscribe(Action<T> subscriber);
+        void Unsubscribe(Action<T> subscriber);
     }
 }

@@ -18,15 +18,14 @@ namespace SpaceGame.ShuttleSystems.UI {
         }
 
         public void SetMiningTool(MiningTool.MiningTool miningTool) {
-            if (_miningTool) _miningTool.InRange.OnChange -= OnInRange;
+            if (_miningTool) _miningTool.InRange.Unsubscribe(OnInRange);
             _miningTool = miningTool;
             if (!_miningTool) return;
-            _miningTool.InRange.OnChange += OnInRange;
-            OnInRange(_miningTool.InRange.Value);
+            _miningTool.InRange.Subscribe(OnInRange);
         }
 
         private void OnDestroy() {
-            if (_miningTool) _miningTool.InRange.OnChange -= OnInRange;
+            if (_miningTool) _miningTool.InRange.Unsubscribe(OnInRange);
         }
 
         private void OnInRange(bool inRange) {

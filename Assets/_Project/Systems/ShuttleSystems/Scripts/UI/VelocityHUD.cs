@@ -9,10 +9,10 @@ namespace SpaceGame.ShuttleSystems.UI {
         private Thrusters.Thrusters _thrusters = default;
 
         public void SetThrusters(Thrusters.Thrusters thrusters) {
-            if (_thrusters) _thrusters.Velocity.OnChange -= OnVelocityChange;
+            if (_thrusters) _thrusters.Velocity.Unsubscribe(OnVelocityChange);
             _thrusters = thrusters;
             if (_thrusters) {
-                _thrusters.Velocity.OnChange += OnVelocityChange;
+                _thrusters.Velocity.Subscribe(OnVelocityChange);
                 OnVelocityChange(_thrusters.Velocity.Value);
             } else {
                 OnVelocityChange(0);
@@ -20,7 +20,7 @@ namespace SpaceGame.ShuttleSystems.UI {
         }
 
         private void OnDestroy() {
-            if (_thrusters) _thrusters.Velocity.OnChange -= OnVelocityChange;
+            if (_thrusters) _thrusters.Velocity.Unsubscribe(OnVelocityChange);
         }
 
         private void OnVelocityChange(int velocity) => _onChange.Invoke(velocity);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -13,16 +14,20 @@ namespace SpaceGame.ShuttleSystems {
         private Shuttle _shuttle = default;
 
         public void SetShuttle(Shuttle shuttle) {
-            if (_shuttle) _shuttle.CurrentState.OnChange -= OnShuttleChangeState;
+            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleChangeState);
             _shuttle = shuttle;
             
             if (_shuttle) {
                 _shuttleTransform = shuttle.transform;
-                _shuttle.CurrentState.OnChange += OnShuttleChangeState;
-                OnShuttleChangeState(_shuttle.CurrentState.Value);
+                _shuttle.CurrentState.Subscribe(OnShuttleChangeState);
             } else {
                 _shuttleTransform = null;
             }
+        }
+
+        private void OnDestroy()
+        {
+            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleChangeState);
         }
 
         private void Awake() {

@@ -18,13 +18,13 @@ namespace SpaceGame.CraftingSystem.Demo {
         }
 
         private void OnEnable() {
-            _crafter.Progress.OnChange += OnProgress;
-            _crafter.CurrentlyCrafting.OnChange += OnCurrentlyCrafting;
+            _crafter.Progress.Subscribe(OnProgress);
+            _crafter.CurrentlyCrafting.Subscribe(OnCurrentlyCrafting);
         }
 
         private void OnDisable() {
-            _crafter.Progress.OnChange -= OnProgress;
-            _crafter.CurrentlyCrafting.OnChange -= OnCurrentlyCrafting;
+            _crafter.Progress.Unsubscribe(OnProgress);
+            _crafter.CurrentlyCrafting.Unsubscribe(OnCurrentlyCrafting);
         }
 
         private void OnProgress(float progress) => _progressBar.Value = progress;

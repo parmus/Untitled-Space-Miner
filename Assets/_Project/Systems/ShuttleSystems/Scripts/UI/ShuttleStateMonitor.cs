@@ -16,11 +16,10 @@ namespace SpaceGame.ShuttleSystems.UI {
         private Shuttle _shuttle = default;
 
         public void SetShuttle(Shuttle shuttle) {
-            if (_shuttle) _shuttle.CurrentState.OnChange -= OnStateChange;
+            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnStateChange);
             _shuttle = shuttle;
             if (_shuttle) {
-                _shuttle.CurrentState.OnChange += OnStateChange;
-                OnStateChange(_shuttle.CurrentState.Value);
+                _shuttle.CurrentState.Subscribe(OnStateChange);
             } else {
                 OnStateChange(null);
             }
@@ -32,6 +31,11 @@ namespace SpaceGame.ShuttleSystems.UI {
             _flying.StateChange(newState);
             _landing.StateChange(newState);
             _shutdown.StateChange(newState);
+        }
+
+        private void OnDestroy()
+        {
+            if (_shuttle != null) _shuttle.CurrentState.Unsubscribe(OnStateChange);
         }
 
         [Serializable]

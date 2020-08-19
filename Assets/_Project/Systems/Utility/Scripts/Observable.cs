@@ -18,6 +18,14 @@ namespace SpaceGame.Utility
 
         public void Set(T value) => Value = value;
 
+        public void Subscribe(Action<T> subscriber)
+        {
+            OnChange += subscriber;
+            subscriber(Value);
+        }
+
+        public void Unsubscribe(Action<T> subscriber) => OnChange -= subscriber;
+
         public Observable() => _value = default;
         public Observable(T initialValue) => _value = initialValue;
         public Observable(Action<T> onChange) => OnChange += onChange;

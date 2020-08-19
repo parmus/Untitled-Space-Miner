@@ -7,5 +7,7 @@ namespace SpaceGame.Utility
         event Action<T> OnChange;
 
         T Value { get; }
+        void Subscribe(Action<T> subscriber);
+        void Unsubscribe(Action<T> subscriber);
     }
 }

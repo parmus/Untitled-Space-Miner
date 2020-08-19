@@ -26,12 +26,12 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         private readonly Observable<GameObject> _targetGameObject = new Observable<GameObject>();
         private readonly Observable<bool> _inRange = new Observable<bool>();
         private Camera _camera;
+        private Transform _cameraTransform;
         private Ray _ray;
         private RaycastHit _hit;
-        private Transform _cameraTransform;
         private Vector3 _laserTarget = Vector3.zero;
         private MiningToolVFX _vfx = default;
-        private ResourceDeposit _target = null;
+        private ResourceDeposit _resourceDeposit = null;
         private Shuttle _shuttle;
         #endregion
 
@@ -51,7 +51,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _camera = Camera.main;
             Assert.IsNotNull(_camera);
             _cameraTransform = _camera.transform;
-            _targetGameObject.OnChange += OnTargetChange;  
+            _targetGameObject.OnChange += target => _resourceDeposit = target ? target.GetComponentInParent<ResourceDeposit>() : null;  
         }
 
         private void Start() {
@@ -67,9 +67,6 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         #endregion
 
         
-        private void OnTargetChange(GameObject target) => _target = target ? target.GetComponentInParent<ResourceDeposit>() : null;
-
-
         private void UpdateTarget()
         {
             _ray = _camera.ViewportPointToRay(ScreenCenter);
@@ -80,7 +77,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         }
 
         private void UpdateInRange() {
-            _inRange.Value = enabled && _target && Vector3.Distance(_origin.position, _laserTarget) < CurrentMiningTool.Range;
+            _inRange.Value = enabled && _resourceDeposit && Vector3.Distance(_origin.position, _laserTarget) < CurrentMiningTool.Range;
         }
 
         private void UpdateVFX() {
@@ -98,11 +95,11 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             UpdateVFX();
             if (!Use || _shuttle.PowerSystem.IsEmpty) return;
             _shuttle.PowerSystem.Charge -= CurrentMiningTool.PowerConsumption * Time.deltaTime;
-            if (!_inRange.Value || !_target.Damage(CurrentMiningTool.Strength * Time.deltaTime)) return;
-            var resourceAcquired = _shuttle.Storage.Inventory.Add(_target.Type, _target.Amount);
+            if (!_inRange.Value || !_resourceDeposit.Damage(CurrentMiningTool.Strength * Time.deltaTime)) return;
+            var resourceAcquired = _shuttle.Storage.Inventory.Add(_resourceDeposit.Type, _resourceDeposit.Amount);
             Broker.Push(resourceAcquired < 1
                 ? "Shuttle inventory full!"
-                : $"+{resourceAcquired} {_target.Type.Name}");
+                : $"+{resourceAcquired} {_resourceDeposit.Type.Name}");
         }
 
 

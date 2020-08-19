@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -14,13 +15,17 @@ namespace SpaceGame.ShuttleSystems
 
         public void SetShuttle(Shuttle shuttle) {
             if (_shuttle) {
-                _shuttle.CurrentState.OnChange -= OnShuttleStateChange;
+                _shuttle.CurrentState.Unsubscribe(OnShuttleStateChange);
                 if (_emptyInventory != null) _shuttle.StopCoroutine(_emptyInventory);
             }
             _shuttle = shuttle;
             if (!_shuttle) return;
-            _shuttle.CurrentState.OnChange += OnShuttleStateChange;
-            OnShuttleStateChange(_shuttle.CurrentState.Value);
+            _shuttle.CurrentState.Subscribe(OnShuttleStateChange);
+        }
+
+        private void OnDestroy()
+        {
+            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleStateChange);
         }
 
         private void OnShuttleStateChange(ShuttleStates.FSM.State state) {
