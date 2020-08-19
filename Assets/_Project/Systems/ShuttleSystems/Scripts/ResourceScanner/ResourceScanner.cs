@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SpaceGame.AsteroidSystem;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ResourceScanner {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SpaceGame.InventorySystem;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace SpaceGame.ShuttleSystems
@@ -8,7 +9,7 @@ namespace SpaceGame.ShuttleSystems
         [SerializeField] private UnityEvent<Shuttle> _connectShuttle = default;
         [SerializeField] private UnityEvent<Hull.Hull> _connectHull = default;
         [SerializeField] private UnityEvent<InertiaDampers.InertiaDampers> _connectInertiaDampers = default;
-        [SerializeField] private UnityEvent<InventorySystem.IInventory> _connectInventory = default;
+        [SerializeField] private UnityEvent<IInventory> _connectInventory = default;
         [SerializeField] private UnityEvent<MiningTool.MiningTool> _connectMiningTool = default;
         [SerializeField] private UnityEvent<PowerSystem.PowerSystem> _connectPowerSystem = default;
         [SerializeField] private UnityEvent<ResourceScanner.ResourceScanner> _connectResourceScanner = default;

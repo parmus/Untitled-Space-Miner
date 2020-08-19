@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace SpaceGame.InventorySystem.Demo.Scripts {
+namespace SpaceGame.InventorySystem.Demo {
     public class DemoInventory : MonoBehaviour {
         [SerializeField][Delayed] private uint _numberOfSlots = 5;
         [SerializeField] private uint _stackMultiplier = 1;

@@ -1,0 +1,17 @@
+{
+    "name": "SpaceGame.Core.Editor",
+    "references": [
+        "GUID:db481fdde84a80341a84f09b7fc0052a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

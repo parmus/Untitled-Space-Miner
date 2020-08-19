@@ -1,0 +1,19 @@
+{
+    "name": "SpaceGame.AsteroidSystem.Editor",
+    "references": [
+        "GUID:45fbb32d21ad69b44a346563a87a3c51",
+        "GUID:db481fdde84a80341a84f09b7fc0052a",
+        "GUID:d66621522fec41e4cb5b9f061c9c8fbf"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

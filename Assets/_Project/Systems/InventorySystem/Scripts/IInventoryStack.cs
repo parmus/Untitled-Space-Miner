@@ -1,4 +1,6 @@
-﻿namespace SpaceGame.InventorySystem
+﻿using SpaceGame.Core;
+
+namespace SpaceGame.InventorySystem
 {
     public interface IInventoryStack {
         ItemType Type { get; }

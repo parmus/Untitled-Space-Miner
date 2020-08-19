@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace SpaceGame.Message_UI_System.Scripts {
+namespace SpaceGame.Message_UI_System {
     public class LogHUD: MonoBehaviour {
         [SerializeField] private LogEntry _logEntryPrefab = default;
         [SerializeField] private RectTransform _entries = default;

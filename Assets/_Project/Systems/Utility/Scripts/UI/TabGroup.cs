@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace SpaceGame
+namespace SpaceGame.Utility.UI
 {
     public class TabGroup : MonoBehaviour
     {

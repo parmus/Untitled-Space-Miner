@@ -1,4 +1,6 @@
 ﻿using SpaceGame.InventorySystem.UI;
+using SpaceGame.PlayerInput;
+using SpaceGame.ShuttleSystems;
 using UnityEngine;
 
 namespace SpaceGame
@@ -16,7 +18,7 @@ namespace SpaceGame
                 _HUD.gameObject.SetActive(!_HUD.gameObject.activeSelf);
                 SetCursorEnabled(_HUD.gameObject.activeSelf);
 
-                var shuttle = ShuttleSystems.ShuttleSpawner.CurrentShuttle;
+                var shuttle = ShuttleSpawner.CurrentShuttle;
                 if (shuttle != null) shuttle.ShuttleControls.enabled = !_HUD.gameObject.activeSelf; 
             };
         }

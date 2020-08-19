@@ -1,7 +1,7 @@
 ﻿using SpaceGame.Utility.UI;
 using UnityEngine;
 
-namespace SpaceGame.CraftingSystem.Demo.Scripts {
+namespace SpaceGame.CraftingSystem.Demo {
     public class CraftButton : MonoBehaviour
     {
         [SerializeField] private Crafter _crafter = default;

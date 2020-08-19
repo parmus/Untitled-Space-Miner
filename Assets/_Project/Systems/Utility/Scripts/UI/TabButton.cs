@@ -3,7 +3,7 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace SpaceGame
+namespace SpaceGame.Utility.UI
 {
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler

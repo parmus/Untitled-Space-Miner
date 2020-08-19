@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpaceGame.InventorySystem.Demo.Scripts {
+namespace SpaceGame.InventorySystem.Demo {
     [RequireComponent(typeof(UnityEngine.UI.Button))]
     public class ClearButton : MonoBehaviour {
         public IInventory Inventory { get; set; } = null;

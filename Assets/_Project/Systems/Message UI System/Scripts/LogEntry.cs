@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace SpaceGame.Message_UI_System.Scripts {
+namespace SpaceGame.Message_UI_System {
     [RequireComponent(typeof(TMP_Text))]
     public class LogEntry : MonoBehaviour {
         private TMP_Text _text;

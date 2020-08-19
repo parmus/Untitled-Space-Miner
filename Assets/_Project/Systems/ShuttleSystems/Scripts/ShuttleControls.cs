@@ -1,3 +1,4 @@
+using SpaceGame.PlayerInput;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {

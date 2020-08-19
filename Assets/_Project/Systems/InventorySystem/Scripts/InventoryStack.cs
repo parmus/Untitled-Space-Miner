@@ -1,4 +1,5 @@
 using System;
+using SpaceGame.Core;
 using UnityEngine;
 
 namespace SpaceGame.InventorySystem
