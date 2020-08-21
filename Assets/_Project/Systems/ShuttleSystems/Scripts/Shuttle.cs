@@ -12,7 +12,7 @@ namespace SpaceGame.ShuttleSystems {
     [RequireComponent(typeof(ShuttleControls))]
     [RequireComponent(typeof(Storage.Storage))]
     [RequireComponent(typeof(Thrusters.Thrusters))]
-    public class Shuttle : MonoBehaviour {
+    public class Shuttle : MonoBehaviour, IPersistable {
         #region Shuttle Components
         public CameraControl CameraControl { get; private set; }
         public Hull.Hull Hull { get; private set; }
@@ -46,5 +46,36 @@ namespace SpaceGame.ShuttleSystems {
         }
 
         private void Update() => _fsm.Tick();
+        
+        
+        
+        #region IPersistable
+        [System.Serializable]
+        public class PersistentData
+        {
+            public readonly Vector3 Position;
+            public readonly Quaternion Rotation;
+
+            public PersistentData(Transform transform)
+            {
+                Position = transform.position;
+                Rotation = transform.rotation;
+            }
+        }
+
+        public object CaptureState() => new PersistentData(transform);
+
+        public void RestoreState(object state)
+        {
+            var persistentData = (PersistentData) state;
+            var t = transform;
+            t.position = persistentData.Position;
+            t.rotation = persistentData.Rotation;
+            var rigidBody = GetComponent<Rigidbody>();
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
+        }
+        #endregion
+        
     }
 }
