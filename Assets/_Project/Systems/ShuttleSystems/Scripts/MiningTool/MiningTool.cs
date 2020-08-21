@@ -8,7 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace SpaceGame.ShuttleSystems.MiningTool {
     [AddComponentMenu("ShuttleSystems/MiningTool")]
-    public class MiningTool : MonoBehaviour {
+    public class MiningTool : MonoBehaviour, IPersistable {
         #region Serialized fields
         [SerializeField] private Transform _origin = default;
         [SerializeField] private DefaultMiningTool _defaultMiningTool = new DefaultMiningTool();
@@ -55,10 +55,6 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _vfx = Instantiate(_currentMiningTool.VFXPrefab, _origin);
         }
 
-        /*private void Start() {
-            if (!_vfx) _vfx = Instantiate(_currentMiningTool.VFXPrefab, _origin);
-        }*/
-
         private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
 
         private void OnDisable() {
@@ -71,7 +67,6 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         private void Reset() => _origin = transform;
         #endregion
 
-        
         private void UpdateTarget()
         {
             _ray = _camera.ViewportPointToRay(ScreenCenter);
@@ -107,6 +102,25 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
                 : $"+{resourceAcquired} {_resourceDeposit.Type.Name}");
         }
 
+        #region IPersistable
+        [System.Serializable]
+        public class PersistentData
+        {
+            public readonly string MiningToolUpgradeName;
+
+            public MiningToolUpgrade MiningToolUpgrade => MiningToolUpgrade.GetByName(MiningToolUpgradeName);
+
+            public PersistentData(MiningToolUpgrade miningToolUpgrade) => MiningToolUpgradeName = miningToolUpgrade != null ? miningToolUpgrade.name : null;
+        }
+
+        public object CaptureState() => new PersistentData(Upgrade.Value);
+
+        public void RestoreState(object state)
+        {
+            var persistentData = (PersistentData) state;
+            Upgrade.Set(persistentData.MiningToolUpgrade);
+        }
+        #endregion
 
         [System.Serializable]
         private class DefaultMiningTool: IMiningToolConfiguration {

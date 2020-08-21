@@ -1,11 +1,10 @@
-﻿using System;
-using SpaceGame.Utility;
+﻿using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.Thrusters {
 
     [AddComponentMenu("Shuttle Systems/Thrusters")]
-    public class Thrusters : MonoBehaviour {
+    public class Thrusters : MonoBehaviour, IPersistable {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private DefaultThrusters _defaultThrusters = new DefaultThrusters();
 
@@ -45,10 +44,28 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
             _velocity.Value = Mathf.RoundToInt(_rigidbody.velocity.magnitude);
         }
 
-        private void Reset() {
-            _rigidbody = GetComponent<Rigidbody>();
+        private void Reset() => _rigidbody = GetComponent<Rigidbody>();
+
+        #region IPersistable
+        [System.Serializable]
+        public class PersistentData
+        {
+            public readonly string ThrusterUpgradeName;
+
+            public ThrusterUpgrade ThrusterUpgrade => ThrusterUpgrade.GetByName(ThrusterUpgradeName);
+
+            public PersistentData(ThrusterUpgrade thrusterUpgrade) => ThrusterUpgradeName = thrusterUpgrade != null ? thrusterUpgrade.name : null;
         }
 
+        public object CaptureState() => new PersistentData(Upgrade.Value);
+
+        public void RestoreState(object state)
+        {
+            var persistentData = (PersistentData) state;
+            Upgrade.Set(persistentData.ThrusterUpgrade);
+        }
+        #endregion
+        
         [System.Serializable]
         private class DefaultThrusters: IThrusterUpgrade {
             [SerializeField] private float _defaultThrustPower = 500f;

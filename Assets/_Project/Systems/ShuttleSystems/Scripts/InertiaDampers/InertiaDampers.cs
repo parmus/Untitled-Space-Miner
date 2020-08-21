@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.InertiaDampers {
     [AddComponentMenu("Shuttle Systems/Inertia Dampers")]
-    public class InertiaDampers : MonoBehaviour {
+    public class InertiaDampers : MonoBehaviour, IPersistable {
         [SerializeField] private Rigidbody _rigidbody;
 
         [Header("Configuration when disabled")]
@@ -44,6 +44,26 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
         private void OnEnable() => EnableDampers();
         private void OnDisable() => DisableDampers();
 
+        #region IPersistable
+        [System.Serializable]
+        public class PersistentData
+        {
+            public readonly string InertiaDamperUpgradeName;
+
+            public InertiaDamperUpgrade InertiaDamperUpgrade => InertiaDamperUpgrade.GetByName(InertiaDamperUpgradeName);
+
+            public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade) => InertiaDamperUpgradeName = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.name : null;
+        }
+
+        public object CaptureState() => new PersistentData(Upgrade.Value);
+
+        public void RestoreState(object state)
+        {
+            var persistentData = (PersistentData) state;
+            Upgrade.Set(persistentData.InertiaDamperUpgrade);
+        }
+        #endregion
+        
         [System.Serializable]
         private class DefaultInertiaDampers : IInertiaDamperUpgrade
         {
