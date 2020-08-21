@@ -45,25 +45,6 @@ namespace SpaceGame.ShuttleSystems {
             _fsm = new ShuttleStates.FSM(this);
         }
 
-        private void OnEnable()
-        {
-            ShuttleConfigurationManager.OnChange += UpdateConfiguration;
-            UpdateConfiguration();
-        }
-
-        private void OnDisable() => ShuttleConfigurationManager.OnChange -= UpdateConfiguration;
-
-        private void UpdateConfiguration()
-        {
-            Hull.Upgrade.Set(ShuttleConfigurationManager.HullUpgrade);
-            InertiaDampers.Upgrade.Set(ShuttleConfigurationManager.InertiaDamperUpgrade);
-            MiningTool.Upgrade.Set(ShuttleConfigurationManager.MiningToolUpgrade);
-            PowerSystem.Upgrade.Set(ShuttleConfigurationManager.PowerSystemUpgrade);
-            ResourceScanner.Configuration.Set(ShuttleConfigurationManager.ResourceScannerConfiguration);
-            Storage.Upgrade.Set(ShuttleConfigurationManager.StorageUpgrade);
-            Thrusters.Upgrade.Set(ShuttleConfigurationManager.ThrusterUpgrade);
-        }
-
         private void Update() => _fsm.Tick();
     }
 }

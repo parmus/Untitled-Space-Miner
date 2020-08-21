@@ -8,7 +8,7 @@ namespace SpaceGame.ShuttleSystems {
     public class ShuttleSpawner : MonoBehaviour {
         [SerializeField] private Shuttle _shuttlePrefab = default;
         [SerializeField] private float _respawnDelay = 3.0f;
-
+        
         public static IReadonlyObservable<Shuttle> CurrentShuttle => _currentShuttle;
         private static readonly Observable<Shuttle> _currentShuttle = new Observable<Shuttle>();
         
@@ -27,7 +27,6 @@ namespace SpaceGame.ShuttleSystems {
         }
 
         private IEnumerator _onShuttleLost() {
-            ShuttleConfigurationManager.Clear();
             yield return new WaitForSeconds(_respawnDelay);
             SpawnNewShuttle();
         }

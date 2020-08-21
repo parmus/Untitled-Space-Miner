@@ -21,20 +21,32 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
             _stack = new FakeStack(Set, Get);
         }
 
-        private void OnEnable()
+
+        private void OnShuttleChange(Shuttle shuttle)
         {
-            ShuttleConfigurationManager.OnChange += OnConfigurationChange;
-            OnConfigurationChange();
+            _upgrade?.Unsubscribe(OnConfigurationChange);
+            _upgrade = shuttle ? UpgradeFromShuttle(shuttle) : null;
+            _upgrade?.Subscribe(OnConfigurationChange);
+        }
+        
+        protected abstract Utility.IObservable<T> UpgradeFromShuttle(Shuttle shuttle);
+
+        private Utility.IObservable<T> _upgrade;
+        
+        private void OnEnable() => ShuttleSpawner.CurrentShuttle.Subscribe(OnShuttleChange);
+
+        private void OnDisable() => ShuttleSpawner.CurrentShuttle.Unsubscribe(OnShuttleChange);
+
+        private void Set([CanBeNull] T upgrade)
+        {
+            if (_upgrade == null) return;
+            _upgrade.Value = upgrade;
         }
 
-        private void OnDisable() => ShuttleConfigurationManager.OnChange -= OnConfigurationChange;
+        private T Get() => _upgrade?.Value;
 
-        protected abstract void Set([CanBeNull] T upgrade);
-        protected abstract T Get();
-
-        private void OnConfigurationChange()
+        private void OnConfigurationChange(T upgrade)
         {
-            var upgrade = Get();
             if (upgrade)
             {
                 _background.enabled = false;

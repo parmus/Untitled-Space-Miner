@@ -1,10 +1,10 @@
 ﻿using SpaceGame.ShuttleSystems.PowerSystem;
+using SpaceGame.Utility;
 
 namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class PowerSystemUpgradeSlot : ShuttleUpgradeSlot<PowerSystemUpgrade>
     {
-        protected override void Set(PowerSystemUpgrade upgrade) => ShuttleConfigurationManager.PowerSystemUpgrade = upgrade;
-        protected override PowerSystemUpgrade Get() => ShuttleConfigurationManager.PowerSystemUpgrade;
+        protected override IObservable<PowerSystemUpgrade> UpgradeFromShuttle(Shuttle shuttle) => shuttle == null ? null : shuttle.PowerSystem.Upgrade;
     }
 }

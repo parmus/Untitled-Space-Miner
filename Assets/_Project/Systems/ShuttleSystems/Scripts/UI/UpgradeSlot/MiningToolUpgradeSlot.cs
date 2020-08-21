@@ -1,10 +1,10 @@
 ﻿using SpaceGame.ShuttleSystems.MiningTool;
+using SpaceGame.Utility;
 
 namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class MiningToolUpgradeSlot : ShuttleUpgradeSlot<MiningToolUpgrade>
     {
-        protected override void Set(MiningToolUpgrade upgrade) => ShuttleConfigurationManager.MiningToolUpgrade = upgrade;
-        protected override MiningToolUpgrade Get() => ShuttleConfigurationManager.MiningToolUpgrade;
+        protected override IObservable<MiningToolUpgrade> UpgradeFromShuttle(Shuttle shuttle) => shuttle == null ? null : shuttle.MiningTool.Upgrade;
     }
 }
