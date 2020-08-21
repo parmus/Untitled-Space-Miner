@@ -1,4 +1,5 @@
-﻿using SpaceGame.Utility;
+﻿using SpaceGame.Core;
+using SpaceGame.Utility;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;

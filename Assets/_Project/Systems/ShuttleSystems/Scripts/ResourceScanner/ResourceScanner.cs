@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using SpaceGame.AsteroidSystem;
+using SpaceGame.Core;
 using SpaceGame.Utility;
 using UnityEngine;
 

@@ -1,5 +1,4 @@
-﻿using System;
-using SpaceGame.AsteroidSystem;
+﻿using SpaceGame.Core;
 using SpaceGame.Message_UI_System;
 using SpaceGame.ShuttleSystems.MiningTool.VFX;
 using SpaceGame.Utility;

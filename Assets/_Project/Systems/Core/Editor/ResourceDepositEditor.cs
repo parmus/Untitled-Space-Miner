@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 
-namespace SpaceGame.AsteroidSystem.Editor
+namespace SpaceGame.Core.Editor
 {
     [CustomEditor(typeof(ResourceDeposit))]
     public class ResourceDepositEditor : UnityEditor.Editor

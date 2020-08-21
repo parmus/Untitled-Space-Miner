@@ -1,5 +1,5 @@
 using System;
-using SpaceGame.AsteroidSystem;
+using SpaceGame.Core;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ResourceScanner

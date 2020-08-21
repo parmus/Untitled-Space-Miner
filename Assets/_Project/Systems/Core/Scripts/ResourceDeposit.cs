@@ -1,9 +1,8 @@
 ﻿using System;
-using SpaceGame.Core;
 using SpaceGame.Utility;
 using UnityEngine;
 
-namespace SpaceGame.AsteroidSystem
+namespace SpaceGame.Core
 {
     public class ResourceDeposit : MonoBehaviour, IPersistable
     {
