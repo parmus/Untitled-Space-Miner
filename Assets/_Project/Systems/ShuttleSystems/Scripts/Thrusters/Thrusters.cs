@@ -40,7 +40,7 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
             if (_shuttle.PowerSystem.IsEmpty) return;
 
             _rigidbody.AddRelativeForce(_thrustDirection * (ThrustPower * Time.fixedDeltaTime));
-            _shuttle.PowerSystem.Charge -= PowerConsumption * Time.fixedDeltaTime;
+            _shuttle.PowerSystem.Consume(PowerConsumption * Time.fixedDeltaTime);
             
             _velocity.Value = Mathf.RoundToInt(_rigidbody.velocity.magnitude);
         }

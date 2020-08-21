@@ -39,7 +39,7 @@ namespace SpaceGame.Mothership
 
         private void Update() {
             if (_charging) {
-                _shuttle.PowerSystem.Charge += _chargingSpeed * Time.deltaTime;
+                _shuttle.PowerSystem.Recharge(_chargingSpeed * Time.deltaTime);
             }
         }
 

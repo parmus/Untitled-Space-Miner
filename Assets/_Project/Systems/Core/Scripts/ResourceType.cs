@@ -3,7 +3,7 @@
 namespace SpaceGame.Core
 {
     [CreateAssetMenu(fileName = "New Resource Type", menuName = "Game Data/Resource Type", order = 1)]
-    public class ResourceType : ItemType
+    public class ResourceType : ItemType<ResourceType>
     {
         [SerializeField] private float _hardness = 100f;
         

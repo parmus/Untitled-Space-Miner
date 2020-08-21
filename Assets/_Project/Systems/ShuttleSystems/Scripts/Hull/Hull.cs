@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.Hull {
     [AddComponentMenu("Shuttle Systems/Hull")]
-    public class Hull : MonoBehaviour {
+    public class Hull : MonoBehaviour, IPersistable {
         [SerializeField] private DefaultHull _defaultHull = new DefaultHull();
 
         #region Events
@@ -56,5 +56,32 @@ namespace SpaceGame.ShuttleSystems.Hull {
             [SerializeField] private float _defaultHullStrength = 1f;
             public float HullStrength => _defaultHullStrength;
         }
+
+
+        #region IPersistable
+        [Serializable]
+        public class PersistentData
+        {
+            public readonly string HullUpgradeName;
+            public readonly float Integrity;
+
+            public HullUpgrade HullUpgrade => HullUpgrade.GetByName(HullUpgradeName);
+
+            public PersistentData(HullUpgrade hullUpgrade, float integrity)
+            {
+                HullUpgradeName = hullUpgrade != null ? hullUpgrade.name : null;
+                Integrity = integrity;
+            }
+        }
+
+        public object CaptureState() => new PersistentData(Upgrade.Value, _integrity.Value);
+
+        public void RestoreState(object state)
+        {
+            var persistentData = (PersistentData) state;
+            Upgrade.Set(persistentData.HullUpgrade);
+            _integrity.Set(persistentData.Integrity);
+        }
+        #endregion
     }
 }

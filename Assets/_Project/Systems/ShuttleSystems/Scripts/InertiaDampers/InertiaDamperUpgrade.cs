@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.InertiaDampers {
     [CreateAssetMenu(fileName = "New Inertia Dampers Configuration", menuName = "Game Data/Inertia Dampers Configuration", order = 1)]
-    public class InertiaDamperUpgrade : ShuttleUpgrade, IInertiaDamperUpgrade {
+    public class InertiaDamperUpgrade : ShuttleUpgrade<InertiaDamperUpgrade>, IInertiaDamperUpgrade {
         [SerializeField] private float _drag = 1f;
         [SerializeField] private float _angularDrag = 1f;
 

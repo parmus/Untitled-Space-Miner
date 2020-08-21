@@ -99,7 +99,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             UpdateInRange();
             UpdateVFX();
             if (!Use || _shuttle.PowerSystem.IsEmpty) return;
-            _shuttle.PowerSystem.Charge -= _currentMiningTool.PowerConsumption * Time.deltaTime;
+            _shuttle.PowerSystem.Consume(_currentMiningTool.PowerConsumption * Time.deltaTime);
             if (!_inRange.Value || !_resourceDeposit.Damage(_currentMiningTool.Strength * Time.deltaTime)) return;
             var resourceAcquired = _shuttle.Storage.Inventory.Add(_resourceDeposit.Type, _resourceDeposit.Amount);
             Broker.Push(resourceAcquired < 1

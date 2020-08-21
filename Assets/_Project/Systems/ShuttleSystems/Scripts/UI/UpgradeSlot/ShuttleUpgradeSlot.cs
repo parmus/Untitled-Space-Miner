@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
-    public abstract class ShuttleUpgradeSlot<T>: MonoBehaviour, IDropHandler, IStackProvider where T: ShuttleUpgrade
+    public abstract class ShuttleUpgradeSlot<T>: MonoBehaviour, IDropHandler, IStackProvider where T: ShuttleUpgrade<T>
     {
         [SerializeField] private Image _image = default;
         [SerializeField] private Image _background = default;

@@ -20,23 +20,24 @@ namespace SpaceGame.ShuttleSystems.UI {
 
         public void SetPowerSystem(PowerSystem.PowerSystem powerSystem) {
             if (_powerSystem) {
-                _powerSystem.OnCapacityChange -= OnCapacityChange;
-                _powerSystem.OnChargeChange -= OnChargeChange;
+                _powerSystem.Capacity.Unsubscribe(OnCapacityChange);
+                _powerSystem.Charge.Unsubscribe(OnChargeChange);
             }
             _powerSystem = powerSystem;
             if (_powerSystem) {
-                _powerSystem.OnCapacityChange += OnCapacityChange;
-                _powerSystem.OnChargeChange += OnChargeChange;
-                OnCapacityChange(_powerSystem.Capacity);
-                OnChargeChange(_powerSystem.Charge);
+                _powerSystem.Charge.Subscribe(OnChargeChange);
+                _powerSystem.Capacity.Subscribe(OnCapacityChange);
             } else {
                 OnCapacityChange(0f);
                 OnChargeChange(0f);
             }
         }
 
-        private void OnDestroy() {
-            if (_powerSystem) _powerSystem.OnChargeChange -= OnChargeChange;
+        private void OnDestroy()
+        {
+            if (_powerSystem) return;
+            _powerSystem.Charge.Unsubscribe(OnChargeChange);
+            _powerSystem.Capacity.Unsubscribe(OnCapacityChange);
         }
 
         private void OnCapacityChange(float capacity) {
@@ -50,7 +51,7 @@ namespace SpaceGame.ShuttleSystems.UI {
         }
 
         private void UpdatePowerLevel() {
-            var newPowerLevel = !_powerSystem || _powerSystem.Charge > _lowPowerThreshold ?
+            var newPowerLevel = !_powerSystem || _powerSystem.Charge.Value > _lowPowerThreshold ?
                 PowerLevel.Normal :
                 _powerSystem.IsEmpty ? PowerLevel.Lost : PowerLevel.Low;
             if (newPowerLevel == _powerLevel) return;

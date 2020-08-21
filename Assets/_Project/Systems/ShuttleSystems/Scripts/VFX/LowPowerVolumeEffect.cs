@@ -10,18 +10,18 @@ namespace SpaceGame.ShuttleSystems.VFX {
         private PowerSystem.PowerSystem _powerSystem = default;
 
         public void SetPowerSystem(PowerSystem.PowerSystem powerSystem) {
-            if (_powerSystem != null) _powerSystem.OnChargeChange += OnChargeChange;
+            if (_powerSystem != null) _powerSystem.Charge.Unsubscribe(OnChargeChange);
             _powerSystem = powerSystem;
-            if (_powerSystem == null) return;
-            _powerSystem.OnChargeChange += OnChargeChange;
-            OnChargeChange(_powerSystem.Charge);
+            if (_powerSystem != null) _powerSystem.Charge.Subscribe(OnChargeChange);
         }
 
-        private void OnChargeChange(float change) {
-            _volume.weight = 1 - Mathf.InverseLerp(0f, _lowPowerThreshold, change);
-        }
+        private void OnChargeChange(float change) => _volume.weight = 1 - Mathf.InverseLerp(0f, _lowPowerThreshold, change);
 
-        private void OnDestroy() => _volume.weight = 0;
+        private void OnDestroy()
+        {
+            _volume.weight = 0;
+            if (_powerSystem != null) _powerSystem.Charge.Unsubscribe(OnChargeChange);
+        }
 
         private void Reset() => _volume = GetComponent<Volume>();
     }
