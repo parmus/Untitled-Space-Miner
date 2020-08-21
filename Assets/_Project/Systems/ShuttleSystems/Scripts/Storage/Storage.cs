@@ -9,7 +9,7 @@ namespace SpaceGame.ShuttleSystems.Storage
     {
         [SerializeField] private DefaultConfiguration _defaultConfiguration = new DefaultConfiguration();
 
-        public readonly Observable<StorageUpgrade> Upgrade = new Observable<StorageUpgrade>();
+        public readonly Utility.IObservable<StorageUpgrade> Upgrade = new Observable<StorageUpgrade>();
 
         public IInventory Inventory { get; private set; }
 

@@ -8,19 +8,15 @@ namespace SpaceGame.ShuttleSystems.UI {
         private Hull.Hull _hull = default;
 
         public void SetHull(Hull.Hull hull) {
-            if (_hull) _hull.OnIntegrityChange -= OnHullIntegrityChange;
+            if (_hull) _hull.Integrity.Unsubscribe(OnHullIntegrityChange);
             _hull = hull;
-            if (!_hull) return;
-            _hull.OnIntegrityChange += OnHullIntegrityChange;
-            OnHullIntegrityChange(_hull.Integrity);
+            if (_hull) _hull.Integrity.Subscribe(OnHullIntegrityChange);
         }
 
         private void OnDestroy() {
-            if (_hull) _hull.OnIntegrityChange -= OnHullIntegrityChange;
+            if (_hull) _hull.Integrity.Unsubscribe(OnHullIntegrityChange);
         }
 
-        private void OnHullIntegrityChange(float integrity) {
-            _onHullIntegrityChange.Invoke(integrity);
-        }
+        private void OnHullIntegrityChange(float integrity) => _onHullIntegrityChange.Invoke(integrity);
     }
 }

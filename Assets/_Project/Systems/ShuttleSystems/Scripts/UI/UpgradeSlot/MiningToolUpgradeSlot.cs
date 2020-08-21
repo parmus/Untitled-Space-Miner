@@ -1,6 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.MiningTool;
 
-namespace SpaceGame.ShuttleSystems.UI
+namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class MiningToolUpgradeSlot : ShuttleUpgradeSlot<MiningToolUpgrade>
     {

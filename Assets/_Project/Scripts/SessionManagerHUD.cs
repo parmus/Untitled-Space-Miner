@@ -18,7 +18,7 @@ namespace SpaceGame
                 _HUD.gameObject.SetActive(!_HUD.gameObject.activeSelf);
                 SetCursorEnabled(_HUD.gameObject.activeSelf);
 
-                var shuttle = ShuttleSpawner.CurrentShuttle;
+                var shuttle = ShuttleSpawner.CurrentShuttle.Value;
                 if (shuttle != null) shuttle.ShuttleControls.enabled = !_HUD.gameObject.activeSelf; 
             };
         }

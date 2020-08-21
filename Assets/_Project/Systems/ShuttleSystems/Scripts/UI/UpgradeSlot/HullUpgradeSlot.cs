@@ -1,6 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.Hull;
 
-namespace SpaceGame.ShuttleSystems.UI
+namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class HullUpgradeSlot : ShuttleUpgradeSlot<HullUpgrade>
     {

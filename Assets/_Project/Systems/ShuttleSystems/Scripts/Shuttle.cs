@@ -55,13 +55,13 @@ namespace SpaceGame.ShuttleSystems {
 
         private void UpdateConfiguration()
         {
-            Hull.Upgrade = ShuttleConfigurationManager.HullUpgrade;
-            InertiaDampers.Upgrade = ShuttleConfigurationManager.InertiaDamperUpgrade;
+            Hull.Upgrade.Set(ShuttleConfigurationManager.HullUpgrade);
+            InertiaDampers.Upgrade.Set(ShuttleConfigurationManager.InertiaDamperUpgrade);
             MiningTool.Upgrade.Set(ShuttleConfigurationManager.MiningToolUpgrade);
             PowerSystem.Upgrade.Set(ShuttleConfigurationManager.PowerSystemUpgrade);
-            ResourceScanner.Configuration = ShuttleConfigurationManager.ResourceScannerConfiguration;
+            ResourceScanner.Configuration.Set(ShuttleConfigurationManager.ResourceScannerConfiguration);
             Storage.Upgrade.Set(ShuttleConfigurationManager.StorageUpgrade);
-            Thrusters.Upgrade = ShuttleConfigurationManager.ThrusterUpgrade;
+            Thrusters.Upgrade.Set(ShuttleConfigurationManager.ThrusterUpgrade);
         }
 
         private void Update() => _fsm.Tick();

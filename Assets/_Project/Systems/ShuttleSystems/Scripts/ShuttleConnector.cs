@@ -16,14 +16,9 @@ namespace SpaceGame.ShuttleSystems
         [SerializeField] private UnityEvent<Thrusters.Thrusters> _connectThrusters = default;
         
 
-        private void Awake() {
-            ShuttleSpawner.OnNewShuttleSpawned += OnNewShuttleSpawned;
-            OnNewShuttleSpawned(ShuttleSpawner.CurrentShuttle);
-        }
+        private void Awake() => ShuttleSpawner.CurrentShuttle.Subscribe(OnNewShuttleSpawned);
 
-        private void OnDestroy() {
-            ShuttleSpawner.OnNewShuttleSpawned -= OnNewShuttleSpawned;
-        }
+        private void OnDestroy() => ShuttleSpawner.CurrentShuttle.Unsubscribe(OnNewShuttleSpawned);
 
 
         private void OnNewShuttleSpawned(Shuttle shuttle)

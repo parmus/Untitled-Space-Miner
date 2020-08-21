@@ -1,3 +1,4 @@
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.InertiaDampers {
@@ -8,28 +9,31 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
         [Header("Configuration when disabled")]
         [SerializeField] private DefaultInertiaDampers _defaultInertiaDampers = new DefaultInertiaDampers();
 
-        public InertiaDamperUpgrade Upgrade {
-            get => _upgrade;
-            set {
-                _upgrade = value;
-                if (enabled && _upgrade) {
+        public readonly IObservable<InertiaDamperUpgrade> Upgrade = new Observable<InertiaDamperUpgrade>();
+
+        private void Awake()
+        {
+            Upgrade.OnChange += upgrade =>
+            {
+                if (enabled && upgrade)
+                {
                     EnableDampers();
-                } else {
+                }
+                else
+                {
                     DisableDampers();
                 }
-            }
+            };
         }
-
-        private InertiaDamperUpgrade _upgrade = default;
 
         private void Reset() {
             _rigidbody = GetComponentInChildren<Rigidbody>();
         }
 
         private void EnableDampers() {
-            if (!_upgrade) return;
-            _rigidbody.drag = _upgrade.Drag;
-            _rigidbody.angularDrag = _upgrade.AngularDrag;
+            if (!Upgrade.Value) return;
+            _rigidbody.drag = Upgrade.Value.Drag;
+            _rigidbody.angularDrag = Upgrade.Value.AngularDrag;
         }
 
         private void DisableDampers() {

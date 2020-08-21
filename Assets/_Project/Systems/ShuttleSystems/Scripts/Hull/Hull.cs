@@ -1,4 +1,5 @@
 ﻿using System;
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.Hull {
@@ -8,34 +9,45 @@ namespace SpaceGame.ShuttleSystems.Hull {
 
         #region Events
         public event Action<float> OnImpact;
-        public event Action<float> OnIntegrityChange;
         public event Action OnDie;
         #endregion
 
         #region Properties
-        public HullUpgrade Upgrade { get; set; } = default;
-        public float Integrity {
-            get => _integrity;
-            private set {
-                _integrity = Mathf.Clamp01(value);
-                OnIntegrityChange?.Invoke(_integrity);
-                if (_integrity < Mathf.Epsilon) {
-                    OnDie?.Invoke();
-                }
+        public readonly Utility.IObservable<HullUpgrade> Upgrade = new Observable<HullUpgrade>();
+        public IReadonlyObservable<float> Integrity => _integrity;
+        #endregion
+
+        #region Private variables
+        private readonly Observable<float> _integrity = new Observable<float>(1f); 
+        private IHullConfiguration _currentHull;
+        #endregion
+
+        private void OnEnable()
+        {
+            Upgrade.Subscribe(OnUpgradeChange);
+            _integrity.Subscribe(OnIntegrityChange);
+        }
+
+        private void OnDisable()
+        {
+            _integrity.Unsubscribe(OnIntegrityChange);
+            Upgrade.Unsubscribe(OnUpgradeChange);
+        }
+
+        private void OnUpgradeChange(HullUpgrade upgrade) => _currentHull = upgrade ? (IHullConfiguration) upgrade : _defaultHull;
+
+        private void OnIntegrityChange(float integrity)
+        {
+            if (integrity.IsZero()) {
+                OnDie?.Invoke();
             }
         }
-        #endregion
 
-        #region Private properties and variables
-        private IHullConfiguration CurrentHull => Upgrade ? (IHullConfiguration) Upgrade : _defaultHull;
-        private float HullStrength => CurrentHull.HullStrength;
-        private float _integrity = 1f;
-        #endregion
 
         private void OnCollisionEnter(Collision other) {
-            var impact = other.relativeVelocity.magnitude / HullStrength;
+            var impact = other.relativeVelocity.magnitude / _currentHull.HullStrength;
             OnImpact?.Invoke(impact);
-            Integrity -= impact / 100f;
+            _integrity.Set(Mathf.Clamp01(_integrity.Value - impact / 100f));
         }
 
         [Serializable]

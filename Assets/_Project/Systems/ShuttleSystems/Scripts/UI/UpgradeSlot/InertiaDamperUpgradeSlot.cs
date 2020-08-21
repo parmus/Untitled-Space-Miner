@@ -1,6 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.InertiaDampers;
 
-namespace SpaceGame.ShuttleSystems.UI
+namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class InertiaDamperUpgradeSlot : ShuttleUpgradeSlot<InertiaDamperUpgrade>
     {

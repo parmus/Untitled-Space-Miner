@@ -8,7 +8,7 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
     {
         [SerializeField] private DefaultConfiguration _defaultConfiguration = new DefaultConfiguration();
 
-        public readonly Observable<PowerSystemUpgrade> Upgrade = new Observable<PowerSystemUpgrade>();
+        public readonly Utility.IObservable<PowerSystemUpgrade> Upgrade = new Observable<PowerSystemUpgrade>();
         
         private void Awake()
         {

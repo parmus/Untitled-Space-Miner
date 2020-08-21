@@ -1,6 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.Thrusters;
 
-namespace SpaceGame.ShuttleSystems.UI
+namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class ThrusterUpgradeSlot : ShuttleUpgradeSlot<ThrusterUpgrade>
     {

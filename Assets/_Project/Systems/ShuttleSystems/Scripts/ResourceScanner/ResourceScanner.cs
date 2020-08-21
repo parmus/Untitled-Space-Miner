@@ -1,34 +1,41 @@
 using System;
 using System.Collections.Generic;
 using SpaceGame.AsteroidSystem;
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ResourceScanner {
     [AddComponentMenu("Shuttle Systems/Resource Scanner")]
     public class ResourceScanner : MonoBehaviour {
+        #region Serialized fields
         [SerializeField] private LayerMask _layerMask = default;
         [SerializeField] private Transform _origin = default;
+        #endregion
 
-        public Transform Origin => _origin;
-        public float Range => _configuration ? _configuration.Range : 0;
+        #region Public variables
         public event Action<IResourceScannerItem> OnEnter;
+        public readonly Utility.IObservable<Configuration> Configuration = new Observable<Configuration>();
+        #endregion
+        
+        #region Properties
+        public Transform Origin => _origin;
+        public float Range => Configuration.Value ? Configuration.Value.Range : 0;
         public IEnumerable<IResourceScannerItem> InRange => _inRange.Values;
-        public Configuration Configuration {
-            get => _configuration;
-            set {
-                _configuration = value;
-                if (value) Clear();
-            }
-        }
+        #endregion
 
-        private Configuration _configuration;
+        #region Private variables
         private readonly Scanner<ResourceDeposit> _scanner = new Scanner<ResourceDeposit>();
-
         private readonly Dictionary<ResourceDeposit, ResourceScannerItem> _inRange = new Dictionary<ResourceDeposit, ResourceScannerItem>();
+        #endregion
 
         private void Awake() {
             _scanner.OnEnter += OnResourceDepositEnter;
             _scanner.OnLeave += OnResourceDepositLeave;
+
+            Configuration.OnChange += configuration =>
+            {
+                if (configuration) Clear();
+            };
         }
 
         private void OnResourceDepositEnter(ResourceDeposit r) {
@@ -47,13 +54,13 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
 
 
         private void FixedUpdate() {
-            if (!_configuration) return;
+            if (!Configuration.Value) return;
 
             foreach(var item in _inRange.Values) {
                 item.UpdateDistance();
             }
 
-            _scanner.Scan(_origin, _configuration.Range, _layerMask);
+            _scanner.Scan(_origin, Configuration.Value.Range, _layerMask);
         }
 
         private void Clear() {

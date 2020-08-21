@@ -1,6 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.PowerSystem;
 
-namespace SpaceGame.ShuttleSystems.UI
+namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot
 {
     public class PowerSystemUpgradeSlot : ShuttleUpgradeSlot<PowerSystemUpgrade>
     {

@@ -1,4 +1,5 @@
-﻿using SpaceGame.Utility;
+﻿using System;
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.Thrusters {
@@ -8,31 +9,29 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private DefaultThrusters _defaultThrusters = new DefaultThrusters();
 
-
         #region Properties
-        public ThrusterUpgrade Upgrade { get; set; } = default;
+        public readonly Utility.IObservable<ThrusterUpgrade> Upgrade = new Observable<ThrusterUpgrade>();
         public IReadonlyObservable<int> Velocity => _velocity;
         #endregion
 
-
         #region Private properties
-        private IThrusterUpgrade CurrentThruster => (IThrusterUpgrade) Upgrade ?? _defaultThrusters;
         private bool Boost => _shuttle.ShuttleControls.Boost;
-        private float ThrustPower => Boost ? CurrentThruster.BoostThrustPower : CurrentThruster.NormalThrustPower;
-        private float PowerConsumption => Boost ? CurrentThruster.BoostPowerConsumption : CurrentThruster.NormalPowerConsumption;
-        
-        private readonly Observable<int> _velocity = new Observable<int>();
-
+        private float ThrustPower => Boost ? _currentThruster.BoostThrustPower : _currentThruster.NormalThrustPower;
+        private float PowerConsumption => Boost ? _currentThruster.BoostPowerConsumption : _currentThruster.NormalPowerConsumption;
         #endregion
 
         #region Private variables
+        private IThrusterUpgrade _currentThruster;
         private Vector3 _thrustDirection = Vector3.zero;
         private Shuttle _shuttle;
+        private readonly Observable<int> _velocity = new Observable<int>();
         #endregion
 
-        private void Awake() {
-            _shuttle = GetComponent<Shuttle>();
-        }
+        private void Awake() => _shuttle = GetComponent<Shuttle>();
+        private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
+        private void OnDisable() => Upgrade.Unsubscribe(OnUpgradeChange);
+
+        private void OnUpgradeChange(ThrusterUpgrade upgrade) => _currentThruster = upgrade ? (IThrusterUpgrade) upgrade : _defaultThrusters;
 
         private void FixedUpdate() {
             _thrustDirection.Set(_shuttle.ShuttleControls.Thrust.x, 0f, _shuttle.ShuttleControls.Thrust.y);
