@@ -108,9 +108,11 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         {
             public readonly string MiningToolUpgradeName;
 
-            public MiningToolUpgrade MiningToolUpgrade => MiningToolUpgrade.GetByName(MiningToolUpgradeName);
+            public MiningToolUpgrade MiningToolUpgrade =>
+                ItemType.GetByName<MiningToolUpgrade>(MiningToolUpgradeName);
 
-            public PersistentData(MiningToolUpgrade miningToolUpgrade) => MiningToolUpgradeName = miningToolUpgrade != null ? miningToolUpgrade.name : null;
+            public PersistentData(MiningToolUpgrade miningToolUpgrade) =>
+                MiningToolUpgradeName = miningToolUpgrade != null ? miningToolUpgrade.Name : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.MiningTool {
     [CreateAssetMenu(fileName = "New Mining Tool Configuration", menuName = "Game Data/Mining Tool Configuration", order = 1)]
-    public class MiningToolUpgrade: ShuttleUpgrade<MiningToolUpgrade>, IMiningToolConfiguration {
+    public class MiningToolUpgrade: ShuttleUpgrade, IMiningToolConfiguration {
         [Header("Laser parameters")]
         [SerializeField] private float _strength = 10f;
         [SerializeField] private float _range = 50f;

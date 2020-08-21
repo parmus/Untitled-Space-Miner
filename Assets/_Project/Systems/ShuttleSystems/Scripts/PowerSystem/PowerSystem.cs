@@ -1,4 +1,5 @@
 ﻿using System;
+using SpaceGame.Core;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -53,11 +54,12 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
             public readonly string PowerSystemUpgradeName;
             public readonly float Charge;
 
-            public PowerSystemUpgrade PowerSystemUpgrade => PowerSystemUpgrade.GetByName(PowerSystemUpgradeName);
+            public PowerSystemUpgrade PowerSystemUpgrade =>
+                ItemType.GetByName<PowerSystemUpgrade>(PowerSystemUpgradeName);
 
             public PersistentData(PowerSystemUpgrade powerSystemUpgrade, float charge)
             {
-                PowerSystemUpgradeName = powerSystemUpgrade != null ? powerSystemUpgrade.name : null;
+                PowerSystemUpgradeName = powerSystemUpgrade != null ? powerSystemUpgrade.Name : null;
                 Charge = charge;
             }
         }

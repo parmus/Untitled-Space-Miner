@@ -3,7 +3,7 @@
 namespace SpaceGame.ShuttleSystems.Thrusters {
 
     [CreateAssetMenu(fileName = "New Thruster Upgrade", menuName = "Game Data/Thruster Upgrade", order = 1)]
-    public class ThrusterUpgrade : ShuttleUpgrade<ThrusterUpgrade>, IThrusterUpgrade {
+    public class ThrusterUpgrade : ShuttleUpgrade, IThrusterUpgrade {
         #region Serialized fields
         [Header("Normal flight")]
         [SerializeField] private float _normalThrustPower = 500f;

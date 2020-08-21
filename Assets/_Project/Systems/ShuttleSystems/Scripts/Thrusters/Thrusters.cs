@@ -1,4 +1,5 @@
-﻿using SpaceGame.Utility;
+﻿using SpaceGame.Core;
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.Thrusters {
@@ -52,9 +53,11 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
         {
             public readonly string ThrusterUpgradeName;
 
-            public ThrusterUpgrade ThrusterUpgrade => ThrusterUpgrade.GetByName(ThrusterUpgradeName);
+            public ThrusterUpgrade ThrusterUpgrade =>
+                ItemType.GetByName<ThrusterUpgrade>(ThrusterUpgradeName);
 
-            public PersistentData(ThrusterUpgrade thrusterUpgrade) => ThrusterUpgradeName = thrusterUpgrade != null ? thrusterUpgrade.name : null;
+            public PersistentData(ThrusterUpgrade thrusterUpgrade) =>
+                ThrusterUpgradeName = thrusterUpgrade != null ? thrusterUpgrade.Name : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);

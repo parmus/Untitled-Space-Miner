@@ -1,4 +1,5 @@
 ﻿using System;
+using SpaceGame.Core;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -65,11 +66,11 @@ namespace SpaceGame.ShuttleSystems.Hull {
             public readonly string HullUpgradeName;
             public readonly float Integrity;
 
-            public HullUpgrade HullUpgrade => HullUpgrade.GetByName(HullUpgradeName);
+            public HullUpgrade HullUpgrade => ItemType.GetByName<HullUpgrade>(HullUpgradeName);
 
             public PersistentData(HullUpgrade hullUpgrade, float integrity)
             {
-                HullUpgradeName = hullUpgrade != null ? hullUpgrade.name : null;
+                HullUpgradeName = hullUpgrade != null ? hullUpgrade.Name : null;
                 Integrity = integrity;
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ResourceScanner {
     [AddComponentMenu("Shuttle Systems/Resource Scanner")]
-    public class ResourceScanner : MonoBehaviour {
+    public class ResourceScanner : MonoBehaviour, IPersistable {
         #region Serialized fields
         [SerializeField] private LayerMask _layerMask = default;
         [SerializeField] private Transform _origin = default;
@@ -72,8 +72,17 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
 
         private void OnDestroy() => Clear();
 
-        private void Reset() {
-            _origin = transform;
+        private void Reset() => _origin = transform;
+        
+        
+        #region IPersistable
+        public object CaptureState() => Configuration.Value != null ? Configuration.Value.Name : null;
+
+        public void RestoreState(object state)
+        {
+            var configurationName = (string) state;
+            Configuration.Set(ItemType.GetByName<Configuration>(configurationName));
         }
+        #endregion
     }
 }

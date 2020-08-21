@@ -1,3 +1,4 @@
+using SpaceGame.Core;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -50,9 +51,11 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
         {
             public readonly string InertiaDamperUpgradeName;
 
-            public InertiaDamperUpgrade InertiaDamperUpgrade => InertiaDamperUpgrade.GetByName(InertiaDamperUpgradeName);
+            public InertiaDamperUpgrade InertiaDamperUpgrade =>
+                ItemType.GetByName<InertiaDamperUpgrade>(InertiaDamperUpgradeName);
 
-            public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade) => InertiaDamperUpgradeName = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.name : null;
+            public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade) =>
+                InertiaDamperUpgradeName = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.Name : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);
