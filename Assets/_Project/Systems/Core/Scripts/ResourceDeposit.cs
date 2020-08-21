@@ -36,12 +36,12 @@ namespace SpaceGame.Core
             return true;
         }
 
-        #region Persistence
+        #region IPersistable
         [Serializable]
         public class PersistentData
         {
-            public float _health;
-            public PersistentData(float health) => _health = health;
+            public readonly float Health;
+            public PersistentData(float health) => Health = health;
         }
 
         public object CaptureState() => new PersistentData(_health.Value);
@@ -49,7 +49,7 @@ namespace SpaceGame.Core
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            _health.Value = persistentData._health;
+            _health.Value = persistentData.Health;
             
             gameObject.SetActive(!_health.Value.IsZero());
             
