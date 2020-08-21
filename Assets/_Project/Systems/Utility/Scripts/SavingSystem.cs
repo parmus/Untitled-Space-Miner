@@ -14,6 +14,22 @@ namespace SpaceGame.Utility
         {
             _formatter = new BinaryFormatter();
             var ss = new SurrogateSelector();
+            
+            ss.AddSurrogate(
+                typeof(Vector2),
+                new StreamingContext(StreamingContextStates.All),
+                new Vector2Surrogate()
+            );
+            ss.AddSurrogate(
+                typeof(Vector3),
+                new StreamingContext(StreamingContextStates.All),
+                new Vector3Surrogate()
+            );
+            ss.AddSurrogate(
+                typeof(Quaternion),
+                new StreamingContext(StreamingContextStates.All),
+                new QuaternionSurrogate()
+            );
 
             _formatter.SurrogateSelector = ss;
         }
