@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using SpaceGame.Utility;
+using UnityEngine.Assertions;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
-    public class ShuttleStateMachine
+    public class ShuttleStateMachine: IPersistable
     {
         public IReadonlyObservable<State> CurrentState => _currentState;
         private readonly Observable<State> _currentState = new Observable<State>();
@@ -26,7 +27,17 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             _currentState.Value.Enter();
         }
 
-        public void Tick() => _currentState.Value?.Tick();
+        public object CaptureState() => _currentState.Value.GetType().AssemblyQualifiedName;
+
+        public void RestoreState(object state)
+        {
+            var stateName = (string) state;
+            Assert.IsNotNull(stateName);
+            var stateType = Type.GetType(stateName);
+            Assert.IsNotNull(stateType);
+            _currentState.Value = _states[stateType];
+            _currentState.Value.Enter();
+        }
 
         public abstract class State {
             protected readonly ShuttleStateMachine _shuttleStateMachine;

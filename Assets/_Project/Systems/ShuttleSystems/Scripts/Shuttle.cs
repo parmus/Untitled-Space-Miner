@@ -52,33 +52,37 @@ namespace SpaceGame.ShuttleSystems {
             Hull.OnDie += () => _shuttleStateMachine.SetState<ShutdownState>();
         }
 
-        private void Update() => _shuttleStateMachine.Tick();
+        private void Update() => _shuttleStateMachine.CurrentState.Value?.Tick();
 
         #region IPersistable
         [System.Serializable]
         public class PersistentData
         {
+            public readonly object State;
             public readonly Vector3 Position;
             public readonly Quaternion Rotation;
 
-            public PersistentData(Transform transform)
+            public PersistentData(object state, Transform transform)
             {
+                State = state;
                 Position = transform.position;
                 Rotation = transform.rotation;
             }
         }
 
-        public object CaptureState() => new PersistentData(transform);
+        public object CaptureState() => new PersistentData(_shuttleStateMachine.CaptureState(), transform);
 
         public void RestoreState(object state)
         {
+            var rigidBody = GetComponent<Rigidbody>();
             var persistentData = (PersistentData) state;
             var t = transform;
             t.position = persistentData.Position;
             t.rotation = persistentData.Rotation;
-            var rigidBody = GetComponent<Rigidbody>();
             rigidBody.velocity = Vector3.zero;
             rigidBody.angularVelocity = Vector3.zero;
+            
+            _shuttleStateMachine.RestoreState(persistentData.State);
         }
         #endregion
         
