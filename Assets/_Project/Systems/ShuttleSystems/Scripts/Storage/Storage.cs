@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SpaceGame.Core;
 using SpaceGame.InventorySystem;
+using SpaceGame.InventorySystem.Utils;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -28,30 +29,14 @@ namespace SpaceGame.ShuttleSystems.Storage
         public class PersistentData
         {
             public readonly string StorageUpgradeName;
-            public readonly List<string> ItemTypes = new List<string>();
-            public readonly List<uint> ItemAmounts = new List<uint>();
-
+            public readonly SerializableInventory Inventory;
             public StorageUpgrade StorageUpgrade => ItemType.GetByName<StorageUpgrade>(StorageUpgradeName);
-
-            public void RestoreInventory(IInventory inventory)
-            {
-                Assert.IsTrue(inventory.Count == ItemTypes.Count);
-                Assert.IsTrue(ItemAmounts.Count == ItemTypes.Count);
-                inventory.Clear();
-                for (var i = 0; i < ItemTypes.Count; i++)
-                {
-                    inventory[i].TryAdd(ItemType.GetByName<ItemType>(ItemTypes[i]), ItemAmounts[i]);
-                }
-            }
+            public void RestoreInventory(IInventory inventory) => Inventory.RestoreInventory(inventory);
 
             public PersistentData(StorageUpgrade storageUpgrade, IInventory inventory)
             {
                 StorageUpgradeName = storageUpgrade != null ? storageUpgrade.Name : null;
-                foreach (var stack in inventory)
-                {
-                    ItemTypes.Add(stack.Type != null ? stack.Type.Name : null);
-                    ItemAmounts.Add(stack.Amount);
-                }
+                Inventory = new SerializableInventory(inventory);
             }
         }
 

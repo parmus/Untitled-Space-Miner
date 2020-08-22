@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Main Menu.unity
     guid: 41031480bdf1ae0438a9585cc7f8a950
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/Shuttle.unity
     guid: eb54e12dcd6b70549853d082d1cb5c9c
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/Asteroid Field.unity
     guid: 698b7ebf738660347b258e19a9325d67
   m_configObjects:

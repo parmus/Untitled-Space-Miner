@@ -367,6 +367,7 @@ MonoBehaviour:
       - _type: {fileID: 0}
         _amount: 0
       _stackMultiplier: 10
+  _firstSceneIndex: 2
 --- !u!4 &1780975569
 Transform:
   m_ObjectHideFlags: 0
