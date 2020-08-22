@@ -4,44 +4,43 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace SpaceGame.Utility
+namespace SpaceGame.Utility.SaveSystem
 {
-    public class SavingSystem
+    public static class SavingSystem
     {
-        private readonly IFormatter  _formatter;
+        private static readonly IFormatter  _formatter;
+        private static readonly SurrogateSelector _ss;
 
-        public SavingSystem()
-        {
-            _formatter = new BinaryFormatter();
-            var ss = new SurrogateSelector();
+        static SavingSystem () {
+            _ss = new SurrogateSelector();
             
-            ss.AddSurrogate(
+            _ss.AddSurrogate(
                 typeof(Vector2),
                 new StreamingContext(StreamingContextStates.All),
                 new Vector2Surrogate()
             );
-            ss.AddSurrogate(
+            _ss.AddSurrogate(
                 typeof(Vector3),
                 new StreamingContext(StreamingContextStates.All),
                 new Vector3Surrogate()
             );
-            ss.AddSurrogate(
+            _ss.AddSurrogate(
                 typeof(Quaternion),
                 new StreamingContext(StreamingContextStates.All),
                 new QuaternionSurrogate()
             );
-
-            _formatter.SurrogateSelector = ss;
+            
+            _formatter = new BinaryFormatter {SurrogateSelector = _ss};
         }
 
-        public void Save(string saveFile)
+        public static void Save(string saveFile)
         {
             var state = LoadFile(saveFile);
             PersistableEntity.CaptureStates(state);
             SaveFile(saveFile, state);
         }
 
-        public void Load(string saveFile)
+        public static void Load(string saveFile)
         {
             PersistableEntity.RestoreStates(LoadFile(saveFile));
         }
@@ -51,7 +50,7 @@ namespace SpaceGame.Utility
             File.Delete(GetPathFromSaveFile(saveFile));
         }
 
-        private Dictionary<string, object> LoadFile(string saveFile)
+        private static Dictionary<string, object> LoadFile(string saveFile)
         {
             var path = GetPathFromSaveFile(saveFile);
             if (!File.Exists(path))
@@ -64,7 +63,7 @@ namespace SpaceGame.Utility
             }
         }
 
-        private void SaveFile(string saveFile, object state)
+        private static void SaveFile(string saveFile, object state)
         {
             var path = GetPathFromSaveFile(saveFile);
             using (var stream = File.Open(path, FileMode.Create))

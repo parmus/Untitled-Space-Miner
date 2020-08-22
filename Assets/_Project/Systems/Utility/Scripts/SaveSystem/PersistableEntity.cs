@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 
-namespace SpaceGame.Utility
+namespace SpaceGame.Utility.SaveSystem
 {
     public sealed class PersistableEntity: MonoBehaviour
     {

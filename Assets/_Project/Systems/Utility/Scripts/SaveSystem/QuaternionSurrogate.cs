@@ -1,16 +1,17 @@
 ﻿using System.Runtime.Serialization;
 using UnityEngine;
 
-namespace SpaceGame.Utility
+namespace SpaceGame.Utility.SaveSystem
 {
-    public class Vector3Surrogate : ISerializationSurrogate
+    public class QuaternionSurrogate : ISerializationSurrogate
     {
         public void GetObjectData(object obj, SerializationInfo info, StreamingContext context)
         {
-            var vector3 = (Vector3) obj;
-            info.AddValue("x", (double) vector3.x);
-            info.AddValue("y", (double) vector3.y);
-            info.AddValue("z", (double) vector3.z);
+            var quaternion = (Quaternion) obj;
+            info.AddValue("x", (double) quaternion.x);
+            info.AddValue("y", (double) quaternion.y);
+            info.AddValue("z", (double) quaternion.z);
+            info.AddValue("w", (double) quaternion.w);
         }
 
         public object SetObjectData(object obj, SerializationInfo info, StreamingContext context, ISurrogateSelector selector)
@@ -18,7 +19,8 @@ namespace SpaceGame.Utility
             var x = (float) info.GetDouble("x");
             var y = (float) info.GetDouble("y");
             var z = (float) info.GetDouble("z");
-            return new Vector3(x, y, z);
+            var w = (float) info.GetDouble("w");
+            return new Quaternion(x, y, z, w);
         }
     }
 }

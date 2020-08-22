@@ -2,6 +2,7 @@
 using SpaceGame.Message_UI_System;
 using SpaceGame.ShuttleSystems.MiningTool.VFX;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
 using Vector3 = UnityEngine.Vector3;

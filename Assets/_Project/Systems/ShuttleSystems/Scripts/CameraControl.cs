@@ -1,4 +1,5 @@
 ﻿using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {

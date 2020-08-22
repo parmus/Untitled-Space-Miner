@@ -28,20 +28,19 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
 
-            var landingPadUp = _shuttle.LandingPad.up;
-            var landingPadPosition =  _shuttle.LandingPad.position;
-            var landingPadRotation = _shuttle.LandingPad.rotation;
+            var position = _transform.position;
+            var rotation = _transform.rotation;
             
-            var right = Vector3.Cross(landingPadUp, landingPadPosition - _transform.position).normalized;
-            var forward = Vector3.Cross(landingPadUp, -right).normalized;
+            var right = Vector3.Cross(_shuttle.LandingPad.Up, _shuttle.LandingPad.Position - position).normalized;
+            var forward = Vector3.Cross(_shuttle.LandingPad.Up, -right).normalized;
 
             var landingRotation = Quaternion.LookRotation(forward, Vector3.up);
-            var rotationTime = Quaternion.Angle(_transform.rotation, landingRotation) / ROTATION_SPEED;
+            var rotationTime = Quaternion.Angle(rotation, landingRotation) / ROTATION_SPEED;
             var flightTime = Mathf.Max(
-                Vector3.Distance(landingPadPosition, _transform.position) / FLIGHT_SPEED,
+                Vector3.Distance(_shuttle.LandingPad.Position, position) / FLIGHT_SPEED,
                 rotationTime + LANDING_DELAY
             );
-            var alignTime = Quaternion.Angle(landingRotation, landingPadRotation) / ROTATION_SPEED;
+            var alignTime = Quaternion.Angle(landingRotation, _shuttle.LandingPad.Rotation) / ROTATION_SPEED;
 
             var seq = DOTween.Sequence();
             seq.Append(_transform
@@ -49,11 +48,11 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
                 .SetEase(Ease.InOutBack)
             );
             seq.Join(_transform
-                .DOMove(landingPadPosition, flightTime)
+                .DOMove(_shuttle.LandingPad.Position, flightTime)
                 .SetEase(Ease.OutQuad)
             );
             seq.Append(_transform
-                .DORotateQuaternion(landingPadRotation, alignTime)
+                .DORotateQuaternion(_shuttle.LandingPad.Rotation, alignTime)
                 .SetEase(Ease.InSine)
             );
             yield return seq.WaitForCompletion();

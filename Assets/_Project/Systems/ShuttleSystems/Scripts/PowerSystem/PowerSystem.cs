@@ -1,6 +1,7 @@
 ﻿using System;
 using SpaceGame.Core;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.PowerSystem

@@ -2,6 +2,7 @@
 using SpaceGame.Core;
 using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
 

@@ -1,4 +1,4 @@
-﻿namespace SpaceGame.Utility
+﻿namespace SpaceGame.Utility.SaveSystem
 {
     public interface IPersistable
     {

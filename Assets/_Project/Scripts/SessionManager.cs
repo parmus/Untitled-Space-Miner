@@ -1,5 +1,6 @@
 ﻿using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 
 namespace SpaceGame
@@ -13,18 +14,16 @@ namespace SpaceGame
             _currentSession = new Session();
         }
         
-        private readonly SavingSystem _savingSystem = new SavingSystem();
-
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
                 Debug.Log("Saving state...");
-                _savingSystem.Save("savegame");
+                SavingSystem.Save("savegame");
             } else if (Input.GetKeyDown(KeyCode.F2))
             {
                 Debug.Log("Loading state...");
-                _savingSystem.Load("savegame");
+                SavingSystem.Load("savegame");
             } else if (Input.GetKeyDown(KeyCode.F3))
             {
                 Debug.Log("Deleting state...");

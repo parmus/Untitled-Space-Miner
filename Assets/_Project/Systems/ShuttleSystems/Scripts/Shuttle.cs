@@ -1,5 +1,6 @@
 ﻿using SpaceGame.ShuttleSystems.ShuttleStates;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {
@@ -27,13 +28,13 @@ namespace SpaceGame.ShuttleSystems {
         #endregion
 
 
-        public Transform LandingPad { get; private set; } = null;
+        public PositionRotation LandingPad { get; private set; } = null;
         public IReadonlyObservable<ShuttleStateMachine.State> CurrentState => _shuttleStateMachine.CurrentState;
         private ShuttleStateMachine _shuttleStateMachine;
 
         public void Land(Transform landingPad)
         {
-            LandingPad = landingPad;
+            LandingPad = PositionRotation.FromTransform(landingPad);
             _shuttleStateMachine.SetState<LandingState>();
         }
 
@@ -59,26 +60,25 @@ namespace SpaceGame.ShuttleSystems {
         public class PersistentData
         {
             public readonly object State;
-            public readonly Vector3 Position;
-            public readonly Quaternion Rotation;
+            public readonly PositionRotation PositionRotation;
+            public readonly PositionRotation LandingPad;
 
-            public PersistentData(object state, Transform transform)
+            public PersistentData(object state, Transform transform, PositionRotation landingPad)
             {
                 State = state;
-                Position = transform.position;
-                Rotation = transform.rotation;
+                PositionRotation = PositionRotation.FromTransform(transform);
+                LandingPad = landingPad;
             }
         }
 
-        public object CaptureState() => new PersistentData(_shuttleStateMachine.CaptureState(), transform);
+        public object CaptureState() => new PersistentData(_shuttleStateMachine.CaptureState(), transform, LandingPad);
 
         public void RestoreState(object state)
         {
             var rigidBody = GetComponent<Rigidbody>();
             var persistentData = (PersistentData) state;
-            var t = transform;
-            t.position = persistentData.Position;
-            t.rotation = persistentData.Rotation;
+            persistentData.PositionRotation.SetTransform(transform);
+            LandingPad = persistentData.LandingPad;
             rigidBody.velocity = Vector3.zero;
             rigidBody.angularVelocity = Vector3.zero;
             

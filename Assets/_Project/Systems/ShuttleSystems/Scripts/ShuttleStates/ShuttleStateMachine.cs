@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SpaceGame.Utility;
+using SpaceGame.Utility.SaveSystem;
 using UnityEngine.Assertions;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
