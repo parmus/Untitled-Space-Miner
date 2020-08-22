@@ -23,21 +23,37 @@ namespace SpaceGame
         {
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                Debug.Log("Saving state...");
-                PersistableEntity.CaptureStates(_persistableSession.State);
-                _persistableSession.State["_session"] = _currentSession.CaptureState();
-                _persistableSession.Save();
+                Load();
             } else if (Input.GetKeyDown(KeyCode.F2))
             {
-                Debug.Log("Loading state...");
-                _persistableSession.Load();
-                PersistableEntity.RestoreStates(_persistableSession.State);
-                _currentSession.RestoreState(_persistableSession.State["_session"]);
+                Save();
             } else if (Input.GetKeyDown(KeyCode.F3))
             {
                 Debug.Log("Deleting state...");
                 _persistableSession.Delete();
             }
+        }
+
+        private void Save()
+        {
+            Debug.Log("Loading state...");
+            PersistableEntity.RestoreStates(_persistableSession.State);
+            _currentSession.RestoreState(_persistableSession.State["_session"]);
+        }
+
+        private void Load()
+        {
+            Debug.Log("Saving state...");
+            var d = new DebugTimer();
+            var state = _persistableSession.State;
+            PersistableEntity.CaptureStates(state);
+            d.Mark("Load");
+            _persistableSession.State["_session"] = _currentSession.CaptureState();
+            d.Mark("Capture");
+            _persistableSession.Save();
+            d.Mark("Save");
+
+            foreach (var entry in d.Entries) Debug.Log(entry);
         }
 
         [System.Serializable]
