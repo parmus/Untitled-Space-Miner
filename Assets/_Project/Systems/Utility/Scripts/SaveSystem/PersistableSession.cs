@@ -6,50 +6,62 @@ using UnityEngine;
 
 namespace SpaceGame.Utility.SaveSystem
 {
-    public static class SavingSystem
+    public class PersistableSession
     {
-        private static readonly IFormatter  _formatter;
-        private static readonly SurrogateSelector _ss;
+        public static readonly SurrogateSelector SurrogateSelector;
+        public Dictionary<string, object> State {
+            get
+            {
+                if (_state == null) Load();
+                return _state;
+            }
+        }
 
-        static SavingSystem () {
-            _ss = new SurrogateSelector();
+        
+        #region Public methods
+        public PersistableSession(string filename) => _filename = filename;
+
+        public void Save() => SaveFile(_filename, _state);
+
+        public void Load() => _state = LoadFile(_filename);
+        
+        public void Delete() => File.Delete(GetPathFromSaveFile(_filename));
+        #endregion
+
+        
+        #region Private variables
+        private Dictionary<string, object> _state = null;
+        private readonly string _filename;
+        #endregion
+        
+        
+        #region Private static methods and variables
+        private static readonly IFormatter  _formatter;
+        
+        
+        static PersistableSession () {
+            SurrogateSelector = new SurrogateSelector();
             
-            _ss.AddSurrogate(
+            SurrogateSelector.AddSurrogate(
                 typeof(Vector2),
                 new StreamingContext(StreamingContextStates.All),
                 new Vector2Surrogate()
             );
-            _ss.AddSurrogate(
+            SurrogateSelector.AddSurrogate(
                 typeof(Vector3),
                 new StreamingContext(StreamingContextStates.All),
                 new Vector3Surrogate()
             );
-            _ss.AddSurrogate(
+            SurrogateSelector.AddSurrogate(
                 typeof(Quaternion),
                 new StreamingContext(StreamingContextStates.All),
                 new QuaternionSurrogate()
             );
             
-            _formatter = new BinaryFormatter {SurrogateSelector = _ss};
+            _formatter = new BinaryFormatter {SurrogateSelector = SurrogateSelector};
         }
-
-        public static void Save(string saveFile)
-        {
-            var state = LoadFile(saveFile);
-            PersistableEntity.CaptureStates(state);
-            SaveFile(saveFile, state);
-        }
-
-        public static void Load(string saveFile)
-        {
-            PersistableEntity.RestoreStates(LoadFile(saveFile));
-        }
-
-        public static void Delete(string saveFile)
-        {
-            File.Delete(GetPathFromSaveFile(saveFile));
-        }
-
+        
+        
         private static Dictionary<string, object> LoadFile(string saveFile)
         {
             var path = GetPathFromSaveFile(saveFile);
@@ -63,6 +75,7 @@ namespace SpaceGame.Utility.SaveSystem
             }
         }
 
+        
         private static void SaveFile(string saveFile, object state)
         {
             var path = GetPathFromSaveFile(saveFile);
@@ -71,10 +84,11 @@ namespace SpaceGame.Utility.SaveSystem
                 _formatter.Serialize(stream, state);
             }
         }
-
-        private static string GetPathFromSaveFile(string saveFile)
+        
+        public static string GetPathFromSaveFile(string saveFile)
         {
             return Path.Combine(Application.persistentDataPath, saveFile + ".sav");
         }
+        #endregion
     }
 }
