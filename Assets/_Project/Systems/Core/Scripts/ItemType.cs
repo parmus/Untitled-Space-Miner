@@ -24,7 +24,7 @@ namespace SpaceGame.Core
             #if UNITY_EDITOR
             if (_runtimeSet.TryGetValue(name, out var item)) Assert.AreEqual(item, this);
             #endif
-            _runtimeSet.Add(name, this);
+            _runtimeSet[name] = this;
         }
     }
 }
