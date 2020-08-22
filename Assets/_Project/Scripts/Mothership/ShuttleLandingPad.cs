@@ -13,10 +13,7 @@ namespace SpaceGame.Mothership
 
         private void Awake() => _transform = transform;
 
-        public void SetShuttle(Shuttle shuttle)
-        {
-            _shuttle = shuttle;
-        }
+        public void SetShuttle(Shuttle shuttle) => _shuttle = shuttle;
 
         private void Update()
         {

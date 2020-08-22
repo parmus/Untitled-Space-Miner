@@ -1,4 +1,5 @@
-﻿using SpaceGame.Utility;
+﻿using SpaceGame.ShuttleSystems.ShuttleStates;
+using SpaceGame.Utility;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {
@@ -27,9 +28,8 @@ namespace SpaceGame.ShuttleSystems {
 
 
         public Transform LandingPad { get; set; } = null;
-        public IReadonlyObservable<ShuttleStates.FSM.State> CurrentState => _fsm.CurrentState;
-
-        private ShuttleStates.FSM _fsm;
+        public IReadonlyObservable<ShuttleStateMachine.State> CurrentState => _shuttleStateMachine.CurrentState;
+        private ShuttleStateMachine _shuttleStateMachine;
 
         private void Awake() {
             CameraControl = GetComponent<CameraControl>();
@@ -42,10 +42,11 @@ namespace SpaceGame.ShuttleSystems {
             Storage = GetComponent<Storage.Storage>();
             Thrusters = GetComponent<Thrusters.Thrusters>();
 
-            _fsm = new ShuttleStates.FSM(this);
+            _shuttleStateMachine = new ShuttleStateMachine(this);
+            Hull.OnDie += () => _shuttleStateMachine.SetState<ShutdownState>();
         }
 
-        private void Update() => _fsm.Tick();
+        private void Update() => _shuttleStateMachine.Tick();
         
         
         

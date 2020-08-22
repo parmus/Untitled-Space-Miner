@@ -2,12 +2,11 @@ using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
-    public class ShutdownState : FSM.State {
+    public class ShutdownState : ShuttleStateMachine.State {
         private readonly Rigidbody _rigidbody;
 
-        public ShutdownState(FSM fsm, Shuttle shuttle) : base(fsm, shuttle) {
+        public ShutdownState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle) =>
             _rigidbody = shuttle.GetComponent<Rigidbody>();
-        }
 
         public override void Enter() {
             _shuttle.Thrusters.enabled = false;
@@ -26,9 +25,6 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             Object.Destroy(_shuttle.gameObject);
         }
 
-        private void DeathKick() {
-            _rigidbody.AddTorque(Vector3.one * 20f);
-        }
-
+        private void DeathKick() => _rigidbody.AddTorque(Vector3.one * 20f);
     }
 }

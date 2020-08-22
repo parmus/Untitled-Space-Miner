@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using SpaceGame.Utility;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
-    public class FSM
+    public class ShuttleStateMachine
     {
         public IReadonlyObservable<State> CurrentState => _currentState;
         private readonly Observable<State> _currentState = new Observable<State>();
         private readonly Dictionary<Type, State> _states = new Dictionary<Type, State>();
 
-        public FSM(Shuttle shuttle) {
+        public ShuttleStateMachine(Shuttle shuttle) {
             _states.Add(typeof(LandedState), new LandedState(this, shuttle));
             _states.Add(typeof(TakeOffState), new TakeOffState(this, shuttle));
             _states.Add(typeof(FlyingState), new FlyingState(this, shuttle));
@@ -26,28 +26,21 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             _currentState.Value.Enter();
         }
 
-        public void Tick() {
-            _currentState.Value?.Tick();
-        }
+        public void Tick() => _currentState.Value?.Tick();
 
         public abstract class State {
-            protected readonly FSM _fsm;
+            protected readonly ShuttleStateMachine _shuttleStateMachine;
             protected readonly Shuttle _shuttle;
 
-            protected State(FSM fsm, Shuttle shuttle) {
-                _fsm = fsm;
+            protected State(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) {
+                _shuttleStateMachine = shuttleStateMachine;
                 _shuttle = shuttle;
             }
-            public virtual void Enter() {
-                _shuttle.Hull.OnDie += OnDie;
-            }
-            public virtual void Leave() {
-                _shuttle.Hull.OnDie -= OnDie;
-            }
 
-            protected virtual void OnDie() {
-                _fsm.SetState<ShutdownState>();
-            }
+            public virtual void Enter() { }
+
+            public virtual void Leave() { }
+
             public virtual void Tick() { }
         }
     }

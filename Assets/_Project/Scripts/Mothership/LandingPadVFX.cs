@@ -35,7 +35,7 @@ namespace SpaceGame.Mothership {
             _landingPadVFX.enabled = false;
         }
 
-        private void OnShuttleChangeState(ShuttleSystems.ShuttleStates.FSM.State state) {
+        private void OnShuttleChangeState(ShuttleSystems.ShuttleStates.ShuttleStateMachine.State state) {
             if (_landingPadVFX == null) return;
             if (state == null || state is ShuttleSystems.ShuttleStates.LandedState) _landingPadVFX.enabled = false;
         }

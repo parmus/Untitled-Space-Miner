@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using SpaceGame.ShuttleSystems;
@@ -28,7 +29,7 @@ namespace SpaceGame.Mothership
             if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleStateChange);
         }
 
-        private void OnShuttleStateChange(ShuttleSystems.ShuttleStates.FSM.State state) {
+        private void OnShuttleStateChange(ShuttleSystems.ShuttleStates.ShuttleStateMachine.State state) {
             _charging = state is ShuttleSystems.ShuttleStates.LandedState;
             if (state is ShuttleSystems.ShuttleStates.LandedState) {
                 _emptyInventory = StartCoroutine(CO_EmptyInventory());
