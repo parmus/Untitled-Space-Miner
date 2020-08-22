@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _landingPadRadius: 36
+  _activationMargin: 20
 --- !u!114 &4380630734934935550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528501dd2e2c5a94b81dfe3aaf9644f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 200
-  _range: 50
+  _visibilityRadius: 200
+  _blendMargin: 50
 --- !u!73398921 &8969216025488616490
 VFXRenderer:
   m_ObjectHideFlags: 0

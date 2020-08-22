@@ -27,9 +27,15 @@ namespace SpaceGame.ShuttleSystems {
         #endregion
 
 
-        public Transform LandingPad { get; set; } = null;
+        public Transform LandingPad { get; private set; } = null;
         public IReadonlyObservable<ShuttleStateMachine.State> CurrentState => _shuttleStateMachine.CurrentState;
         private ShuttleStateMachine _shuttleStateMachine;
+
+        public void Land(Transform landingPad)
+        {
+            LandingPad = landingPad;
+            _shuttleStateMachine.SetState<LandingState>();
+        }
 
         private void Awake() {
             CameraControl = GetComponent<CameraControl>();
@@ -47,9 +53,7 @@ namespace SpaceGame.ShuttleSystems {
         }
 
         private void Update() => _shuttleStateMachine.Tick();
-        
-        
-        
+
         #region IPersistable
         [System.Serializable]
         public class PersistentData

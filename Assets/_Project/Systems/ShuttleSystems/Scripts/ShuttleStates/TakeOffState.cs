@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
     public class TakeOffState : ShuttleStateMachine.State {
-        public TakeOffState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle) {}
+        private readonly Rigidbody _rigidbody;
+
+        public TakeOffState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle) =>
+            _rigidbody = shuttle.GetComponent<Rigidbody>();
 
         public override void Enter() {
             _shuttle.Thrusters.enabled = false;
@@ -13,8 +16,7 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
         }
 
         private IEnumerator TakeOff() {
-            var r = _shuttle.GetComponent<Rigidbody>();
-            r.AddRelativeForce(Vector3.up * 100f);
+            _rigidbody.AddRelativeForce(Vector3.up * 100f);
             yield return new WaitForSeconds(1.5f);
             _shuttleStateMachine.SetState<FlyingState>();
         }

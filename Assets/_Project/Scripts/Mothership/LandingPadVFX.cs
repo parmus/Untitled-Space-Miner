@@ -1,4 +1,3 @@
-using SpaceGame.ShuttleSystems;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -6,58 +5,34 @@ namespace SpaceGame.Mothership {
     [AddComponentMenu("Shuttle Systems/Landing Pad VFX")]
     [RequireComponent(typeof(VisualEffect))]
     public class LandingPadVFX : MonoBehaviour {
-        [SerializeField] private float _radius = 200f;
-        [SerializeField] private float _range = 50f;
+        [SerializeField] private float _visibilityRadius = 200f;
+        [SerializeField] private float _blendMargin = 50f;
 
-        private VisualEffect _landingPadVFX = default;
-        private Transform _shuttleTransform = default;
-        private Shuttle _shuttle = default;
-
-        public void SetShuttle(Shuttle shuttle) {
-            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleChangeState);
-            _shuttle = shuttle;
-            
-            if (_shuttle) {
-                _shuttleTransform = shuttle.transform;
-                _shuttle.CurrentState.Subscribe(OnShuttleChangeState);
-            } else {
-                _shuttleTransform = null;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnShuttleChangeState);
-        }
+        private VisualEffect _vfx = default;
 
         private void Awake() {
-            _landingPadVFX = GetComponent<VisualEffect>();
-            _landingPadVFX.enabled = false;
+            _vfx = GetComponent<VisualEffect>();
+            _vfx.enabled = false;
         }
 
-        private void OnShuttleChangeState(ShuttleSystems.ShuttleStates.ShuttleStateMachine.State state) {
-            if (_landingPadVFX == null) return;
-            if (state == null || state is ShuttleSystems.ShuttleStates.LandedState) _landingPadVFX.enabled = false;
-        }
-
-        private void Update() {
-            if (!_shuttle) return;
-
-            var distance = Vector3.Distance(_shuttleTransform.position, transform.position);
-
-            if (!_landingPadVFX.enabled) {
-                if (_shuttle.CurrentState.Value is ShuttleSystems.ShuttleStates.FlyingState && distance > _radius-_range) {
-                    _landingPadVFX.enabled = true;
-                }
+        public void SetDistance(float distance)
+        {
+            if (distance > _visibilityRadius)
+            {
+                if (_vfx.enabled) _vfx.enabled = false;
+                return;
             }
 
-            _landingPadVFX.SetFloat("Alpha", Mathf.InverseLerp(_radius, _radius-_range, distance));
+            if (!_vfx.enabled) _vfx.enabled = true;
+            _vfx.SetFloat("Alpha", Mathf.InverseLerp(_visibilityRadius, _visibilityRadius - _blendMargin, distance));
         }
+
+        public void Disable() => _vfx.enabled = false;
 
         private void OnDrawGizmosSelected() {
             var position = transform.position;
-            Gizmos.DrawWireSphere(position, _radius);
-            Gizmos.DrawWireSphere(position, _radius-_range);
+            Gizmos.DrawWireSphere(position, _visibilityRadius);
+            Gizmos.DrawWireSphere(position, _visibilityRadius-_blendMargin);
         }
     }
 }
