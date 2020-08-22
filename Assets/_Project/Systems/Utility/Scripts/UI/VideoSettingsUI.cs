@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using SpaceGame.Utility.Settings;
 using UnityEngine;
 
 namespace SpaceGame.Utility.UI
@@ -10,31 +11,31 @@ namespace SpaceGame.Utility.UI
         [SerializeField] private TMPro.TMP_Dropdown _qualityIndexDropDown = default;
         [SerializeField] private TMPro.TMP_Dropdown _resolutionIndexDropDown = default;
 
+        [SerializeField] private VideoSettings _videoSettings = default;
+        
         private void Start()
         {
-            var videoSettingsManager = VideoSettingsManager.Instance;
-        
-            _fullscreenToggle.isOn = videoSettingsManager.Fullscreen.Value;
+            _fullscreenToggle.isOn = _videoSettings.Fullscreen.Value;
         
             _qualityIndexDropDown.ClearOptions();
             _qualityIndexDropDown.AddOptions(QualitySettings.names.ToList());
-            _qualityIndexDropDown.value = videoSettingsManager.QualityIndex.Value;
+            _qualityIndexDropDown.value = _videoSettings.QualityIndex.Value;
             _qualityIndexDropDown.RefreshShownValue();
         
             _resolutionIndexDropDown.ClearOptions();
             _resolutionIndexDropDown.AddOptions(
                 Array.ConvertAll(Screen.resolutions, resolution => resolution.ToString()).ToList()
             );
-            _resolutionIndexDropDown.value = videoSettingsManager.ResolutionIndex.Value;
+            _resolutionIndexDropDown.value = _videoSettings.ResolutionIndex.Value;
             _resolutionIndexDropDown.RefreshShownValue();
         
-            _fullscreenToggle.onValueChanged.AddListener(videoSettingsManager.Fullscreen.Set);
-            _qualityIndexDropDown.onValueChanged.AddListener(videoSettingsManager.QualityIndex.Set);
-            _resolutionIndexDropDown.onValueChanged.AddListener(videoSettingsManager.ResolutionIndex.Set);
+            _fullscreenToggle.onValueChanged.AddListener(_videoSettings.Fullscreen.Set);
+            _qualityIndexDropDown.onValueChanged.AddListener(_videoSettings.QualityIndex.Set);
+            _resolutionIndexDropDown.onValueChanged.AddListener(_videoSettings.ResolutionIndex.Set);
 
-            videoSettingsManager.Fullscreen.OnChange += fullscreen => _fullscreenToggle.isOn = fullscreen;
-            videoSettingsManager.QualityIndex.OnChange += index => _qualityIndexDropDown.value = index;
-            videoSettingsManager.ResolutionIndex.OnChange += index => _resolutionIndexDropDown.value = index;
+            _videoSettings.Fullscreen.OnChange += fullscreen => _fullscreenToggle.isOn = fullscreen;
+            _videoSettings.QualityIndex.OnChange += index => _qualityIndexDropDown.value = index;
+            _videoSettings.ResolutionIndex.OnChange += index => _resolutionIndexDropDown.value = index;
         }
     }
 }
