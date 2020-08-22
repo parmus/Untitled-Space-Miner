@@ -1,9 +1,9 @@
 using UnityEngine;
 
-#if UNITY_EDITOR
 namespace SpaceGame.ShuttleSystems {
     public class ShuttleConfigurationInjector : MonoBehaviour
     {
+#if UNITY_EDITOR
         [SerializeField] private bool _singleUse = true;
         [Header("Shuttle configuration")]
         [SerializeField] private Hull.HullUpgrade _hullUpgrade = default;
@@ -46,6 +46,8 @@ namespace SpaceGame.ShuttleSystems {
             shuttle.Storage.Upgrade.Set(_storageUpgrade);
             shuttle.Thrusters.Upgrade.Set(_thrusterUpgrade);
         }
-    }
+#else
+#warning Make sure to remove ShuttleConfigurationInjector from scenes
 #endif
+    }
 }

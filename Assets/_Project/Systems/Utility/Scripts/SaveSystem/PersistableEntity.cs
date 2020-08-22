@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
 using UnityEngine;
 
 namespace SpaceGame.Utility.SaveSystem
@@ -63,7 +62,7 @@ namespace SpaceGame.Utility.SaveSystem
         {
             if (Application.isPlaying) return;
             if (string.IsNullOrEmpty(gameObject.scene.path)) return;
-            if (PrefabStageUtility.GetCurrentPrefabStage() != null) return;
+            if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null) return;
             
             var so = new SerializedObject(this);
             var prop = so.FindProperty("_id");
