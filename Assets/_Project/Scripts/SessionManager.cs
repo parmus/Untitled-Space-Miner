@@ -1,4 +1,4 @@
-﻿using SpaceGame.InventorySystem;
+using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -45,16 +45,17 @@ namespace SpaceGame
         private void Save()
         {
             Debug.Log("Saving state...");
-            var d = new DebugTimer();
-            var state = _persistableSession.State;
-            PersistableEntity.CaptureStates(state);
-            d.Mark("Load");
-            _persistableSession.State["_session"] = _currentSession.CaptureState();
-            d.Mark("Capture");
-            _persistableSession.Save();
-            d.Mark("Save");
 
-            foreach (var entry in d.Entries) Debug.Log(entry);
+            using (var d = new DebugTimer(s => Debug.LogFormat(LogType.Log, LogOption.NoStacktrace, this, s)))
+            {
+                var state = _persistableSession.State;
+                d.Mark("Load");
+                PersistableEntity.CaptureStates(state);
+                _persistableSession.State["_session"] = _currentSession.CaptureState();
+                d.Mark("Capture");
+                _persistableSession.Save();
+                d.Mark("Save");
+            }
         }
     }
 }
