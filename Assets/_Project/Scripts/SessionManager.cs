@@ -16,10 +16,9 @@ namespace SpaceGame
         
         public void NewGame() {
             _currentSession = new Session();
-            var scene = SceneManager.GetSceneByBuildIndex(_firstSceneIndex);
-            if (!scene.isLoaded) SceneManager.LoadScene(scene.buildIndex, LoadSceneMode.Additive);
+            SceneManager.LoadScene(_firstSceneIndex, LoadSceneMode.Additive);
         }
-        
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F1))
