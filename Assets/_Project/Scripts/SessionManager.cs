@@ -1,4 +1,4 @@
-using SpaceGame.InventorySystem;
+﻿using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 namespace SpaceGame
 {
     public class SessionManager : Singleton<SessionManager> {
-        public IInventory Inventory => _currentSession?.Inventory;
-
-        [SerializeField] private Session _currentSession = new Session();
         [SerializeField] private int _firstSceneIndex = 2;
 
+        public IInventory Inventory => _currentSession?.Inventory;
+
+        private Session _currentSession = new Session();
         private readonly PersistableSession _persistableSession = new PersistableSession("savegame");
         
         public void NewGame() {
