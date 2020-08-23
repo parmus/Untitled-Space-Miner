@@ -24,19 +24,32 @@ namespace SpaceGame
 
             public void RestoreScenes()
             {
+                foreach (var sceneBuildIndex in Scenes)
+                {
+                    if (!SceneIsLoaded(sceneBuildIndex)) SceneManager.LoadScene(sceneBuildIndex);
+                }
+
                 for (var i = 0; i < SceneManager.sceneCount; i++)
                 {
-                    var scene = SceneManager.GetSceneByBuildIndex(i);
+                    var scene = SceneManager.GetSceneAt(i);
                     if (Scenes.Contains(scene.buildIndex))
                     {
-                        if (!scene.isLoaded) SceneManager.LoadScene(scene.buildIndex, LoadSceneMode.Additive);
                         if (scene.buildIndex == ActiveScene) SceneManager.SetActiveScene(scene);
                     }
                     else
                     {
-                        if (scene.isLoaded) SceneManager.UnloadSceneAsync(scene.buildIndex);
+                        SceneManager.UnloadSceneAsync(scene.buildIndex);
                     }
                 }
+            }
+
+            private static bool SceneIsLoaded(int buildIndex)
+            {
+                for (var i = 0; i < SceneManager.sceneCount; i++)
+                {
+                    if (SceneManager.GetSceneAt(i).buildIndex == buildIndex) return true;
+                }
+                return false;
             }
 
             public PersistentData(IInventory inventory)
@@ -46,7 +59,7 @@ namespace SpaceGame
 
                 for (var i = 0; i < SceneManager.sceneCount; i++)
                 {
-                    var scene = SceneManager.GetSceneByBuildIndex(i);
+                    var scene = SceneManager.GetSceneAt(i);
                     if (scene.isLoaded) Scenes.Add(scene.buildIndex);
                 }
             }
