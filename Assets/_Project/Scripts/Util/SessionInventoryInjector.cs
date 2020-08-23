@@ -37,11 +37,8 @@ namespace SpaceGame.Util
         [MenuItem("GameObject/Session Inventory Injector", false, 10)]
         private static void CreateSessionInventoryInjector(MenuCommand menuCommand)
         {
-            // Create a custom game object
             var go = new GameObject();
-            // Ensure it gets reparented if this was a context click (otherwise does nothing)
             GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
-            // Register the creation in the undo system
             go.AddComponent<SessionInventoryInjector>();
             Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
             Selection.activeObject = go;

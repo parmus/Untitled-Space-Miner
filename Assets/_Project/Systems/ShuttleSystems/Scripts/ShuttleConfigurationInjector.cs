@@ -57,11 +57,8 @@ namespace SpaceGame.ShuttleSystems {
         [MenuItem("GameObject/Shuttle Configuration Injector", false, 10)]
         private static void CreateShuttleConfigurationInjector(MenuCommand menuCommand)
         {
-            // Create a custom game object
             var go = new GameObject();
-            // Ensure it gets reparented if this was a context click (otherwise does nothing)
             GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
-            // Register the creation in the undo system
             go.AddComponent<ShuttleConfigurationInjector>();
             Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
             Selection.activeObject = go;
