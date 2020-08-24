@@ -18,30 +18,34 @@ namespace SpaceGame.Utility
 
         #region UnityEngine.Transform
         public static void DestroyAllChildren(this Transform transform) {
-            foreach(Transform child in transform) {
-                Object.Destroy(child.gameObject);
+            for (var i = transform.childCount-1; i >= 0; i--)
+            {
+                Object.Destroy(transform.GetChild(i).gameObject);    
             }
         }
         
         public static void DestroyAllChildrenImmediate(this Transform transform) {
-            foreach(Transform child in transform) {
-                Object.DestroyImmediate(child.gameObject);
+            for (var i = transform.childCount-1; i >= 0; i--)
+            {
+                Object.DestroyImmediate(transform.GetChild(i).gameObject);    
             }
         }
 
         public static void DestroyAllChildren<T>(this Transform transform) where T: MonoBehaviour
         {
-            foreach (var child in transform.GetComponentsInChildren<T>())
+            var childrenToDestroy = transform.GetComponentsInChildren<T>(); 
+            for (var i = childrenToDestroy.Length-1; i >= 0; i--)
             {
-                Object.Destroy(child.gameObject);
+                Object.Destroy(childrenToDestroy[i].gameObject);    
             }
         }
 
         public static void DestroyAllChildrenImmediate<T>(this Transform transform) where T: MonoBehaviour
         {
-            foreach (var child in transform.GetComponentsInChildren<T>())
+            var childrenToDestroy = transform.GetComponentsInChildren<T>(); 
+            for (var i = childrenToDestroy.Length-1; i >= 0; i--)
             {
-                Object.DestroyImmediate(child.gameObject);
+                Object.DestroyImmediate(childrenToDestroy[i].gameObject);    
             }
         }
         #endregion
