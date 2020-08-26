@@ -1,4 +1,5 @@
-﻿using SpaceGame.InventorySystem;
+﻿using System.Collections;
+using SpaceGame.InventorySystem;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -12,11 +13,18 @@ namespace SpaceGame
         public IInventory Inventory => _currentSession?.Inventory;
 
         private Session _currentSession = new Session();
-        private readonly PersistableSession _persistableSession = new PersistableSession("savegame");
+        private PersistableSession _persistableSession = new PersistableSession("savegame");
         
-        public void NewGame() {
+        public IEnumerator NewGame() {
+            _persistableSession = new PersistableSession("savegame");
             _currentSession = new Session();
-            SceneManager.LoadScene(_firstSceneIndex, LoadSceneMode.Additive);
+            yield return SceneManager.LoadSceneAsync(_firstSceneIndex, LoadSceneMode.Additive);
+        }
+
+        public IEnumerator LoadGame(string saveGameName)
+        {
+            _persistableSession = new PersistableSession(saveGameName);
+            yield return Load();
         }
 
         private void Update()
@@ -26,7 +34,7 @@ namespace SpaceGame
                 Save();
             } else if (Input.GetKeyDown(KeyCode.F2))
             {
-                Load();
+                StartCoroutine(Load());
             } else if (Input.GetKeyDown(KeyCode.F3))
             {
                 Debug.Log("Deleting state...");
@@ -34,11 +42,18 @@ namespace SpaceGame
             }
         }
 
-        private void Load()
+        private IEnumerator Load()
         {
+            var prevTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
             Debug.Log("Loading state...");
+            _persistableSession.Load();
+            var sceneIdsToLoad = (int[]) _persistableSession.State["_loadedScenes"];
+            yield return SceneLoader.RestoreScenes(sceneIdsToLoad);
+            yield return null; // Give the ShuttleSpawner a frame to Spawn a shuttle
             _currentSession.RestoreState(_persistableSession.State["_session"]);
             PersistableEntity.RestoreStates(_persistableSession.State);
+            Time.timeScale = prevTimeScale;
         }
 
         private void Save()
@@ -51,6 +66,7 @@ namespace SpaceGame
                 d.Mark("Load");
                 PersistableEntity.CaptureStates(state);
                 _persistableSession.State["_session"] = _currentSession.CaptureState();
+                _persistableSession.State["_loadedScenes"] = SceneLoader.CaptureLoadedScenes();
                 d.Mark("Capture");
                 _persistableSession.Save();
                 d.Mark("Save");

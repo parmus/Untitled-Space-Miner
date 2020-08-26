@@ -1,6 +1,7 @@
 {
     "name": "SpaceGame",
     "references": [
+        "GUID:020aef78848b7cb428d8975185879739",
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:db481fdde84a80341a84f09b7fc0052a",
         "GUID:9c318e6039c06b8439cfecbc88a22eb8",

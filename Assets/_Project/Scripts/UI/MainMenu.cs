@@ -1,17 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SpaceGame.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        public static void NewGame()
-        {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1).completed += operation =>
-            {
-                SessionManager.Instance.NewGame();
-            };
-        }
+        public static void NewGame() => LoadingScreen.Instance.NewGame();
+
+        public static void LoadGame() => LoadingScreen.Instance.LoadGame();
 
         public static void Quit()
         {
