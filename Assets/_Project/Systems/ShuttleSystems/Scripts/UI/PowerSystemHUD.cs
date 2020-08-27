@@ -35,7 +35,7 @@ namespace SpaceGame.ShuttleSystems.UI {
 
         private void OnDestroy()
         {
-            if (_powerSystem) return;
+            if (!_powerSystem) return;
             _powerSystem.Charge.Unsubscribe(OnChargeChange);
             _powerSystem.Capacity.Unsubscribe(OnCapacityChange);
         }
