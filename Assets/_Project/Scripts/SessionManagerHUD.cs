@@ -1,6 +1,7 @@
 ﻿using SpaceGame.InventorySystem.UI;
 using SpaceGame.PlayerInput;
 using SpaceGame.ShuttleSystems;
+using UnityEditor;
 using UnityEngine;
 
 namespace SpaceGame
@@ -22,6 +23,17 @@ namespace SpaceGame
                 if (shuttle != null) shuttle.ShuttleControls.enabled = !_HUD.gameObject.activeSelf; 
             };
         }
+
+        private void OnDestroy() => _controls.Disable();
+
+        public static void Quit()
+        {
+            #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+            #else
+            Application.Quit();
+            #endif
+        } 
 
         private static void SetCursorEnabled(bool enabled) {
             Cursor.lockState = enabled ? CursorLockMode.Confined : CursorLockMode.Locked;
