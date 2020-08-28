@@ -8,10 +8,18 @@ namespace SpaceGame.Utility.UI
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
+        [SerializeField] private Image _image = default;
+        [SerializeField] private bool _disabled = false;
+
+        public bool Disabled
+        {
+            get => _disabled;
+            set => _disabled = value;
+        }
         public TabGroup TabGroup { get; set; }
         public Image Image => _image;
 
-        private Image _image;
+        
 
         private void Awake()
         {
@@ -22,19 +30,24 @@ namespace SpaceGame.Utility.UI
         public void OnPointerClick(PointerEventData eventData)
         {
             Assert.IsNotNull(TabGroup);
+            if (_disabled) return;
             TabGroup.OnSelect(this);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             Assert.IsNotNull(TabGroup);
+            if (_disabled) return;
             TabGroup.OnEnter(this);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             Assert.IsNotNull(TabGroup);
+            if (_disabled) return;
             TabGroup.OnLeave(this);
         }
+
+        private void Reset() => _image = GetComponent<Image>();
     }
 }

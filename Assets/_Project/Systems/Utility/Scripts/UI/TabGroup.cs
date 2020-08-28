@@ -6,32 +6,32 @@ namespace SpaceGame.Utility.UI
 {
     public class TabGroup : MonoBehaviour
     {
-        [SerializeField] private int _currentTab = 0;
-        [SerializeField] private List<TabButton> _tabButtons = new List<TabButton>();
-        [SerializeField] private List<GameObject> _tabs = new List<GameObject>();
+        [SerializeField] private int _firstTab = 0;
+        [SerializeField] private List<Tab> _tabs = new List<Tab>();
         
         [SerializeField] private Color _normalTint = Color.white;
-        [SerializeField] private Color _selectedTint = Color.white;
-        [SerializeField] private Color _hoverTint = Color.white;
+        [SerializeField] private Color _disabledTint = Color.grey;
+        [SerializeField] private Color _selectedTint = Color.yellow;
+        [SerializeField] private Color _hoverTint = Color.blue;
 
+        private int _currentTab;
+        
         private void Start()
         {
-            foreach (var tabButton in _tabButtons)
-            {
-                tabButton.TabGroup = this;
-            }
-
-            OnSelect(_tabButtons[_currentTab]);
+            _currentTab = _firstTab;
+            foreach (var tabItem in _tabs) tabItem.Button.TabGroup = this;
+            OnSelect(_tabs[_currentTab].Button);
         }
 
-        private void ClearTabButtonState()
-        {
-            _tabButtons.ForEach(tabButton => tabButton.Image.color = _normalTint);
-        }
+        private void ClearTabButtonState() =>
+            _tabs.ForEach(item => item.Button.Image.color = item.Button.Disabled ? _disabledTint : _normalTint);
+
+        private int IndexOf(TabButton tabButton) =>
+            _tabs.FindIndex(item => item.Button == tabButton);
 
         public void OnSelect(TabButton tabButton)
         {
-            _currentTab = _tabButtons.IndexOf(tabButton);
+            _currentTab = IndexOf(tabButton);
             Assert.IsTrue(_currentTab < _tabs.Count);
             
             ClearTabButtonState();
@@ -39,21 +39,21 @@ namespace SpaceGame.Utility.UI
 
             for (var i = 0; i < _tabs.Count; i++)
             {
-                _tabs[i].SetActive(i == _currentTab);
+                _tabs[i].GameObject.SetActive(i == _currentTab);
             }
-
         }
+        
+        public void OnEnter(TabButton tabButton) =>
+            tabButton.Image.color = IndexOf(tabButton) == _currentTab ? _selectedTint : _hoverTint;
 
-        public void OnEnter(TabButton tabButton)
-        {
-            var index = _tabButtons.IndexOf(tabButton);
-            tabButton.Image.color = index == _currentTab ? _selectedTint : _hoverTint;
-        }
+        public void OnLeave(TabButton tabButton) =>
+            tabButton.Image.color = IndexOf(tabButton) == _currentTab ? _selectedTint : _normalTint;
 
-        public void OnLeave(TabButton tabButton)
+        [System.Serializable]
+        public class Tab
         {
-            var index = _tabButtons.IndexOf(tabButton);
-            tabButton.Image.color = index == _currentTab ? _selectedTint : _normalTint;
+            public TabButton Button;
+            public GameObject GameObject;
         }
     }
 }
