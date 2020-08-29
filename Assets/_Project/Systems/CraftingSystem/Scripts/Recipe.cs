@@ -7,25 +7,20 @@ using UnityEngine;
 namespace SpaceGame.CraftingSystem {
     [CreateAssetMenu(fileName = "New Crafting Recipe", menuName = "Game Data/Crafting Recipe", order = 1)]
     public class Recipe : ScriptableObject {
-        [Serializable]
-        public class Ingredient {
-            [SerializeField] private ItemType _type = default;
-            [SerializeField] private uint _amount = 1;
-
-            public ItemType Type => _type;
-            public uint Amount => _amount;
-        }
-
+        #region Serialized fields
         [SerializeField] private List<Ingredient> _ingredients = new List<Ingredient>();
         [SerializeField] private Ingredient _output = new Ingredient();
         [SerializeField] private float _craftTime = 1f;
+        #endregion
 
+        #region Public properties
         public Sprite Thumbnail => _output.Type ? _output.Type.Thumbnail : null;
-
         public IReadOnlyList<Ingredient> Ingredients => _ingredients;
         public Ingredient Output => _output;
         public float CraftTime => _craftTime;
+        #endregion
 
+        #region Public methods
         public bool HasIngredients(IInventory inventory) {
             foreach(var ingredient in _ingredients) {
                 if (!inventory.Has(ingredient.Type, ingredient.Amount)) return false;
@@ -40,7 +35,17 @@ namespace SpaceGame.CraftingSystem {
             }
             return true;
         }
+        #endregion
+
+        #region Ingredient class
+        [Serializable]
+        public class Ingredient {
+            [SerializeField] private ItemType _type = default;
+            [SerializeField] private uint _amount = 1;
+
+            public ItemType Type => _type;
+            public uint Amount => _amount;
+        }
+        #endregion
     }
-
-
 }

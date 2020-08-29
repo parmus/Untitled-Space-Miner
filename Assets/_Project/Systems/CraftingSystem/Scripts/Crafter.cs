@@ -14,12 +14,13 @@ namespace SpaceGame.CraftingSystem {
         private readonly Observable<CrafterState> _state = new Observable<CrafterState>(CrafterState.Idle);
         private readonly Observable<float> _progress = new Observable<float>(0f);
 
-        public IInventory Inventory { get; set; }
+        public readonly Observable<IInventory> Inventory = new Observable<IInventory>();
+        public void SetInventory(IInventory inventory) => Inventory.Value = inventory;
 
         public void Craft(Recipe recipe) {
-            if (Inventory == null) return;  // No inventory
-            if (!recipe.TakeIngredients(Inventory)) return;  // Not enough ingredients
-            if (!Inventory.CanAdd(recipe.Output.Type, recipe.Output.Amount)) return; // No room for output
+            if (Inventory.Value == null) return;  // No inventory
+            if (!recipe.TakeIngredients(Inventory.Value)) return;  // Not enough ingredients
+            if (!Inventory.Value.CanAdd(recipe.Output.Type, recipe.Output.Amount)) return; // No room for output
             if ( _state != CrafterState.Idle) return;  // Busy
             StartCoroutine(CO_Craft(recipe));
         }
@@ -34,7 +35,7 @@ namespace SpaceGame.CraftingSystem {
                 _progress.Value = Mathf.Clamp01(_progress.Value + Time.deltaTime / recipe.CraftTime);
             } while (_progress.Value < 1f);
 
-            Inventory.Add(recipe.Output.Type, recipe.Output.Amount);
+            Inventory.Value.Add(recipe.Output.Type, recipe.Output.Amount);
             _state.Value = CrafterState.Idle;
             _progress.Value = 0f;
             _currentlyCrafting.Value = null;

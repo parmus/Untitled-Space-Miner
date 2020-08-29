@@ -1,11 +1,10 @@
 ﻿using SpaceGame.Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SpaceGame.InventorySystem.Demo {
     [RequireComponent(typeof(UnityEngine.UI.Button))]
     public class AddButton : MonoBehaviour {
-        [FormerlySerializedAs("_resourceType")] [SerializeField] private ItemType _itemType = default;
+        [SerializeField] private ItemType _itemType = default;
         [SerializeField] private uint _amount = 1;
 
         public IInventory Inventory { get; set; } = null;
