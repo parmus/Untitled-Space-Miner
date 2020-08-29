@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b69e41ab247b83c4da5a892c00bac7c5, type: 3}
-  m_Name: Boost Thruster Upgrade Recipe
+  m_Name: Boost Thruster Recipe
   m_EditorClassIdentifier: 
   _ingredients:
   - _type: {fileID: 11400000, guid: 8e12d595186f7db4fbd1059723207e0e, type: 2}
