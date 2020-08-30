@@ -1146,6 +1146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fba46ce6f24ebe96d46054871d73eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enabledWhenSet:
+  - {fileID: 1578840933792811265}
   _connectShuttle:
     m_PersistentCalls:
       m_Calls:

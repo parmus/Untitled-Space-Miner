@@ -1,4 +1,5 @@
-﻿using SpaceGame.InventorySystem;
+﻿using System.Collections.Generic;
+using SpaceGame.InventorySystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,6 +7,7 @@ namespace SpaceGame.ShuttleSystems
 {
     public sealed class ShuttleConnector : MonoBehaviour
     {
+        [SerializeField] private List<GameObject> _enabledWhenSet = new List<GameObject>();
         [SerializeField] private UnityEvent<Shuttle> _connectShuttle = default;
         [SerializeField] private UnityEvent<Hull.Hull> _connectHull = default;
         [SerializeField] private UnityEvent<InertiaDampers.InertiaDampers> _connectInertiaDampers = default;
@@ -23,6 +25,7 @@ namespace SpaceGame.ShuttleSystems
 
         private void OnNewShuttleSpawned(Shuttle shuttle)
         {
+            _enabledWhenSet.ForEach(go => go.SetActive(shuttle != null));
             _connectShuttle.Invoke(shuttle);
             _connectHull.Invoke(shuttle ? shuttle.Hull : null);
             _connectInertiaDampers.Invoke(shuttle ? shuttle.InertiaDampers : null);

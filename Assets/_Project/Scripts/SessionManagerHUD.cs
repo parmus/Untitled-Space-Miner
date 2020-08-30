@@ -1,13 +1,16 @@
-﻿using SpaceGame.InventorySystem.UI;
+﻿using SpaceGame.InventorySystem;
+using SpaceGame.InventorySystem.UI;
 using SpaceGame.PlayerInput;
 using SpaceGame.ShuttleSystems;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace SpaceGame
 {
-    public class SessionManagerHUD : MonoBehaviour {
-        [SerializeField] private InventoryPanel _inventoryPanel = default;
+    public class SessionManagerHUD : MonoBehaviour
+    {
+        [SerializeField] private UnityEvent<IInventory> _onInventoryChange = default;
         [SerializeField] private Canvas _HUD = default;
 
         private Controls _controls;
@@ -41,7 +44,7 @@ namespace SpaceGame
         }
 
         private void Start() {
-            _inventoryPanel.Inventory = SessionManager.Instance.Inventory;
+            _onInventoryChange.Invoke(SessionManager.Instance.Inventory);
             _HUD.gameObject.SetActive(false);
             SetCursorEnabled(false);
         }
