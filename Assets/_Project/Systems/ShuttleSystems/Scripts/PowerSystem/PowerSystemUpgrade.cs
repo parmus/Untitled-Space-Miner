@@ -8,6 +8,7 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
     {
         [SerializeField] private float _capacity = 100f;
         public override string Name => name;
+        public override string Description => $"{base.Description}\n<#00ff00>• Capacity: {_capacity}</color>";
         public float Capacity => _capacity;
     }
 }

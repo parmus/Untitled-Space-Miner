@@ -2,16 +2,17 @@
 using JetBrains.Annotations;
 using SpaceGame.Core;
 using SpaceGame.InventorySystem;
+using SpaceGame.Utility.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
-    public abstract class ShuttleUpgradeSlot<T>: MonoBehaviour, IDropHandler, IStackProvider where T: ShuttleUpgrade
+    [SelectionBase]
+    public abstract class ShuttleUpgradeSlot<T>: MonoBehaviour, IDropHandler, ITooltipProvider, IStackProvider where T: ShuttleUpgrade
     {
         [SerializeField] private Image _image = default;
         [SerializeField] private Image _background = default;
-        [SerializeField] private TMPro.TextMeshProUGUI _label = default;
         
         private FakeStack _stack;
         public IInventoryStack Stack => _stack;
@@ -52,15 +53,12 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
                 _background.enabled = false;
                 _image.sprite = upgrade.Thumbnail;
                 _image.enabled = true;
-                _label.text = upgrade.Name;
-                _label.enabled = true;
             }
             else
             {
                 _background.enabled = true;
                 _image.sprite = null;
                 _image.enabled = false;
-                _label.enabled = false;
             }
         }
 
@@ -114,5 +112,7 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
 
             public void Clear() => TryRemove(1);
         }
+
+        public string GetTooltip() => _upgrade.Value == null ? null : _upgrade.Value.Tooltip;
     }
 }

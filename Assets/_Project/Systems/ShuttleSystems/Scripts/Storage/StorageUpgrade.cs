@@ -8,6 +8,7 @@ namespace SpaceGame.ShuttleSystems.Storage
         [SerializeField] private uint _slot = 5;
 
         public override string Name => name;
+        public override string Description => $"{base.Description}\n<#00ff00>• Slots: {_slot}</color>";
         public uint Slots => _slot;
     }
 }

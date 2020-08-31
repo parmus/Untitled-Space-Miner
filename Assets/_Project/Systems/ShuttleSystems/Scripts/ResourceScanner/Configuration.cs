@@ -6,6 +6,7 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
         [SerializeField] private float _range = 100f;
 
         public override string Name => name;
+        public override string Description => $"{base.Description}\n<#00ff00>• Range: {_range}m</color>";
         public float Range => _range;
     }
 }

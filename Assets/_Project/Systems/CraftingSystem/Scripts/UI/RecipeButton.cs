@@ -1,11 +1,13 @@
 ﻿using SpaceGame.InventorySystem;
+using SpaceGame.Utility.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace SpaceGame.CraftingSystem.UI
 {
-    public class RecipeButton : MonoBehaviour
+    [SelectionBase]
+    public class RecipeButton : MonoBehaviour, ITooltipProvider
     {
         [SerializeField] private Crafter _crafter = default;
         [SerializeField] private Recipe _recipe = default;
@@ -59,5 +61,7 @@ namespace SpaceGame.CraftingSystem.UI
             if (_thumbnail != null) _thumbnail.sprite = _recipe.Thumbnail;
             gameObject.name = $"Craft {_recipe.Output.Type.Name} Button";
         }
+
+        public string GetTooltip() => _recipe == null ? null : _recipe.GetDescription();
     }
 }

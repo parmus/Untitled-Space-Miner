@@ -1433,6 +1433,36 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300838294319965269, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2331200707814251170, guid: f77f450947c63c84f9928723545740fc,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2606,6 +2636,21 @@ PrefabInstance:
     - target: {fileID: 8626385625674563181, guid: f77f450947c63c84f9928723545740fc,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132431884471320, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132431884471320, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132431884471320, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8634132433247976564, guid: f77f450947c63c84f9928723545740fc,
@@ -2717,6 +2762,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shuttle Equipment HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132433849637261, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132433849637261, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8711608386933516653, guid: f77f450947c63c84f9928723545740fc,
         type: 3}

@@ -12,6 +12,7 @@ namespace SpaceGame.ShuttleSystems.Hull
 
         #region Properties
         public override string Name => name;
+        public override string Description => $"{base.Description}\n<#00ff00>• Hull Strength: {_hullStrength}</color>";
         public float HullStrength => _hullStrength;
         #endregion
     }

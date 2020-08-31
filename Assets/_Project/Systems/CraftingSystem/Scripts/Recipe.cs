@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using SpaceGame.Core;
 using SpaceGame.InventorySystem;
 using UnityEngine;
@@ -26,6 +27,25 @@ namespace SpaceGame.CraftingSystem {
                 if (!inventory.Has(ingredient.Type, ingredient.Amount)) return false;
             }
             return true;
+        }
+
+        public string GetDescription()
+        {
+            var sb = new StringBuilder();
+            sb.Append($"<b><u>{_output.Type.Name}");
+            if (_output.Amount > 1) sb.Append($" (x{_output.Amount})</u></b>");
+            sb.AppendLine("</u></b>\n");
+            sb.AppendLine($"{_output.Type.Description}");
+            sb.AppendLine("Ingredients:");
+            sb.Append("<#ff0000>");
+            _ingredients.ForEach(ingredient =>
+                sb.AppendLine(ingredient.Amount > 1 ?
+                    $"• {ingredient.Type.Name} x{ingredient.Amount}" :
+                    $"• {ingredient.Type.Name}")
+            );
+            sb.Append("</color>");
+
+            return sb.ToString();
         }
 
         public bool TakeIngredients(IInventory inventory) {
