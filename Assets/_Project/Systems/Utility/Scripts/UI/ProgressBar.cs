@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace SpaceGame.Utility.UI {
     public class ProgressBar : MonoBehaviour {
@@ -25,7 +25,7 @@ namespace SpaceGame.Utility.UI {
             get => _max;
             set {
                 _max = Mathf.Max(_min, value);
-                _value = Mathf.Clamp(value, _min, _max);
+                _value = Mathf.Clamp(_value, _min, _max);
                 UpdateUI();
             }
         }
