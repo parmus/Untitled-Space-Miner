@@ -15,9 +15,11 @@ namespace SpaceGame.Utility.UI
         private static TooltipUI _instance;
 
         private RectTransform _frameRect;
-        private RectTransform _canvasRect;
+        private Canvas _rootCanvas;
+        private RectTransform _rootCanvasRect;
         private Vector2 _padding;
         #endregion
+        
 
         public static void SetText(string text)
         {
@@ -36,7 +38,10 @@ namespace SpaceGame.Utility.UI
             _padding = textRect.offsetMin - textRect.offsetMax;
 
             _frameRect = _frame.rectTransform;
-            _canvasRect = GetComponent<RectTransform>();
+
+            _rootCanvas = GetComponent<Canvas>().rootCanvas;
+            _rootCanvasRect = _rootCanvas.GetComponent<RectTransform>();
+            
             _instance = this;
             Hide();
         }
@@ -55,10 +60,10 @@ namespace SpaceGame.Utility.UI
         private void UpdatePosition()
         {
             Vector2 mousePosition = Input.mousePosition;
-            var localPoint = (mousePosition + _cursorOffset) / _canvasRect.localScale.x;
+            var localPoint = (mousePosition + _cursorOffset) / _rootCanvas.scaleFactor;
 
-            localPoint.x = Mathf.Clamp(localPoint.x, 0, _canvasRect.rect.width - _frameRect.rect.width);
-            localPoint.y = Mathf.Clamp(localPoint.y, _frameRect.rect.height, _canvasRect.rect.height);
+            localPoint.x = Mathf.Clamp(localPoint.x, 0, _rootCanvasRect.rect.width - _frameRect.rect.width);
+            localPoint.y = Mathf.Clamp(localPoint.y, _frameRect.rect.height, _rootCanvasRect.rect.height);
             
             _frameRect.anchoredPosition = localPoint;
         }
