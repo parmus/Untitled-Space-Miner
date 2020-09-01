@@ -19,14 +19,14 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         #endregion 
         
         #region Properties
-        public IReadonlyObservable<bool> InRange => _inRange;
+        public IReadonlyObservable<bool> ResourceDepositInRange => _resourceDepositInRange;
         public readonly IObservable<MiningToolUpgrade> Upgrade = new Observable<MiningToolUpgrade>();
         #endregion
 
         #region Private variables
         private static readonly Vector3 ScreenCenter = new Vector3(0.5f, 0.5f);
         private readonly Observable<GameObject> _targetGameObject = new Observable<GameObject>();
-        private readonly Observable<bool> _inRange = new Observable<bool>();
+        private readonly Observable<bool> _resourceDepositInRange = new Observable<bool>();
         private Camera _camera;
         private Transform _cameraTransform;
         private Ray _ray;
@@ -61,7 +61,6 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
 
         private void OnDisable() {
-            UpdateInRange();
             UpdateVFX();
             
             Upgrade.Unsubscribe(OnUpgradeChange);
@@ -79,26 +78,24 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _laserTarget = hit ? _hit.point : _cameraTransform.position + _cameraTransform.forward * range;
         }
 
-        private void UpdateInRange() {
-            _inRange.Value = enabled && _resourceDeposit && Vector3.Distance(_origin.position, _laserTarget) < _currentMiningTool.Range;
-        }
-
         private void UpdateVFX() {
+            var isHittingGameobject = enabled && _targetGameObject.Value && Vector3.Distance(_origin.position, _laserTarget) < _currentMiningTool.Range;
+            _resourceDepositInRange.Value = isHittingGameobject && _resourceDeposit;
+
             if (!_vfx) return;
             var isFiringLaser = enabled && Use && !_shuttle.PowerSystem.IsEmpty;
             _vfx.IsMining = isFiringLaser;
             _vfx.TargetPosition = _laserTarget;
-            _vfx.IsHitting = isFiringLaser && _inRange.Value;
+            _vfx.IsHitting = isFiringLaser && isHittingGameobject;
         }
 
         private void Update()
         {
             UpdateTarget();
-            UpdateInRange();
             UpdateVFX();
             if (!Use || _shuttle.PowerSystem.IsEmpty) return;
             _shuttle.PowerSystem.Consume(_currentMiningTool.PowerConsumption * Time.deltaTime);
-            if (!_inRange.Value || !_resourceDeposit.Damage(_currentMiningTool.Strength * Time.deltaTime)) return;
+            if (!_resourceDepositInRange.Value || !_resourceDeposit.Damage(_currentMiningTool.Strength * Time.deltaTime)) return;
             var resourceAcquired = _shuttle.Storage.Inventory.Add(_resourceDeposit.Type, _resourceDeposit.Amount);
             OnResourceAcquired?.Invoke(_resourceDeposit.Type, resourceAcquired);
         }
