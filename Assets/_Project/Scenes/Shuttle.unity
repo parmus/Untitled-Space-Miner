@@ -1523,6 +1523,12 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2909568508502534200, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_StyleSheet
+      value: 
+      objectReference: {fileID: 11400000, guid: 456dbabd6fe43a048a7747a9716903da,
+        type: 2}
     - target: {fileID: 2951410445488885776, guid: f77f450947c63c84f9928723545740fc,
         type: 3}
       propertyPath: m_AnchorMin.y

@@ -206,7 +206,7 @@ MonoBehaviour:
     _strength: 10
     _range: 50
     _powerConsumption: 2
-    _vfxPrefab: {fileID: 8969767801773848594, guid: a6be679e86fc2f346ad00de11d2befed,
+    _vfxPrefab: {fileID: 4348456146119283245, guid: a998ac496d889db41887ef619b73acb9,
       type: 3}
   _layerMask:
     serializedVersion: 2
@@ -227,6 +227,19 @@ MonoBehaviour:
   _defaultInertiaDampers:
     _drag: 0
     _angularDrag: 0.3
+--- !u!114 &2652142133117318988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266161923919397067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a979e2c0fa74d0bbbfebf80daeff9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: _shuttle
 --- !u!114 &4380200423970701858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,19 +385,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultConfiguration:
     _slot: 5
---- !u!114 &2652142133117318988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266161923919397067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a979e2c0fa74d0bbbfebf80daeff9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: _shuttle
 --- !u!136 &338581383220378186
 CapsuleCollider:
   m_ObjectHideFlags: 0
