@@ -9,6 +9,7 @@ namespace SpaceGame.InventorySystem
         event Action OnChange;
         event Action OnResize;
 
+        void Resize(uint slots, uint stackMultiplier);
         void Resize(uint slots);
 
         uint Add(ItemType itemType, uint amount = 1);

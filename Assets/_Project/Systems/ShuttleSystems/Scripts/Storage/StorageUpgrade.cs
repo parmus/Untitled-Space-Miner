@@ -6,9 +6,11 @@ namespace SpaceGame.ShuttleSystems.Storage
     public class StorageUpgrade : ShuttleUpgrade, IStorageConfiguration
     {
         [SerializeField] private uint _slot = 5;
+        [SerializeField] private uint _stackMultiplier = 1;
 
         public override string Name => name;
         public override string Description => $"{base.Description}\n<#00ff00>• Slots: {_slot}</color>";
         public uint Slots => _slot;
+        public uint StackMultiplier => _stackMultiplier;
     }
 }

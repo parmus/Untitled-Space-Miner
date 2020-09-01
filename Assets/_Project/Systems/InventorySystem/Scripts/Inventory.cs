@@ -13,26 +13,29 @@ namespace SpaceGame.InventorySystem {
 
         public Inventory(uint slots, uint stackMultiplier = 1) {
             _stackMultiplier = stackMultiplier;
-            _content = new InventoryStack[slots];
-            for(var i=0; i<slots; i++) {
-                var stack = new InventoryStack(stackMultiplier);
-                stack.OnChange += () => OnChange?.Invoke();
-                _content[i] = stack;
-            }
+            Resize(slots);
         }
 
-        public void Resize(uint slots)
+        public void Resize(uint slots, uint stackMultiplier)
         {
-            if (_content.Length == slots) return;
+            if (_content?.Length == slots && _stackMultiplier == stackMultiplier) return;
+
+            _stackMultiplier = stackMultiplier;
+            
             Array.Resize(ref _content, (int) slots);
-            for(var i=0; i<slots; i++) {
-                if (_content[i] != null) continue;
-                var stack = new InventoryStack(_stackMultiplier);
-                stack.OnChange += () => OnChange?.Invoke();
-                _content[i] = stack;
+            for(var i=0; i<slots; i++)
+            {
+                if (_content[i] == null)
+                {
+                    _content[i] = new InventoryStack(_stackMultiplier, () => OnChange?.Invoke());
+                } else {
+                    _content[i].StackMultiplier = _stackMultiplier;
+                }
             }
             OnResize?.Invoke();
         }
+
+        public void Resize(uint slots) => Resize(slots, _stackMultiplier);
 
         public uint Add(ItemType itemType, uint amount = 1) {
             var remaining = amount;

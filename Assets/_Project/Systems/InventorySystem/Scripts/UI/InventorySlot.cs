@@ -46,6 +46,13 @@ namespace SpaceGame.InventorySystem.UI {
             UpdateUIWithAnimation();
         }
 
+        public void OnResize()
+        {
+            _prevType = _stack.Type;
+            _prevAmount = _stack.Amount;
+            UpdateUI();
+        }
+
         private void UpdateUIWithAnimation() {
             _seq?.Complete(true);
             _seq = DOTween.Sequence();

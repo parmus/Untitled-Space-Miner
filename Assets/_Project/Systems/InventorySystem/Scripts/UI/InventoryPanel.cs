@@ -46,6 +46,7 @@ namespace SpaceGame.InventorySystem.UI {
                 Destroy(_slots[_slots.Count-1].gameObject);
                 _slots.RemoveAt(_slots.Count-1);
             }
+            _slots.ForEach(slot => slot.OnResize());
         }
 
         private readonly List<InventorySlot> _slots = new List<InventorySlot>();

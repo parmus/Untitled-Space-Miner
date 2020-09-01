@@ -19,16 +19,28 @@ namespace SpaceGame.InventorySystem
             get {
                 if (Type == null) return 0;
                 
-                return Type.CanStack ? Type.StackSize * _stackMultiplier : Type.StackSize;
+                return Type.CanStack ? Type.StackSize * _stackMultiplier : 1;
+            }
+        }
+        
+        public uint StackMultiplier
+        {
+            get => _stackMultiplier;
+            set
+            {
+                _stackMultiplier = value;
+                if (Amount <= StackSize) return;
+                Amount = StackSize;
+                _onChangeCallback?.Invoke();
             }
         }
 
-        public event Action OnChange;
-
+        private Action _onChangeCallback;
         private uint _stackMultiplier;
 
-        public InventoryStack(uint stackMultiplier = 1) {
+        public InventoryStack(uint stackMultiplier, Action onChangeCallback) {
             _stackMultiplier = stackMultiplier;
+            _onChangeCallback = onChangeCallback;
         }
 
         public uint TryAdd(ItemType type, uint amount) {
@@ -40,7 +52,7 @@ namespace SpaceGame.InventorySystem
         public uint TryAdd(uint amount) {
             var addedToStack = Math.Min(StackSize - Amount, amount);
             Amount += addedToStack;
-            if (addedToStack > 0) OnChange?.Invoke();
+            if (addedToStack > 0) _onChangeCallback?.Invoke();
             return addedToStack;
         }
 
@@ -48,7 +60,7 @@ namespace SpaceGame.InventorySystem
             var removedFromStack = Math.Min(Amount, amount);
             Amount -= removedFromStack;
             if (Amount == 0) Type = null;
-            if (removedFromStack > 0) OnChange?.Invoke();
+            if (removedFromStack > 0) _onChangeCallback?.Invoke();
             return removedFromStack;
         }
 
@@ -56,7 +68,7 @@ namespace SpaceGame.InventorySystem
             if (Type == null) return;
             Type = null;
             Amount = 0;
-            OnChange?.Invoke();
+            _onChangeCallback?.Invoke();
         }
     }
 }

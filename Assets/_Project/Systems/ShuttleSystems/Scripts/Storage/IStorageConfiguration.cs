@@ -3,5 +3,6 @@
     public interface IStorageConfiguration
     {
         uint Slots { get;  }
+        uint StackMultiplier { get;  }
     }
 }

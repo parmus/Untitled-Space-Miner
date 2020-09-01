@@ -21,7 +21,9 @@ namespace SpaceGame.ShuttleSystems.Storage
         {
             Inventory = new Inventory(_defaultConfiguration.Slots);
             Upgrade.OnChange +=
-                upgrade => Inventory.Resize(upgrade ? upgrade.Slots : _defaultConfiguration.Slots);
+                upgrade => Inventory.Resize(
+                    upgrade ? upgrade.Slots : _defaultConfiguration.Slots,
+                    upgrade ? upgrade.StackMultiplier : _defaultConfiguration.StackMultiplier);
         }
         
         #region IPersistable
@@ -55,7 +57,9 @@ namespace SpaceGame.ShuttleSystems.Storage
         private class DefaultConfiguration: IStorageConfiguration
         {
             [SerializeField] private uint _slot = 5;
+            [SerializeField] private uint _stackMultiplier = 1;
             public uint Slots => _slot;
+            public uint StackMultiplier => _stackMultiplier;
         }
     }
 }
