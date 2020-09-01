@@ -566,11 +566,11 @@ GameObject:
   - component: {fileID: 1578840933792811276}
   - component: {fileID: 1578840933792811277}
   - component: {fileID: 1578840933792811266}
-  - component: {fileID: 5688917806313429631}
-  - component: {fileID: 5443516068546261461}
-  - component: {fileID: 8485590071782015846}
-  - component: {fileID: 8424256011860340089}
   - component: {fileID: 6109434203195991830}
+  - component: {fileID: 8424256011860340089}
+  - component: {fileID: 5688917806313429631}
+  - component: {fileID: 36228233769445646}
+  - component: {fileID: 8485590071782015846}
   m_Layer: 5
   m_Name: Flight HUD
   m_TagString: Untagged
@@ -649,6 +649,208 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &6109434203195991830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578840933792811265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fba46ce6f24ebe96d46054871d73eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enabledWhenSet:
+  - {fileID: 1578840933792811265}
+  _connectShuttle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8424256011860340089}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.ShuttleStateMonitor,
+          Assembly-CSharp
+        m_MethodName: SetShuttle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectHull:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2772263489700765421}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.HullHUD, Assembly-CSharp
+        m_MethodName: SetHull
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectInertiaDampers:
+    m_PersistentCalls:
+      m_Calls: []
+  _connectInventory:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1220500009976420226}
+        m_TargetAssemblyTypeName: SpaceGame.InventorySystem.UI.InventoryPanel, Assembly-CSharp
+        m_MethodName: set_Inventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectMiningTool:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1396791624072512334}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.MiningAimHUD, Assembly-CSharp
+        m_MethodName: SetMiningTool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3355645216078027276}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.MiningMessage, SpaceGame.ShuttleSystems
+        m_MethodName: SetMiningTool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectPowerSystem:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5688917806313429631}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.PowerSystemHUD, Assembly-CSharp
+        m_MethodName: SetPowerSystem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.VFX.LowPowerVolumeEffect,
+          Assembly-CSharp
+        m_MethodName: SetPowerSystem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectResourceScanner:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 71175665}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.ResourceHUD, Assembly-CSharp
+        m_MethodName: SetResourceScanner
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _connectThrusters:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4871699625909868311}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.VelocityHUD, Assembly-CSharp
+        m_MethodName: SetThrusters
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8424256011860340089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578840933792811265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e43fe998e9fd724ea8def33cdd06945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _landed:
+    _onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    _onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+    _enabledInState:
+    - {fileID: 1734066245781322474}
+  _takeOff:
+    _onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    _onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+    _enabledInState: []
+  _flying:
+    _onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    _onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+    _enabledInState: []
+  _landing:
+    _onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    _onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+    _enabledInState:
+    - {fileID: 6542208730818693442}
+  _shutdown:
+    _onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    _onLeave:
+      m_PersistentCalls:
+        m_Calls: []
+    _enabledInState: []
 --- !u!114 &5688917806313429631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +881,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5493844476551595425}
         m_TargetAssemblyTypeName: 
         m_MethodName: set_Value
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 36228233769445646}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.VFX.VolumeDriver, SpaceGame.ShuttleSystems
+        m_MethodName: SetWeight
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -821,7 +1035,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &5443516068546261461
+--- !u!114 &36228233769445646
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -830,11 +1044,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1578840933792811265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9ca5beca4188043a3ae3422c3a0cc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b906c5b34414567a3e37d8c60768acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volume: {fileID: 8485590071782015846}
-  _lowPowerThreshold: 15
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -0.06666667
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 15
+      value: 0
+      inSlope: -0.06666667
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8485590071782015846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,208 +1088,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: 5b8285ef8908c7d43a58bd804ac311ee, type: 2}
---- !u!114 &8424256011860340089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578840933792811265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e43fe998e9fd724ea8def33cdd06945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _landed:
-    _onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    _onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-    _enabledInState:
-    - {fileID: 1734066245781322474}
-  _takeOff:
-    _onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    _onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-    _enabledInState: []
-  _flying:
-    _onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    _onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-    _enabledInState: []
-  _landing:
-    _onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    _onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-    _enabledInState:
-    - {fileID: 6542208730818693442}
-  _shutdown:
-    _onEnter:
-      m_PersistentCalls:
-        m_Calls: []
-    _onLeave:
-      m_PersistentCalls:
-        m_Calls: []
-    _enabledInState: []
---- !u!114 &6109434203195991830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578840933792811265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36fba46ce6f24ebe96d46054871d73eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enabledWhenSet:
-  - {fileID: 1578840933792811265}
-  _connectShuttle:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8424256011860340089}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.ShuttleStateMonitor,
-          Assembly-CSharp
-        m_MethodName: SetShuttle
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectHull:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2772263489700765421}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.HullHUD, Assembly-CSharp
-        m_MethodName: SetHull
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectInertiaDampers:
-    m_PersistentCalls:
-      m_Calls: []
-  _connectInventory:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1220500009976420226}
-        m_TargetAssemblyTypeName: SpaceGame.InventorySystem.UI.InventoryPanel, Assembly-CSharp
-        m_MethodName: set_Inventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectMiningTool:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1396791624072512334}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.MiningAimHUD, Assembly-CSharp
-        m_MethodName: SetMiningTool
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 3355645216078027276}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.MiningMessage, SpaceGame.ShuttleSystems
-        m_MethodName: SetMiningTool
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectPowerSystem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5688917806313429631}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.PowerSystemHUD, Assembly-CSharp
-        m_MethodName: SetPowerSystem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5443516068546261461}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.VFX.LowPowerVolumeEffect,
-          Assembly-CSharp
-        m_MethodName: SetPowerSystem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectResourceScanner:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 71175665}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.ResourceHUD, Assembly-CSharp
-        m_MethodName: SetResourceScanner
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _connectThrusters:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4871699625909868311}
-        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.UI.VelocityHUD, Assembly-CSharp
-        m_MethodName: SetThrusters
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1578840934067872361
 GameObject:
   m_ObjectHideFlags: 0

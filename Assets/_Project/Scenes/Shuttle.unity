@@ -860,6 +860,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8485590071782015846, guid: 465d7c99fb56374418ea69ef6b4ba11c,
+        type: 3}
+      propertyPath: weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8485590071782015846, guid: 465d7c99fb56374418ea69ef6b4ba11c,
+        type: 3}
+      propertyPath: priority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8738785974764453105, guid: 465d7c99fb56374418ea69ef6b4ba11c,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2169,6 +2179,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6176333848370877928, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -60.00049
+      objectReference: {fileID: 0}
     - target: {fileID: 6348264147483678983, guid: f77f450947c63c84f9928723545740fc,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2768,6 +2783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shuttle Equipment HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132433247976565, guid: f77f450947c63c84f9928723545740fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634132433849637261, guid: f77f450947c63c84f9928723545740fc,
         type: 3}
