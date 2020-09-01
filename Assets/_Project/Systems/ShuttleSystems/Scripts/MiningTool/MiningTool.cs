@@ -1,11 +1,9 @@
 ﻿using SpaceGame.Core;
-using SpaceGame.Message_UI_System;
 using SpaceGame.ShuttleSystems.MiningTool.VFX;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Vector3 = UnityEngine.Vector3;
 
 namespace SpaceGame.ShuttleSystems.MiningTool {
     [AddComponentMenu("ShuttleSystems/MiningTool")]
@@ -16,9 +14,13 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         [SerializeField] private LayerMask _layerMask = default;
         #endregion
 
+        #region Public variables
+        public event System.Action<ItemType, uint> OnResourceAcquired;
+        #endregion 
+        
         #region Properties
         public IReadonlyObservable<bool> InRange => _inRange;
-        public readonly Utility.IObservable<MiningToolUpgrade> Upgrade = new Observable<MiningToolUpgrade>();
+        public readonly IObservable<MiningToolUpgrade> Upgrade = new Observable<MiningToolUpgrade>();
         #endregion
 
         #region Private variables
@@ -98,9 +100,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _shuttle.PowerSystem.Consume(_currentMiningTool.PowerConsumption * Time.deltaTime);
             if (!_inRange.Value || !_resourceDeposit.Damage(_currentMiningTool.Strength * Time.deltaTime)) return;
             var resourceAcquired = _shuttle.Storage.Inventory.Add(_resourceDeposit.Type, _resourceDeposit.Amount);
-            Broker.Push(resourceAcquired < 1
-                ? "Shuttle inventory full!"
-                : $"+{resourceAcquired} {_resourceDeposit.Type.Name}");
+            OnResourceAcquired?.Invoke(_resourceDeposit.Type, resourceAcquired);
         }
 
         #region IPersistable
