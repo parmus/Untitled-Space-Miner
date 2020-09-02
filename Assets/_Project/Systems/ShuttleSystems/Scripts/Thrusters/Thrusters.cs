@@ -30,11 +30,16 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
 
         private void Awake() => _shuttle = GetComponent<Shuttle>();
         private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
-        private void OnDisable() => Upgrade.Unsubscribe(OnUpgradeChange);
+        private void OnDisable()
+        {
+            Upgrade.Unsubscribe(OnUpgradeChange);
+            _velocity.Value = 0;
+        }
 
         private void OnUpgradeChange(ThrusterUpgrade upgrade) => _currentThruster = upgrade ? (IThrusterUpgrade) upgrade : _defaultThrusters;
 
         private void FixedUpdate() {
+            _velocity.Value = Mathf.RoundToInt(_rigidbody.velocity.magnitude);
             _thrustDirection.Set(_shuttle.ShuttleControls.Thrust.x, 0f, _shuttle.ShuttleControls.Thrust.y);
 
             if (_thrustDirection == Vector3.zero) return;
@@ -42,8 +47,6 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
 
             _rigidbody.AddRelativeForce(_thrustDirection * (ThrustPower * Time.fixedDeltaTime));
             _shuttle.PowerSystem.Consume(PowerConsumption * Time.fixedDeltaTime);
-            
-            _velocity.Value = Mathf.RoundToInt(_rigidbody.velocity.magnitude);
         }
 
         private void Reset() => _rigidbody = GetComponent<Rigidbody>();
