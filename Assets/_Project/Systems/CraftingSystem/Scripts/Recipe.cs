@@ -34,7 +34,7 @@ namespace SpaceGame.CraftingSystem {
             var sb = new StringBuilder();
             sb.Append($"<b><u>{_output.Type.Name}");
             if (_output.Amount > 1) sb.Append($" (x{_output.Amount})</u></b>");
-            sb.AppendLine("</u></b>\n");
+            sb.AppendLine("</u></b>");
             sb.AppendLine($"{_output.Type.Description}");
             sb.AppendLine("Ingredients:");
             sb.Append("<#ff0000>");
