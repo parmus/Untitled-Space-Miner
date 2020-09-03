@@ -2,7 +2,8 @@
     "name": "SpaceGame.CraftingSystem.Editor",
     "references": [
         "GUID:db481fdde84a80341a84f09b7fc0052a",
-        "GUID:a19955384128910468e3531215691d80"
+        "GUID:a19955384128910468e3531215691d80",
+        "GUID:d66621522fec41e4cb5b9f061c9c8fbf"
     ],
     "includePlatforms": [
         "Editor"

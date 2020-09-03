@@ -10,6 +10,30 @@ namespace SpaceGame.Utility
         public static bool IsZero(this float value) => Mathf.Approximately(value, 0f);
         #endregion
 
+        #region Rect
+        public static Rect Copy(this Rect rect) => new Rect(rect.position, rect.size);
+
+        public static Rect SetWidth(this Rect rect, float width)
+        {
+            rect.width = width;
+            return rect;
+        }
+
+        public static Rect SetMargin(this Rect rect, float top=0, float bottom=0, float left=0, float right=0)
+        {
+            rect.yMin += top;
+            rect.yMax -= bottom;
+            rect.xMin += left;
+            rect.xMax -= right;
+            return rect;
+        }
+
+        public static Rect WithWidth(this Rect rect, float width) => rect.Copy().SetWidth(width);
+
+        public static Rect WithMargin(this Rect rect, float top=0, float bottom=0, float left=0, float right=0) =>
+            rect.Copy().SetMargin(top, bottom, left, right);
+        #endregion
+        
         #region IReadOnlyList<T>
         public static T PickRandom<T>(this IReadOnlyList<T> objects) {
             return objects[Random.Range(0, objects.Count)];
