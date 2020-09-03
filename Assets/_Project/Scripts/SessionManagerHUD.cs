@@ -27,17 +27,6 @@ namespace SpaceGame
             };
         }
 
-        private void OnDestroy() => _controls.Disable();
-
-        public static void Quit()
-        {
-            #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-            #else
-            Application.Quit();
-            #endif
-        } 
-
         private static void SetCursorEnabled(bool enabled) {
             Cursor.lockState = enabled ? CursorLockMode.Confined : CursorLockMode.Locked;
             Cursor.visible = enabled;
@@ -49,12 +38,8 @@ namespace SpaceGame
             SetCursorEnabled(false);
         }
 
-        private void OnEnable() {
-            _controls.UI.Enable();
-        }
+        private void OnEnable() => _controls.UI.Enable();
 
-        private void OnDisable() {
-            _controls.UI.Disable();
-        }
+        private void OnDisable() => _controls.UI.Disable();
     }
 }

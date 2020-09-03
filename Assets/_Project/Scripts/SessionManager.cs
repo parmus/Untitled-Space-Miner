@@ -24,39 +24,12 @@ namespace SpaceGame
         public IEnumerator LoadGame(string saveGameName)
         {
             _persistableSession = new PersistableSession(saveGameName);
-            yield return Load();
+            yield return CO_Load();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                Save();
-            } else if (Input.GetKeyDown(KeyCode.F2))
-            {
-                StartCoroutine(Load());
-            } else if (Input.GetKeyDown(KeyCode.F3))
-            {
-                Debug.Log("Deleting state...");
-                _persistableSession.Delete();
-            }
-        }
+        public void Load() => StartCoroutine(CO_Load());
 
-        private IEnumerator Load()
-        {
-            var prevTimeScale = Time.timeScale;
-            Time.timeScale = 0f;
-            Debug.Log("Loading state...");
-            _persistableSession.Load();
-            var sceneIdsToLoad = (int[]) _persistableSession.State["_loadedScenes"];
-            yield return SceneLoader.RestoreScenes(sceneIdsToLoad);
-            yield return null; // Give the ShuttleSpawner a frame to Spawn a shuttle
-            _currentSession.RestoreState(_persistableSession.State["_session"]);
-            PersistableEntity.RestoreStates(_persistableSession.State);
-            Time.timeScale = prevTimeScale;
-        }
-
-        private void Save()
+        public void Save()
         {
             Debug.Log("Saving state...");
 
@@ -71,6 +44,20 @@ namespace SpaceGame
                 _persistableSession.Save();
                 d.Mark("Save");
             }
+        }
+
+        private IEnumerator CO_Load()
+        {
+            var prevTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            Debug.Log("Loading state...");
+            _persistableSession.Load();
+            var sceneIdsToLoad = (int[]) _persistableSession.State["_loadedScenes"];
+            yield return SceneLoader.RestoreScenes(sceneIdsToLoad);
+            yield return null; // Give the ShuttleSpawner a frame to Spawn a shuttle
+            _currentSession.RestoreState(_persistableSession.State["_session"]);
+            PersistableEntity.RestoreStates(_persistableSession.State);
+            Time.timeScale = prevTimeScale;
         }
     }
 }
