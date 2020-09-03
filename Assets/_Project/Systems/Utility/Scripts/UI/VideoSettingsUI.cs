@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using SpaceGame.Utility.Settings;
 using UnityEngine;
@@ -24,7 +24,7 @@ namespace SpaceGame.Utility.UI
         
             _resolutionIndexDropDown.ClearOptions();
             _resolutionIndexDropDown.AddOptions(
-                Array.ConvertAll(Screen.resolutions, resolution => resolution.ToString()).ToList()
+                Array.ConvertAll(Screen.resolutions, resolution => $"{resolution.width}x{resolution.height}").ToList()
             );
             _resolutionIndexDropDown.value = _videoSettings.ResolutionIndex.Value;
             _resolutionIndexDropDown.RefreshShownValue();
