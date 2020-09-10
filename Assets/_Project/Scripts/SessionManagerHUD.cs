@@ -1,8 +1,6 @@
 ﻿using SpaceGame.InventorySystem;
-using SpaceGame.InventorySystem.UI;
 using SpaceGame.PlayerInput;
 using SpaceGame.ShuttleSystems;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
