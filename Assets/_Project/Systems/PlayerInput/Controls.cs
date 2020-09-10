@@ -170,6 +170,134 @@ namespace SpaceGame.PlayerInput
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Robot"",
+            ""id"": ""99ac10dd-7e9f-420e-89a0-a616142da4ee"",
+            ""actions"": [
+                {
+                    ""name"": ""Look Around"",
+                    ""type"": ""Value"",
+                    ""id"": ""aa276e48-2281-4514-87e8-8b37382030bb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""26e85473-a7d7-46a0-bc9d-4a7783021433"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""323732d1-61f1-4c86-9b2b-5f51140648c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""61965acf-52cc-4eb6-b3ee-13d84896dd40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c60537da-007a-4ee7-9030-b2c6546e63c7"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Look Around"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""ADWS"",
+                    ""id"": ""3d193058-c6ea-4391-923b-422c7a04c26a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3f8662c1-e194-4ac8-8504-59b800f8d555"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""779b742b-ba78-4088-bd3c-ffa086e69a3a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5a012f92-eb63-4215-b26b-e0cf320db4c0"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""31f094f3-56a9-4af6-af7f-0d79e1fddf89"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5afe338-3556-4e26-aca7-9d0124dcc9d8"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74504909-44ed-47e4-9278-84ff4bc05ee8"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -200,6 +328,12 @@ namespace SpaceGame.PlayerInput
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_ToggleInventory = m_UI.FindAction("ToggleInventory", throwIfNotFound: true);
+            // Robot
+            m_Robot = asset.FindActionMap("Robot", throwIfNotFound: true);
+            m_Robot_LookAround = m_Robot.FindAction("Look Around", throwIfNotFound: true);
+            m_Robot_Movement = m_Robot.FindAction("Movement", throwIfNotFound: true);
+            m_Robot_Run = m_Robot.FindAction("Run", throwIfNotFound: true);
+            m_Robot_Interact = m_Robot.FindAction("Interact", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -335,6 +469,63 @@ namespace SpaceGame.PlayerInput
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // Robot
+        private readonly InputActionMap m_Robot;
+        private IRobotActions m_RobotActionsCallbackInterface;
+        private readonly InputAction m_Robot_LookAround;
+        private readonly InputAction m_Robot_Movement;
+        private readonly InputAction m_Robot_Run;
+        private readonly InputAction m_Robot_Interact;
+        public struct RobotActions
+        {
+            private @Controls m_Wrapper;
+            public RobotActions(@Controls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @LookAround => m_Wrapper.m_Robot_LookAround;
+            public InputAction @Movement => m_Wrapper.m_Robot_Movement;
+            public InputAction @Run => m_Wrapper.m_Robot_Run;
+            public InputAction @Interact => m_Wrapper.m_Robot_Interact;
+            public InputActionMap Get() { return m_Wrapper.m_Robot; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(RobotActions set) { return set.Get(); }
+            public void SetCallbacks(IRobotActions instance)
+            {
+                if (m_Wrapper.m_RobotActionsCallbackInterface != null)
+                {
+                    @LookAround.started -= m_Wrapper.m_RobotActionsCallbackInterface.OnLookAround;
+                    @LookAround.performed -= m_Wrapper.m_RobotActionsCallbackInterface.OnLookAround;
+                    @LookAround.canceled -= m_Wrapper.m_RobotActionsCallbackInterface.OnLookAround;
+                    @Movement.started -= m_Wrapper.m_RobotActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_RobotActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_RobotActionsCallbackInterface.OnMovement;
+                    @Run.started -= m_Wrapper.m_RobotActionsCallbackInterface.OnRun;
+                    @Run.performed -= m_Wrapper.m_RobotActionsCallbackInterface.OnRun;
+                    @Run.canceled -= m_Wrapper.m_RobotActionsCallbackInterface.OnRun;
+                    @Interact.started -= m_Wrapper.m_RobotActionsCallbackInterface.OnInteract;
+                    @Interact.performed -= m_Wrapper.m_RobotActionsCallbackInterface.OnInteract;
+                    @Interact.canceled -= m_Wrapper.m_RobotActionsCallbackInterface.OnInteract;
+                }
+                m_Wrapper.m_RobotActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @LookAround.started += instance.OnLookAround;
+                    @LookAround.performed += instance.OnLookAround;
+                    @LookAround.canceled += instance.OnLookAround;
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                    @Run.started += instance.OnRun;
+                    @Run.performed += instance.OnRun;
+                    @Run.canceled += instance.OnRun;
+                    @Interact.started += instance.OnInteract;
+                    @Interact.performed += instance.OnInteract;
+                    @Interact.canceled += instance.OnInteract;
+                }
+            }
+        }
+        public RobotActions @Robot => new RobotActions(this);
         private int m_KeyboardandMouseSchemeIndex = -1;
         public InputControlScheme KeyboardandMouseScheme
         {
@@ -354,6 +545,13 @@ namespace SpaceGame.PlayerInput
         public interface IUIActions
         {
             void OnToggleInventory(InputAction.CallbackContext context);
+        }
+        public interface IRobotActions
+        {
+            void OnLookAround(InputAction.CallbackContext context);
+            void OnMovement(InputAction.CallbackContext context);
+            void OnRun(InputAction.CallbackContext context);
+            void OnInteract(InputAction.CallbackContext context);
         }
     }
 }
