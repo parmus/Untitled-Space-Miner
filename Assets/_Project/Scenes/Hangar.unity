@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: ee7c0ac8ea0dd1b4caafcb8db50dcde9, type: 2}
+  m_LightingDataAsset: {fileID: 112000002, guid: b5a6940ca2d3eab43add9485a046d16c, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 6f3fd55f0ed0b8d4fa10922397df9283, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2207,7 +2207,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1182285933139604, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1543695114780030, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
       propertyPath: m_Name
@@ -3544,6 +3544,24 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &381799214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1593630791686608, guid: 3ffba0a652fdfa84eab3e616969bb3f6, type: 3}
+  m_PrefabInstance: {fileID: 814146133}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &381799216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381799214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851e10bc7bc64692a2b11c21451ea8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prompt: Do the thing!
 --- !u!1001 &385828850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11842,6 +11860,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1182285933139604, guid: ceddc97abfdd06647918f15b13cfac6c, type: 3}
   m_PrefabInstance: {fileID: 234172221}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1458558257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458558252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed36e88ae65e4b77b2e38b79c343766f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _locked: 0
+  _height: 3
+  _timeToOpen: 1
 --- !u!65 &1458558258
 BoxCollider:
   m_ObjectHideFlags: 0
