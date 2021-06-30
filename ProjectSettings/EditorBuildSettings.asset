@@ -15,5 +15,4 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Asteroid Field.unity
     guid: 698b7ebf738660347b258e19a9325d67
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 800f467dc303f5c45b116aced7e3c7bd,
-      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 800f467dc303f5c45b116aced7e3c7bd, type: 2}

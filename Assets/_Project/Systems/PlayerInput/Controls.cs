@@ -25,7 +25,7 @@ namespace SpaceGame.PlayerInput
                     ""type"": ""Value"",
                     ""id"": ""4f0d3357-467f-4385-b224-757e81d0ad2a"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=3,y=3)"",
                     ""interactions"": """"
                 },
                 {
@@ -59,7 +59,7 @@ namespace SpaceGame.PlayerInput
                     ""id"": ""bab4f624-f6c5-4645-9c18-74d64bbfa15a"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector2(x=5,y=5)"",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Look Around"",
                     ""isComposite"": false,
