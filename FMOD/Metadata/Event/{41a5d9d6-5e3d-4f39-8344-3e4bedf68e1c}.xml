@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.00.00">
+<objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{41a5d9d6-5e3d-4f39-8344-3e4bedf68e1c}">
 		<property name="name">
 			<value>Confirmation</value>
