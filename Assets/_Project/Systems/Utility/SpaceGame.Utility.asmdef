@@ -1,5 +1,6 @@
 {
     "name": "SpaceGame.Utility",
+    "rootNamespace": "SpaceGame",
     "references": [
         "GUID:020aef78848b7cb428d8975185879739",
         "GUID:0c752da273b17c547ae705acf0f2adf2",

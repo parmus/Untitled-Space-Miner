@@ -1,5 +1,6 @@
 {
     "name": "SpaceGame.InventorySystem",
+    "rootNamespace": "SpaceGame",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:020aef78848b7cb428d8975185879739",
