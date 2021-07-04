@@ -14,5 +14,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Asteroid Field.unity
     guid: 698b7ebf738660347b258e19a9325d67
+  - enabled: 1
+    path: Assets/_Project/Scenes/Hallway.unity
+    guid: 860a7b0a2c2629148b1d816f0b4e9c7d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Hangar.unity
+    guid: 9fe875b093058454199bf87cc791097d
+  - enabled: 1
+    path: Assets/_Project/Scenes/Mothership Interior.unity
+    guid: 1c81489e5b809cd4589c5a3580c31cf3
+  - enabled: 1
+    path: Assets/_Project/Scenes/Global.unity
+    guid: b37753923e7feb34ab3d049be33c9316
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 800f467dc303f5c45b116aced7e3c7bd, type: 2}

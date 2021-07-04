@@ -1,5 +1,6 @@
 {
     "name": "SpaceGame",
+    "rootNamespace": "SpaceGame",
     "references": [
         "GUID:020aef78848b7cb428d8975185879739",
         "GUID:75469ad4d38634e559750d17036d5f7c",

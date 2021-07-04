@@ -9,7 +9,7 @@ namespace SpaceGame.ShuttleSystems.UI {
         
         private ResourceScanner.ResourceScanner _resourceScanner = default;
 
-        private void Awake() => ResourceHUDItem.Camera = Camera.main;
+        private void Start() => ResourceHUDItem.Camera = Camera.main;
 
         public void SetResourceScanner(ResourceScanner.ResourceScanner shuttle) {
             if (_resourceScanner) {
