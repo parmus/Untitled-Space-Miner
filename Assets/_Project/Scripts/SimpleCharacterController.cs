@@ -1,4 +1,5 @@
 ﻿using System;
+using SpaceGame.PlayerInput;
 using UnityEngine;
 
 namespace SpaceGame
@@ -8,6 +9,7 @@ namespace SpaceGame
         [SerializeField] private Transform _body = default;
         [SerializeField] private Transform _head = default;
         [SerializeField] private CharacterController _characterController = default;
+        [SerializeField] private InputReader _inputReader;
 
         [Header("Movement parameters")]
         [SerializeField] private float _rotationSpeed =  1f;
@@ -15,15 +17,41 @@ namespace SpaceGame
         [SerializeField] private float _runSpeed =  1.5f;
         [SerializeField] private float _gravity = -9.81f;
 
-        private ICharacterControls _characterControls;
         private float _xRotation = 0f;
         private float _velocity = 2f;
 
-        private void Awake()
+        private Vector2 _movement;
+        private Vector2 _look;
+        private float _speed;
+        
+        private void Awake() => _inputReader.EnableRobot(); // Probably not the right place
+
+        private void OnEnable()
         {
-            _characterControls = GetComponent<ICharacterControls>();
+            OnRun(false);
+            _inputReader.OnRobotLook += OnLook;
+            _inputReader.OnRobotMovement += OnMovement;
+            _inputReader.OnRobotRun += OnRun;
         }
 
+        private void OnDisable()
+        {
+            _inputReader.OnRobotLook -= OnLook;
+            _inputReader.OnRobotMovement -= OnMovement;
+            _inputReader.OnRobotRun -= OnRun;
+
+            OnLook(Vector2.zero);
+            OnMovement(Vector2.zero);
+            OnRun(false);
+        }
+
+        private void OnLook(Vector2 look) => _look = look;
+
+        private void OnMovement(Vector2 movement) => _movement = movement;
+
+        private void OnRun(bool isRunning) => _speed = isRunning ? _runSpeed : _walkSpeed;
+
+        
         private void Update()
         {
             LookAround();
@@ -32,9 +60,9 @@ namespace SpaceGame
 
         private void Move()
         {
-            var move = _body.right * _characterControls.Movement.x + _body.forward * _characterControls.Movement.y;
+            var move = _body.right * _movement.x + _body.forward * _movement.y;
 
-            move *= _characterControls.InRunning ? _runSpeed : _walkSpeed;
+            move *= _speed;
 
             _velocity += _gravity * Time.deltaTime;
             if (_characterController.isGrounded) _velocity = -0.2f;
@@ -45,16 +73,15 @@ namespace SpaceGame
 
         private void LookAround()
         {
-            _xRotation -= _characterControls.OnLook.y * _rotationSpeed * Time.deltaTime;
+            _xRotation -= _look.y * _rotationSpeed * Time.deltaTime;
             _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
             _head.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            _body.Rotate(Vector3.up * (_characterControls.OnLook.x * _rotationSpeed * Time.deltaTime));
+            _body.Rotate(Vector3.up * (_look.x * _rotationSpeed * Time.deltaTime));
         }
 
         private void Reset()
         {
-            _characterControls = GetComponent<ICharacterControls>();
             _body = transform;
             _characterController = GetComponent<CharacterController>();
         }

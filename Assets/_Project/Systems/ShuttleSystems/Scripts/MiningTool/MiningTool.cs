@@ -1,4 +1,5 @@
 ﻿using SpaceGame.Core;
+using SpaceGame.PlayerInput;
 using SpaceGame.ShuttleSystems.MiningTool.VFX;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
@@ -9,9 +10,9 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
     [AddComponentMenu("ShuttleSystems/MiningTool")]
     public class MiningTool : MonoBehaviour, IPersistable {
         #region Serialized fields
-        [SerializeField] private Transform _origin = default;
+        [SerializeField] private Transform _origin;
         [SerializeField] private DefaultMiningTool _defaultMiningTool = new DefaultMiningTool();
-        [SerializeField] private LayerMask _layerMask = default;
+        [SerializeField] private LayerMask _layerMask;
         #endregion
 
         #region Public variables
@@ -32,14 +33,11 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         private Ray _ray;
         private RaycastHit _hit;
         private Vector3 _laserTarget = Vector3.zero;
-        private MiningToolVFX _vfx = default;
-        private ResourceDeposit _resourceDeposit = null;
+        private MiningToolVFX _vfx;
+        private ResourceDeposit _resourceDeposit;
         private Shuttle _shuttle;
         private IMiningToolConfiguration _currentMiningTool;
-        #endregion
-
-        #region Private properties
-        private bool Use => _shuttle.ShuttleControls.Fire;
+        private bool _use;
         #endregion
 
         #region Unity hooks
@@ -58,11 +56,18 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _vfx = Instantiate(_currentMiningTool.VFXPrefab, _origin);
         }
 
-        private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
+        private void OnFlightFire(bool value) => _use = value;
+
+        private void OnEnable()
+        {
+            Upgrade.Subscribe(OnUpgradeChange);
+            _shuttle.InputReader.OnFlightFire += OnFlightFire;
+        }
 
         private void OnDisable() {
+            _shuttle.InputReader.OnFlightFire -= OnFlightFire;
             UpdateVFX();
-            
+           
             Upgrade.Unsubscribe(OnUpgradeChange);
         }
 
@@ -83,7 +88,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             _resourceDepositInRange.Value = isHittingGameobject && _resourceDeposit;
 
             if (!_vfx) return;
-            var isFiringLaser = enabled && Use && !_shuttle.PowerSystem.IsEmpty;
+            var isFiringLaser = enabled && _use && !_shuttle.PowerSystem.IsEmpty;
             _vfx.IsMining = isFiringLaser;
             _vfx.TargetPosition = _laserTarget;
             _vfx.IsHitting = isFiringLaser && isHittingGameobject;
@@ -93,7 +98,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         {
             UpdateTarget();
             UpdateVFX();
-            if (!Use || _shuttle.PowerSystem.IsEmpty) return;
+            if (!_use || _shuttle.PowerSystem.IsEmpty) return;
             _shuttle.PowerSystem.Consume(_currentMiningTool.PowerConsumption * Time.deltaTime);
             if (!_resourceDepositInRange.Value || !_resourceDeposit.Damage(_currentMiningTool.Strength * Time.deltaTime)) return;
             var resourceAcquired = _shuttle.Storage.Inventory.Add(_resourceDeposit.Type, _resourceDeposit.Amount);

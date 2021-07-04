@@ -16,22 +16,41 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
         #endregion
 
         #region Private properties
-        private bool Boost => _shuttle.ShuttleControls.Boost;
-        private float ThrustPower => Boost ? _currentThruster.BoostThrustPower : _currentThruster.NormalThrustPower;
-        private float PowerConsumption => Boost ? _currentThruster.BoostPowerConsumption : _currentThruster.NormalPowerConsumption;
         #endregion
 
         #region Private variables
+        private Shuttle _shuttle;
+        private float _thrustPower;
+        private float _powerConsumption;
         private IThrusterUpgrade _currentThruster;
         private Vector3 _thrustDirection = Vector3.zero;
-        private Shuttle _shuttle;
         private readonly Observable<int> _velocity = new Observable<int>();
         #endregion
 
+        private void OnFlightBoost(bool value)
+        {
+            _thrustPower = value ? _currentThruster.BoostThrustPower : _currentThruster.NormalThrustPower;
+            _powerConsumption = value ? _currentThruster.BoostPowerConsumption : _currentThruster.NormalPowerConsumption;
+        }
+
+        private void OnFlightThrust(Vector2 direction) => _thrustDirection.Set(direction.x, 0f, direction.y);
+
         private void Awake() => _shuttle = GetComponent<Shuttle>();
-        private void OnEnable() => Upgrade.Subscribe(OnUpgradeChange);
+        private void OnEnable()
+        {
+            Upgrade.Subscribe(OnUpgradeChange);
+            OnFlightBoost(false);
+            _shuttle.InputReader.OnFlightBoost += OnFlightBoost;
+            _shuttle.InputReader.OnFlightThrust += OnFlightThrust;
+        }
+
         private void OnDisable()
         {
+            _shuttle.InputReader.OnFlightThrust -= OnFlightThrust;
+            _shuttle.InputReader.OnFlightBoost -= OnFlightBoost;
+            OnFlightThrust(Vector2.zero);
+            OnFlightBoost(false);
+            
             Upgrade.Unsubscribe(OnUpgradeChange);
             _velocity.Value = 0;
         }
@@ -40,13 +59,12 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
 
         private void FixedUpdate() {
             _velocity.Value = Mathf.RoundToInt(_rigidbody.velocity.magnitude);
-            _thrustDirection.Set(_shuttle.ShuttleControls.Thrust.x, 0f, _shuttle.ShuttleControls.Thrust.y);
 
             if (_thrustDirection == Vector3.zero) return;
             if (_shuttle.PowerSystem.IsEmpty) return;
 
-            _rigidbody.AddRelativeForce(_thrustDirection * (ThrustPower * Time.fixedDeltaTime));
-            _shuttle.PowerSystem.Consume(PowerConsumption * Time.fixedDeltaTime);
+            _rigidbody.AddRelativeForce(_thrustDirection * (_thrustPower * Time.fixedDeltaTime));
+            _shuttle.PowerSystem.Consume(_powerConsumption * Time.fixedDeltaTime);
         }
 
         private void Reset() => _rigidbody = GetComponent<Rigidbody>();

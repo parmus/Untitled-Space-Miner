@@ -1,4 +1,5 @@
-﻿using SpaceGame.ShuttleSystems.ShuttleStates;
+﻿using SpaceGame.PlayerInput;
+using SpaceGame.ShuttleSystems.ShuttleStates;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -11,10 +12,12 @@ namespace SpaceGame.ShuttleSystems {
     [RequireComponent(typeof(MiningTool.MiningTool))]
     [RequireComponent(typeof(PowerSystem.PowerSystem))]
     [RequireComponent(typeof(ResourceScanner.ResourceScanner))]
-    [RequireComponent(typeof(ShuttleControls))]
     [RequireComponent(typeof(Storage.Storage))]
     [RequireComponent(typeof(Thrusters.Thrusters))]
     public class Shuttle : MonoBehaviour, IPersistable {
+        [SerializeField] private InputReader _inputReader;
+        public InputReader InputReader => _inputReader;
+        
         #region Shuttle Components
         public CameraControl CameraControl { get; private set; }
         public Hull.Hull Hull { get; private set; }
@@ -22,11 +25,9 @@ namespace SpaceGame.ShuttleSystems {
         public MiningTool.MiningTool MiningTool { get; private set; }
         public PowerSystem.PowerSystem PowerSystem { get; private set; }
         public ResourceScanner.ResourceScanner ResourceScanner { get; private set; }
-        public ShuttleControls ShuttleControls { get; private set; }
         public Storage.Storage Storage { get; private set; }
         public Thrusters.Thrusters Thrusters { get; private set; }
         #endregion
-
 
         public PositionRotation LandingPad { get; private set; } = null;
         public IReadonlyObservable<ShuttleStateMachine.State> CurrentState => _shuttleStateMachine.CurrentState;
@@ -45,7 +46,6 @@ namespace SpaceGame.ShuttleSystems {
             MiningTool = GetComponent<MiningTool.MiningTool>();
             PowerSystem = GetComponent<PowerSystem.PowerSystem>();
             ResourceScanner = GetComponent<ResourceScanner.ResourceScanner>();
-            ShuttleControls = GetComponent<ShuttleControls>();
             Storage = GetComponent<Storage.Storage>();
             Thrusters = GetComponent<Thrusters.Thrusters>();
 

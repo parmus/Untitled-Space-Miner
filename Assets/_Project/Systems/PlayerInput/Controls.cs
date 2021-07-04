@@ -51,6 +51,14 @@ namespace SpaceGame.PlayerInput
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""426d8205-30d6-4278-8905-e37cd2cdc888"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -141,6 +149,17 @@ namespace SpaceGame.PlayerInput
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ade841a-72c3-4d41-ab5d-48fc96ea0f24"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -149,7 +168,7 @@ namespace SpaceGame.PlayerInput
             ""id"": ""c052729f-abc9-4556-a874-773ecfce3d29"",
             ""actions"": [
                 {
-                    ""name"": ""ToggleInventory"",
+                    ""name"": ""Close"",
                     ""type"": ""Button"",
                     ""id"": ""bb518626-1340-49ed-a412-faf0b8584552"",
                     ""expectedControlType"": ""Button"",
@@ -165,7 +184,7 @@ namespace SpaceGame.PlayerInput
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""ToggleInventory"",
+                    ""action"": ""Close"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -325,9 +344,10 @@ namespace SpaceGame.PlayerInput
             m_Flight_Thrust = m_Flight.FindAction("Thrust", throwIfNotFound: true);
             m_Flight_Fire = m_Flight.FindAction("Fire", throwIfNotFound: true);
             m_Flight_Boost = m_Flight.FindAction("Boost", throwIfNotFound: true);
+            m_Flight_OpenInventory = m_Flight.FindAction("OpenInventory", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-            m_UI_ToggleInventory = m_UI.FindAction("ToggleInventory", throwIfNotFound: true);
+            m_UI_Close = m_UI.FindAction("Close", throwIfNotFound: true);
             // Robot
             m_Robot = asset.FindActionMap("Robot", throwIfNotFound: true);
             m_Robot_LookAround = m_Robot.FindAction("Look Around", throwIfNotFound: true);
@@ -387,6 +407,7 @@ namespace SpaceGame.PlayerInput
         private readonly InputAction m_Flight_Thrust;
         private readonly InputAction m_Flight_Fire;
         private readonly InputAction m_Flight_Boost;
+        private readonly InputAction m_Flight_OpenInventory;
         public struct FlightActions
         {
             private @Controls m_Wrapper;
@@ -395,6 +416,7 @@ namespace SpaceGame.PlayerInput
             public InputAction @Thrust => m_Wrapper.m_Flight_Thrust;
             public InputAction @Fire => m_Wrapper.m_Flight_Fire;
             public InputAction @Boost => m_Wrapper.m_Flight_Boost;
+            public InputAction @OpenInventory => m_Wrapper.m_Flight_OpenInventory;
             public InputActionMap Get() { return m_Wrapper.m_Flight; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -416,6 +438,9 @@ namespace SpaceGame.PlayerInput
                     @Boost.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnBoost;
                     @Boost.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnBoost;
                     @Boost.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnBoost;
+                    @OpenInventory.started -= m_Wrapper.m_FlightActionsCallbackInterface.OnOpenInventory;
+                    @OpenInventory.performed -= m_Wrapper.m_FlightActionsCallbackInterface.OnOpenInventory;
+                    @OpenInventory.canceled -= m_Wrapper.m_FlightActionsCallbackInterface.OnOpenInventory;
                 }
                 m_Wrapper.m_FlightActionsCallbackInterface = instance;
                 if (instance != null)
@@ -432,6 +457,9 @@ namespace SpaceGame.PlayerInput
                     @Boost.started += instance.OnBoost;
                     @Boost.performed += instance.OnBoost;
                     @Boost.canceled += instance.OnBoost;
+                    @OpenInventory.started += instance.OnOpenInventory;
+                    @OpenInventory.performed += instance.OnOpenInventory;
+                    @OpenInventory.canceled += instance.OnOpenInventory;
                 }
             }
         }
@@ -440,12 +468,12 @@ namespace SpaceGame.PlayerInput
         // UI
         private readonly InputActionMap m_UI;
         private IUIActions m_UIActionsCallbackInterface;
-        private readonly InputAction m_UI_ToggleInventory;
+        private readonly InputAction m_UI_Close;
         public struct UIActions
         {
             private @Controls m_Wrapper;
             public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @ToggleInventory => m_Wrapper.m_UI_ToggleInventory;
+            public InputAction @Close => m_Wrapper.m_UI_Close;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -455,16 +483,16 @@ namespace SpaceGame.PlayerInput
             {
                 if (m_Wrapper.m_UIActionsCallbackInterface != null)
                 {
-                    @ToggleInventory.started -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
-                    @ToggleInventory.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
-                    @ToggleInventory.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleInventory;
+                    @Close.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
+                    @Close.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
+                    @Close.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @ToggleInventory.started += instance.OnToggleInventory;
-                    @ToggleInventory.performed += instance.OnToggleInventory;
-                    @ToggleInventory.canceled += instance.OnToggleInventory;
+                    @Close.started += instance.OnClose;
+                    @Close.performed += instance.OnClose;
+                    @Close.canceled += instance.OnClose;
                 }
             }
         }
@@ -541,10 +569,11 @@ namespace SpaceGame.PlayerInput
             void OnThrust(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnBoost(InputAction.CallbackContext context);
+            void OnOpenInventory(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
-            void OnToggleInventory(InputAction.CallbackContext context);
+            void OnClose(InputAction.CallbackContext context);
         }
         public interface IRobotActions
         {

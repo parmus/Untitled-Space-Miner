@@ -60,7 +60,10 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 500000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -111,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ApplyAfter: 1
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 0
@@ -251,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c566516815b954c91a6aea5561606f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
 --- !u!114 &4920424472116964349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,18 +300,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultHull:
     _defaultHullStrength: 1
---- !u!114 &7171607673511824331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266161923919397067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38a8b543996c5845be636fa02486f3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7233161441213032876
 MonoBehaviour:
   m_ObjectHideFlags: 0

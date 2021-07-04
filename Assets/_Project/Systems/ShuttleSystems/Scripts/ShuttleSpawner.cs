@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using SpaceGame.PlayerInput;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ namespace SpaceGame.ShuttleSystems {
     public class ShuttleSpawner : MonoBehaviour {
         [SerializeField] private Shuttle _shuttlePrefab = default;
         [SerializeField] private float _respawnDelay = 3.0f;
+        [SerializeField] private InputReader _inputReader;
         
         public static IReadonlyObservable<Shuttle> CurrentShuttle => _currentShuttle;
         private static readonly Observable<Shuttle> _currentShuttle = new Observable<Shuttle>();
@@ -23,6 +26,7 @@ namespace SpaceGame.ShuttleSystems {
             shuttle.CurrentState.OnChange += state => {
                 if (state is ShuttleStates.ShutdownState) StartCoroutine(_onShuttleLost());
             };
+            _inputReader.EnableFlight();
         }
 
         private IEnumerator _onShuttleLost() {
@@ -36,6 +40,11 @@ namespace SpaceGame.ShuttleSystems {
 
             return newShuttle;
         }
-        
+
+        private void OnEnable() => _inputReader.OnCloseInventory += OnCloseInventory;
+
+        private void OnDisable() => _inputReader.OnCloseInventory -= OnCloseInventory;
+
+        private void OnCloseInventory() => _inputReader.EnableFlight();
     }
 }

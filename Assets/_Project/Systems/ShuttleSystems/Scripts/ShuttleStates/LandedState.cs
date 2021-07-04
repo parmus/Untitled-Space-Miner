@@ -8,10 +8,19 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             _shuttle.Thrusters.enabled = false;
             _shuttle.CameraControl.enabled = false;
             _shuttle.MiningTool.enabled = false;
+            
+            _shuttle.InputReader.OnFlightThrust += OnFlightThrust;
         }
 
-        public override void Tick() {
-            if (_shuttle.ShuttleControls.Thrust.y > Mathf.Epsilon) _shuttleStateMachine.SetState<TakeOffState>();
+        public override void Leave()
+        {
+            base.Leave();
+            _shuttle.InputReader.OnFlightThrust -= OnFlightThrust;
+        }
+
+        private void OnFlightThrust(Vector2 thrust)
+        {
+            if (thrust.y > Mathf.Epsilon) _shuttleStateMachine.SetState<TakeOffState>();
         }
     }
 }

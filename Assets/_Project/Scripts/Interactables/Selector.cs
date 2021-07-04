@@ -1,5 +1,4 @@
-﻿using System;
-using SpaceGame.PlayerInput;
+﻿using SpaceGame.PlayerInput;
 using SpaceGame.Utility;
 using UnityEngine;
 
@@ -10,23 +9,22 @@ namespace SpaceGame.Interactables
         [SerializeField] private Transform _origin = default;
         [SerializeField] private float _range = 3f;
         [SerializeField] private LayerMask _layerMask = default;
+        [SerializeField] private InputReader _inputReader;
 
         public IReadonlyObservable<IInteractable> CurrentInteractable => _raycaster.CurrentTarget;
         
         private Raycaster<IInteractable> _raycaster;
-        private Controls _controls;
 
-        private void Awake()
-        {
-            _raycaster = new Raycaster<IInteractable>(_origin, _range, _layerMask);
-            _controls = new Controls();
-            _controls.Robot.Interact.performed += context => _raycaster.CurrentTarget.Value?.Interact();
-        }
+        private void Awake() => _raycaster = new Raycaster<IInteractable>(_origin, _range, _layerMask);
+
+        private void OnInteract() => _raycaster.CurrentTarget.Value?.Interact();
 
         private void Update() => _raycaster.Update();
 
-        private void OnEnable() => _controls.Robot.Enable();
-        private void OnDisable() => _controls.Robot.Disable();
+        private void OnEnable() => _inputReader.OnRobotInteract += OnInteract;
+
+        private void OnDisable() => _inputReader.OnRobotInteract -= OnInteract;
+
         private void Reset() => _origin = transform;
 
         private void OnDrawGizmosSelected()

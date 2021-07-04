@@ -1,4 +1,5 @@
 ﻿using SpaceGame.Interactables;
+using SpaceGame.PlayerInput;
 using UnityEngine;
 
 namespace SpaceGame
@@ -7,21 +8,22 @@ namespace SpaceGame
     {
         [SerializeField] private Canvas _terminalCanvas = default;
         [SerializeField] private string _prompt = "Open terminal";
-
-        private CharacterControls _characterControls;
-
-        private void Awake() => _characterControls = FindObjectOfType<CharacterControls>();
+        [SerializeField] private InputReader _inputReader;
 
         public bool IsOpen => _terminalCanvas.enabled;
 
         private void Start() => _terminalCanvas.enabled = false;
 
-        public void Dismiss()
+        private void OnEnable() => _inputReader.OnCloseInventory += Dismiss;
+
+        private void OnDisable() => _inputReader.OnCloseInventory -= Dismiss;
+
+        private void Dismiss()
         {
             if (!IsOpen) return;
 
             _terminalCanvas.enabled = false;
-            _characterControls.enabled = true;
+            _inputReader.EnableRobot();
         }
         
         public void Interact()
@@ -29,7 +31,7 @@ namespace SpaceGame
             if (IsOpen) return;
 
             _terminalCanvas.enabled = true;
-            _characterControls.enabled = false;
+            _inputReader.EnableUI();
         }
 
         public string Prompt => _prompt;

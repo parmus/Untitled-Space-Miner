@@ -424,7 +424,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 784792207}
-  - component: {fileID: 784792206}
   - component: {fileID: 784792205}
   - component: {fileID: 784792204}
   - component: {fileID: 784792208}
@@ -451,6 +450,7 @@ MonoBehaviour:
   _body: {fileID: 784792207}
   _head: {fileID: 1195234683}
   _characterController: {fileID: 784792205}
+  _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
   _rotationSpeed: 20
   _walkSpeed: 5
   _runSpeed: 9
@@ -473,18 +473,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &784792206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784792203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f08041333e74d6aac9053ec3005d44f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &784792207
 Transform:
   m_ObjectHideFlags: 0
@@ -518,7 +506,8 @@ MonoBehaviour:
   _range: 3
   _layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
+  _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
 --- !u!114 &784792209
 MonoBehaviour:
   m_ObjectHideFlags: 0

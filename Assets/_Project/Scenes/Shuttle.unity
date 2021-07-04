@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2070d8a2a55af624788815353c123938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
   _onInventoryChange:
     m_PersistentCalls:
       m_Calls:
@@ -752,6 +753,10 @@ PrefabInstance:
     - target: {fileID: 3942196692869978428, guid: f77f450947c63c84f9928723545740fc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634132433247976563, guid: f77f450947c63c84f9928723545740fc, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 1847
       objectReference: {fileID: 0}
     - target: {fileID: 8634132433247976564, guid: f77f450947c63c84f9928723545740fc, type: 3}
       propertyPath: m_Pivot.x
