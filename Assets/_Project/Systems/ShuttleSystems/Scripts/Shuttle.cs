@@ -53,6 +53,8 @@ namespace SpaceGame.ShuttleSystems {
             Hull.OnDie += () => _shuttleStateMachine.SetState<ShutdownState>();
         }
 
+        private void OnDestroy() => _shuttleStateMachine = null;
+
         private void Update() => _shuttleStateMachine.CurrentState.Value?.Tick();
 
         #region IPersistable
