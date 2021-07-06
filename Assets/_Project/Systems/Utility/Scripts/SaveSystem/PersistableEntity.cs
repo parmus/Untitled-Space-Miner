@@ -82,14 +82,13 @@ namespace SpaceGame.Utility.SaveSystem
             if (!_persistableEntities.TryGetValue(id, out var persistableEntity)) return true;
             switch (persistableEntity)
             {
-                case PersistableEntity p when p == this:
+                case { } p when p == this:
                     return true;
-                case null:   
-                case PersistableEntity p when p._id != id:
+                case { } p when p._id != id:
                     _persistableEntities.Remove(id);
                     return true;
                 default:
-                    return false;
+                    return persistableEntity == null;
             }
         }
 #endif
