@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace SpaceGame.LevelManagement
 {
     public class DebugLevelLoader : MonoBehaviour
     {
-        [SerializeField] private LevelManager LevelManager;
-        [SerializeField] private Level Level;
-        [SerializeField] private InputAction Action;
+        [SerializeField] private LevelEvent _loadLevelRequest;
+        [FormerlySerializedAs("Level")] [SerializeField] private Level _level;
+        [FormerlySerializedAs("Action")] [SerializeField] private InputAction _action;
 
-        private void Awake() => Action.performed += OnActionOnperformed;
+        private void Awake() => _action.performed += OnActionPerformed;
 
-        private void OnActionOnperformed(InputAction.CallbackContext ctx)
+        private void OnActionPerformed(InputAction.CallbackContext ctx)
         {
             if (ctx.phase != InputActionPhase.Performed) return;
-            LevelManager.LoadLevel(Level);
+            Assert.IsNotNull(_loadLevelRequest);
+            _loadLevelRequest.Broadcast(_level);
         }
 
-        private void OnEnable() => Action.Enable();
+        private void OnEnable() => _action.Enable();
 
-        private void OnDisable() => Action.Disable();
+        private void OnDisable() => _action.Disable();
     }
 }

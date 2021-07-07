@@ -1,91 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
+using SpaceGame.Utility.GameEvents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-#if UNITY_EDITOR
-using UnityEditor.SceneManagement;
-#endif
-
-
 namespace SpaceGame.LevelManagement
 {
-    [CreateAssetMenu(menuName = "Levels/Level Manager")]
-    public class LevelManager : BetterScriptableObject
+    public class LevelManager : MonoBehaviour
     {
-        [InlineButton("LoadGlobalScene", "Load")]
-        [InlineProperty]
-        [SerializeField] private SceneAsset _globalScene = new SceneAsset();
+        [SerializeField] private LevelEvent _loadLevelRequest;
         
-        [SerializeField] private SceneFader _faderPrefab; 
-        private SceneFader _fader;
+        [Header("Fading")]
+        [SerializeField] private FloatGameEvent _fadeOutRequest;
+        [SerializeField] private FloatGameEvent _fadeInRequest;
+        [SerializeField] private float _fadeOutDuration;
+        [SerializeField] private float _fadeInDuration;
+        
+        
         private bool _isLoading;
+        private Level _currentLevel;
 
-        protected override void OnInitialize()
-        {
-            if (_faderPrefab != null)
-            {
-                _fader = Instantiate(_faderPrefab);
-                DontDestroyOnLoad(_fader);
-            }
+        private void OnEnable() => _loadLevelRequest.OnEvent += LoadLevel;
 
-            if (SceneManager.GetSceneByBuildIndex(_globalScene.BuildIndex).isLoaded) return;
-            SceneManager.LoadSceneAsync(_globalScene.BuildIndex, LoadSceneMode.Additive);
-        }
+        private void OnDisable() => _loadLevelRequest.OnEvent -= LoadLevel;
 
-        public void LoadLevel(Level level)
+        private void LoadLevel(Level level)
         {
             if (_isLoading) return;
             _isLoading = true;
-            CoroutineRunner.Start_Coroutine(CO_LoadLevel(level));
+            StartCoroutine(CO_LoadLevel(level));
         }
 
         private IEnumerator CO_LoadLevel(Level level)
         {
-            var fadeout = (_fader != null) ? _fader.FadeOut() : null;
+            if (_fadeOutRequest != null)
+            {
+                _fadeOutRequest.Broadcast(_fadeOutDuration);
+                yield return new WaitForSeconds(_fadeOutDuration);
+            }
 
-            var loader = new LoadGroup(level.Scenes, level.ActiveScene);
+            var levelsToLoad = _currentLevel != null
+                ? level.Scenes
+                : level.Scenes.Where(sceneAsset => !sceneAsset.Scene.isLoaded);
 
-            yield return fadeout;
-            yield return loader.WaitForLoaded();
-            loader.ActivateAll();
+            yield return new LoadGroup(levelsToLoad, level.ActiveScene).WaitForCompleted();
+            if (_currentLevel != null)
+                yield return new UnloadGroup(_currentLevel.Scenes).WaitForCompleted();
+            
+            _currentLevel = level;
 
-            yield return loader.WaitForCompleted();
-            var unloader = new UnloadGroup(Enumerable.Range(0, SceneManager.sceneCount)
-                .Select(SceneManager.GetSceneAt)
-                .Where(scene => level.Scenes.All(x => x.ScenePath != scene.path))
-                .Where(scene => _globalScene.BuildIndex != scene.buildIndex)); 
-            yield return unloader.WaitForCompleted();
-        
-            if (_fader != null) yield return _fader.FadeIn();
+            if (_fadeInRequest != null)
+            {
+                _fadeInRequest.Broadcast(_fadeInDuration);
+                yield return new WaitForSeconds(_fadeInDuration);
+            }
             _isLoading = false;
         }
-
-        public abstract class SceneFader: MonoBehaviour
-        {
-            public abstract IEnumerator FadeOut();
-            public abstract IEnumerator FadeIn();
-        }
-        
-#if UNITY_EDITOR
-        private void LoadGlobalScene()
-        {
-            EditorSceneManager.OpenScene(_globalScene.ScenePath, OpenSceneMode.Additive);
-        }
-#endif
 
         private class UnloadGroup
         {
             private readonly List<IEnumerator> _operations = new List<IEnumerator>();
 
-            public UnloadGroup(IEnumerable<Scene> scenes)
+            public UnloadGroup(IEnumerable<SceneAsset> sceneAssets)
             {
-                foreach (var scene in scenes)
+                foreach (var sceneAsset in sceneAssets)
                 {
-                    _operations.Add(DelayedUnload(scene));
+                    _operations.Add(DelayedUnload(sceneAsset.Scene));
                 }
             }
 
@@ -113,9 +95,7 @@ namespace SpaceGame.LevelManagement
                 _activeScene = activeScene;
                 foreach (var sceneAsset in sceneAssets)
                 {
-                    var ao = SceneManager.LoadSceneAsync(sceneAsset.BuildIndex, LoadSceneMode.Additive);
-                    ao.allowSceneActivation = false;
-                    _operations.Add(ao);
+                    _operations.Add(SceneManager.LoadSceneAsync(sceneAsset.BuildIndex, LoadSceneMode.Additive));
                 }
             }
             
@@ -124,22 +104,19 @@ namespace SpaceGame.LevelManagement
                 yield return _operations.GetEnumerator();
                 SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(_activeScene.BuildIndex));
             }
-
-            public IEnumerator WaitForLoaded()
-            {
-                while (_operations.Any(operation => operation.progress < 0.9f))
-                {
-                    yield return null;
-                }
-            }
-
-            public void ActivateAll()
-            {
-                foreach (var operation in _operations)
-                {
-                    operation.allowSceneActivation = true;
-                }
-            }
         }
+        
+        #if UNITY_EDITOR
+        [UnityEditor.MenuItem("GameObject/Level Manager", false, 10)]
+        private static void CreateShuttleConfigurationInjector(UnityEditor.MenuCommand menuCommand)
+        {
+            var go = new GameObject("Level Manager");
+            UnityEditor.GameObjectUtility.SetParentAndAlign(go, menuCommand.context as GameObject);
+            go.AddComponent<LevelManager>();
+            UnityEditor.Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
+            UnityEditor.Selection.activeObject = go;
+        }
+        #endif
+
     }
 }
