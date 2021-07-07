@@ -43,10 +43,13 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         #region Unity hooks
         private void Awake() {
             _shuttle = GetComponent<Shuttle>();
-            _camera = Camera.main;
-            Assert.IsNotNull(_camera);
-            _cameraTransform = _camera.transform;
             _targetGameObject.OnChange += target => _resourceDeposit = target ? target.GetComponentInParent<ResourceDeposit>() : null;
+        }
+
+        public void SetMainCamera(Camera camera)
+        {
+            _camera = camera;
+            _cameraTransform = _camera != null ? camera.transform : null;
         }
 
         private void OnUpgradeChange(MiningToolUpgrade upgrade)
@@ -96,6 +99,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
 
         private void Update()
         {
+            if (_camera == null) return;
             UpdateTarget();
             UpdateVFX();
             if (!_use || _shuttle.PowerSystem.IsEmpty) return;

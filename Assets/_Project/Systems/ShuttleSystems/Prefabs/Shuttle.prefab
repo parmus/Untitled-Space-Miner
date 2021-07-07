@@ -63,7 +63,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -378,6 +378,35 @@ MonoBehaviour:
   _defaultConfiguration:
     _slot: 5
     _stackMultiplier: 1
+--- !u!114 &7961346723122995142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266161923919397067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35580aaa109244f8a168ac6291a0abdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _observable: {fileID: 11400000, guid: ca0a56e688c60b348841514c4fc48c12, type: 2}
+  _onChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 583440700607872696}
+        m_TargetAssemblyTypeName: SpaceGame.ShuttleSystems.MiningTool.MiningTool,
+          SpaceGame.ShuttleSystems
+        m_MethodName: SetMainCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &338581383220378186
 CapsuleCollider:
   m_ObjectHideFlags: 0
