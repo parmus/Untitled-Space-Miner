@@ -54,9 +54,7 @@ namespace SpaceGame.ShuttleSystems {
         }
 
         private void OnDestroy() => _shuttleStateMachine = null;
-
-        private void Update() => _shuttleStateMachine.CurrentState.Value?.Tick();
-
+        
         #region IPersistable
         [System.Serializable]
         public class PersistentData

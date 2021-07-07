@@ -8,51 +8,50 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
         private const float FLIGHT_SPEED = 100f;
         private const float LANDING_DELAY = 1f;
 
-        private readonly Rigidbody _rigidbody;
-        private readonly Transform _transform;
 
-        public LandingState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle)
+        public LandingState(ShuttleStateMachine shuttleStateMachine) : base(shuttleStateMachine)
         {
-            _rigidbody = shuttle.GetComponent<Rigidbody>();
-            _transform = _shuttle.transform;
         }
 
-        public override void Enter() {
-            _shuttle.Thrusters.enabled = false;
-            _shuttle.CameraControl.enabled = false;
-            _shuttle.MiningTool.enabled = false;
-            _shuttle.StartCoroutine(Land());
+        public override void Enter(Shuttle shuttle) {
+            shuttle.Thrusters.enabled = false;
+            shuttle.CameraControl.enabled = false;
+            shuttle.MiningTool.enabled = false;
+            shuttle.StartCoroutine(Land(shuttle));
         }
 
-        private IEnumerator Land() {
-            _rigidbody.velocity = Vector3.zero;
-            _rigidbody.angularVelocity = Vector3.zero;
+        private IEnumerator Land(Shuttle shuttle)
+        {
+            var rigidbody = shuttle.GetComponent<Rigidbody>();
+            var transform = shuttle.transform;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
 
-            var position = _transform.position;
-            var rotation = _transform.rotation;
+            var position = transform.position;
+            var rotation = transform.rotation;
             
-            var right = Vector3.Cross(_shuttle.LandingPad.Up, _shuttle.LandingPad.Position - position).normalized;
-            var forward = Vector3.Cross(_shuttle.LandingPad.Up, -right).normalized;
+            var right = Vector3.Cross(shuttle.LandingPad.Up, shuttle.LandingPad.Position - position).normalized;
+            var forward = Vector3.Cross(shuttle.LandingPad.Up, -right).normalized;
 
             var landingRotation = Quaternion.LookRotation(forward, Vector3.up);
             var rotationTime = Quaternion.Angle(rotation, landingRotation) / ROTATION_SPEED;
             var flightTime = Mathf.Max(
-                Vector3.Distance(_shuttle.LandingPad.Position, position) / FLIGHT_SPEED,
+                Vector3.Distance(shuttle.LandingPad.Position, position) / FLIGHT_SPEED,
                 rotationTime + LANDING_DELAY
             );
-            var alignTime = Quaternion.Angle(landingRotation, _shuttle.LandingPad.Rotation) / ROTATION_SPEED;
+            var alignTime = Quaternion.Angle(landingRotation, shuttle.LandingPad.Rotation) / ROTATION_SPEED;
 
             var seq = DOTween.Sequence();
-            seq.Append(_transform
+            seq.Append(transform
                 .DORotateQuaternion(landingRotation, rotationTime)
                 .SetEase(Ease.InOutBack)
             );
-            seq.Join(_transform
-                .DOMove(_shuttle.LandingPad.Position, flightTime)
+            seq.Join(transform
+                .DOMove(shuttle.LandingPad.Position, flightTime)
                 .SetEase(Ease.OutQuad)
             );
-            seq.Append(_transform
-                .DORotateQuaternion(_shuttle.LandingPad.Rotation, alignTime)
+            seq.Append(transform
+                .DORotateQuaternion(shuttle.LandingPad.Rotation, alignTime)
                 .SetEase(Ease.InSine)
             );
             yield return seq.WaitForCompletion();

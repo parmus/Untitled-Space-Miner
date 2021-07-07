@@ -3,28 +3,27 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
     public class ShutdownState : ShuttleStateMachine.State {
-        private readonly Rigidbody _rigidbody;
 
-        public ShutdownState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle) =>
-            _rigidbody = shuttle.GetComponent<Rigidbody>();
-
-        public override void Enter() {
-            _shuttle.Thrusters.enabled = false;
-            _shuttle.CameraControl.enabled = false;
-            _shuttle.InertiaDampers.enabled = false;
-            _shuttle.MiningTool.enabled = false;
-
-            _shuttle.StartCoroutine(Die());
+        public ShutdownState(ShuttleStateMachine shuttleStateMachine) : base(shuttleStateMachine)
+        {
         }
 
-        private IEnumerator Die() {
-            DeathKick();
+        public override void Enter(Shuttle shuttle) {
+            shuttle.Thrusters.enabled = false;
+            shuttle.CameraControl.enabled = false;
+            shuttle.InertiaDampers.enabled = false;
+            shuttle.MiningTool.enabled = false;
+
+            shuttle.StartCoroutine(Die(shuttle));
+        }
+
+        private IEnumerator Die(Shuttle shuttle) {
+            var rigidbody = shuttle.GetComponent<Rigidbody>();
+            rigidbody.AddTorque(Vector3.one * 20f);
 
             yield return new WaitForSeconds(10);
 
-            Object.Destroy(_shuttle.gameObject);
+            Object.Destroy(shuttle.gameObject);
         }
-
-        private void DeathKick() => _rigidbody.AddTorque(Vector3.one * 20f);
     }
 }

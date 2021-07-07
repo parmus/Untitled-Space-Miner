@@ -2,20 +2,20 @@ using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems.ShuttleStates {
     public class LandedState : ShuttleStateMachine.State {
-        public LandedState(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) : base(shuttleStateMachine, shuttle) { }
+        public LandedState(ShuttleStateMachine shuttleStateMachine) : base(shuttleStateMachine) { }
 
-        public override void Enter() {
-            _shuttle.Thrusters.enabled = false;
-            _shuttle.CameraControl.enabled = false;
-            _shuttle.MiningTool.enabled = false;
+        public override void Enter(Shuttle shuttle) {
+            shuttle.Thrusters.enabled = false;
+            shuttle.CameraControl.enabled = false;
+            shuttle.MiningTool.enabled = false;
             
-            _shuttle.InputReader.OnFlightThrust += OnFlightThrust;
+            shuttle.InputReader.OnFlightThrust += OnFlightThrust;
         }
 
-        public override void Leave()
+        public override void Leave(Shuttle shuttle)
         {
-            base.Leave();
-            _shuttle.InputReader.OnFlightThrust -= OnFlightThrust;
+            base.Leave(shuttle);
+            shuttle.InputReader.OnFlightThrust -= OnFlightThrust;
         }
 
         private void OnFlightThrust(Vector2 thrust)

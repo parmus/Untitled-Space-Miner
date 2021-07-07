@@ -10,22 +10,25 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
         public IReadonlyObservable<State> CurrentState => _currentState;
         private readonly Observable<State> _currentState = new Observable<State>();
         private readonly Dictionary<Type, State> _states = new Dictionary<Type, State>();
+        private Shuttle _shuttle;
 
-        public ShuttleStateMachine(Shuttle shuttle) {
-            _states.Add(typeof(LandedState), new LandedState(this, shuttle));
-            _states.Add(typeof(TakeOffState), new TakeOffState(this, shuttle));
-            _states.Add(typeof(FlyingState), new FlyingState(this, shuttle));
-            _states.Add(typeof(LandingState), new LandingState(this, shuttle));
-            _states.Add(typeof(ShutdownState), new ShutdownState(this, shuttle));
+        public ShuttleStateMachine(Shuttle shuttle)
+        {
+            _shuttle = shuttle;
+            _states.Add(typeof(LandedState), new LandedState(this));
+            _states.Add(typeof(TakeOffState), new TakeOffState(this));
+            _states.Add(typeof(FlyingState), new FlyingState(this));
+            _states.Add(typeof(LandingState), new LandingState(this));
+            _states.Add(typeof(ShutdownState), new ShutdownState(this));
 
             SetState<LandedState>();
         }
         public void SetState<T>()
         {
             if (_currentState.Value is T) return;
-            _currentState.Value?.Leave();
+            _currentState.Value?.Leave(_shuttle);
             _currentState.Value = _states[typeof(T)];
-            _currentState.Value.Enter();
+            _currentState.Value.Enter(_shuttle);
         }
 
         public object CaptureState() => _currentState.Value.GetType().AssemblyQualifiedName;
@@ -37,23 +40,19 @@ namespace SpaceGame.ShuttleSystems.ShuttleStates {
             var stateType = Type.GetType(stateName);
             Assert.IsNotNull(stateType);
             _currentState.Value = _states[stateType];
-            _currentState.Value.Enter();
+            _currentState.Value.Enter(_shuttle);
         }
 
         public abstract class State {
             protected readonly ShuttleStateMachine _shuttleStateMachine;
-            protected readonly Shuttle _shuttle;
 
-            protected State(ShuttleStateMachine shuttleStateMachine, Shuttle shuttle) {
+            protected State(ShuttleStateMachine shuttleStateMachine) {
                 _shuttleStateMachine = shuttleStateMachine;
-                _shuttle = shuttle;
             }
 
-            public virtual void Enter() { }
+            public virtual void Enter(Shuttle shuttle) { }
 
-            public virtual void Leave() { }
-
-            public virtual void Tick() { }
+            public virtual void Leave(Shuttle shuttle) { }
         }
     }
 }
