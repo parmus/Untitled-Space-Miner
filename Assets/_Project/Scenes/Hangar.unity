@@ -14172,6 +14172,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39715cfdfd957a7469ecffc588368d19, type: 3}
+--- !u!1001 &1730055247
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233850, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672462633495233861, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+      propertyPath: m_Name
+      value: UI Camera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+--- !u!20 &1730055248 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8672462633495233851, guid: 5373518268ef2cd4eaae6a195ea5368e, type: 3}
+  m_PrefabInstance: {fileID: 1730055247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1731441444
 GameObject:
   m_ObjectHideFlags: 0
@@ -17352,7 +17414,7 @@ GameObject:
   - component: {fileID: 6221191744633391865}
   - component: {fileID: 1603880233739204601}
   - component: {fileID: 5833205367767243139}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17754,9 +17816,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Power System Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -17846,6 +17916,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0484e31c26a355b45a340a1564b89df7, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &575922807216666173 stripped
@@ -17887,9 +17961,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Hull Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -17978,6 +18060,10 @@ PrefabInstance:
     - target: {fileID: 3818004589592006869, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -18131,7 +18217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840737975035676297}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18954,7 +19040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2753443239928183447}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Equipment Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18997,7 +19083,7 @@ GameObject:
   - component: {fileID: 8777752721325340548}
   - component: {fileID: 8731549136195427674}
   - component: {fileID: 3844458640035393153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Equipment Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19837,7 +19923,7 @@ GameObject:
   - component: {fileID: 5484452665732473694}
   - component: {fileID: 5226381604110566697}
   - component: {fileID: 7528415468790509695}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20073,7 +20159,7 @@ GameObject:
   - component: {fileID: 5265564879167821432}
   - component: {fileID: 8573002314908796531}
   - component: {fileID: 5425428259738162176}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20208,7 +20294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1724204789013756531}
   - component: {fileID: 3353457570393410688}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20360,7 +20446,7 @@ GameObject:
   - component: {fileID: 4164650725107529577}
   - component: {fileID: 3370368247248195295}
   - component: {fileID: 2324285981565487633}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20856,7 +20942,7 @@ GameObject:
   - component: {fileID: 2502824887466235109}
   - component: {fileID: 9187507786823676396}
   - component: {fileID: 5974395419030765279}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21036,9 +21122,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Resource Scanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -21128,6 +21222,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: f173758142d2a5c40b9013eb31695fa4, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &4814072750833363203 stripped
@@ -21407,7 +21505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4658581662582120461}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21799,9 +21897,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2705054380006060660, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4256820312261074785, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
       propertyPath: m_Name
       value: Tooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256820312261074785, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770536541707518118, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7653280524068578092, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
       propertyPath: m_RaycastTarget
@@ -21839,7 +21949,7 @@ GameObject:
   - component: {fileID: 7281353606603013667}
   - component: {fileID: 2027686923688509143}
   - component: {fileID: 1102993672696830028}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21990,9 +22100,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Engine Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -22082,6 +22200,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bb97562a7b9be0046bb0044512ad3ce2, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &5692698773519694304 stripped
@@ -22152,7 +22274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6676666558338483584}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22180,7 +22302,7 @@ GameObject:
   - component: {fileID: 8903200154862748442}
   - component: {fileID: 3341007883380721341}
   - component: {fileID: 7166374702646168819}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22194,9 +22316,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Storage Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -22286,6 +22416,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ef80426c92870474286f1ccf36ba234e, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &6252372922354836098 stripped
@@ -22539,7 +22673,7 @@ GameObject:
   - component: {fileID: 4297468244006970320}
   - component: {fileID: 2446261264643809656}
   - component: {fileID: 8100288577887971571}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22578,7 +22712,7 @@ GameObject:
   - component: {fileID: 8563950898053730119}
   - component: {fileID: 8138282218486247794}
   - component: {fileID: 780762609344621208}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23257,7 +23391,7 @@ GameObject:
   - component: {fileID: 2620836275331392303}
   - component: {fileID: 1912065319773503212}
   - component: {fileID: 6645317642973274501}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23617,7 +23751,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3364849112530093283}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24205,7 +24339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8163917325955130822}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24485,9 +24619,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Mining Tool Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -24577,6 +24719,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 124502d9421a66a4aaccb6c892a6d22d, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &9134040010329626884 stripped
@@ -24730,7 +24876,7 @@ GameObject:
   - component: {fileID: 9136800367538735338}
   - component: {fileID: 9136800367538735339}
   - component: {fileID: 9136800367538735340}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24769,7 +24915,7 @@ GameObject:
   - component: {fileID: 9136800367790389149}
   - component: {fileID: 9136800367790389150}
   - component: {fileID: 9136800367790389151}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24929,7 +25075,7 @@ GameObject:
   - component: {fileID: 9136800367845293811}
   - component: {fileID: 9136800367845293812}
   - component: {fileID: 4804925289883638594}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24945,7 +25091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9136800367934244719}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25060,7 +25206,7 @@ GameObject:
   - component: {fileID: 9136800367968356837}
   - component: {fileID: 9136800367968356835}
   - component: {fileID: 9136800367968356836}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25130,7 +25276,7 @@ GameObject:
   - component: {fileID: 9136800368338547959}
   - component: {fileID: 9136800368338547944}
   - component: {fileID: 3846148008321973577}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tab Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25154,8 +25300,8 @@ Canvas:
   m_GameObject: {fileID: 9136800368436210717}
   m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1730055248}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -25205,7 +25351,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
 --- !u!224 &9136800368436210716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25240,7 +25386,7 @@ GameObject:
   - component: {fileID: 9136800368436210714}
   - component: {fileID: 9136800368436210715}
   - component: {fileID: 9136800368436210718}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shuttle Equiptment HUD
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -25327,7 +25473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9136800368510961766}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25363,7 +25509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9136800369013924197}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25445,7 +25591,7 @@ GameObject:
   - component: {fileID: 9136800369227816061}
   - component: {fileID: 9136800369227816059}
   - component: {fileID: 9136800369227816060}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shuttle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25482,7 +25628,7 @@ GameObject:
   - component: {fileID: 9136800369253784688}
   - component: {fileID: 9136800369253784702}
   - component: {fileID: 9136800369253784703}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25564,9 +25710,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9136800369227816061}
     m_Modifications:
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: InertiaDamperUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -25656,6 +25810,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8a2fbefa0d0c3fd4fac9ca74fa2d9e12, type: 3}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
 --- !u!224 &9191644180186891193 stripped

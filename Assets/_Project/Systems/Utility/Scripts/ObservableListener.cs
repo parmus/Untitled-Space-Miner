@@ -8,7 +8,7 @@ namespace SpaceGame.Utility
         [SerializeField] protected ObservableSO<T> _observable;
         [SerializeField] protected UnityEvent<T> _onChange;
 
-        private void OnEnable() => _observable.Value.Subscribe(_onChange.Invoke);
-        private void OnDisable() => _observable.Value.Unsubscribe(_onChange.Invoke);
+        private void OnEnable() => _observable.Subscribe(_onChange.Invoke);
+        private void OnDisable() => _observable.Unsubscribe(_onChange.Invoke);
     }
 }

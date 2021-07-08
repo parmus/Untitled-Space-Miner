@@ -1,7 +1,7 @@
 ﻿using SpaceGame.Utility;
 using UnityEngine;
 
-namespace SpaceGame.Core.Observables
+namespace SpaceGame.Observables
 {
     public class CameraListener : ObservableListener<Camera> { }
 }
