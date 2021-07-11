@@ -13,8 +13,7 @@ namespace SpaceGame.LevelManagement
         [SerializeField] private LevelEvent _loadLevelRequest;
         
         [Header("Fading")]
-        [SerializeField] private FloatGameEvent _fadeOutRequest;
-        [SerializeField] private FloatGameEvent _fadeInRequest;
+        [SerializeField] private FadeRequest _fadeRequest;
         [SerializeField] private float _fadeOutDuration;
         [SerializeField] private float _fadeInDuration;
         
@@ -35,9 +34,9 @@ namespace SpaceGame.LevelManagement
 
         private IEnumerator CO_LoadLevel(Level level)
         {
-            if (_fadeOutRequest != null)
+            if (_fadeRequest != null)
             {
-                _fadeOutRequest.Broadcast(_fadeOutDuration);
+                _fadeRequest.FadeOut(_fadeOutDuration);
                 yield return new WaitForSeconds(_fadeOutDuration);
             }
 
@@ -51,9 +50,9 @@ namespace SpaceGame.LevelManagement
             
             _currentLevel = level;
 
-            if (_fadeInRequest != null)
+            if (_fadeRequest != null)
             {
-                _fadeInRequest.Broadcast(_fadeInDuration);
+                _fadeRequest.FadeIn(_fadeInDuration);
                 yield return new WaitForSeconds(_fadeInDuration);
             }
             _isLoading = false;

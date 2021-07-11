@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using SpaceGame.Utility.GameEvents;
 using UnityEngine.Rendering;
 using UnityEngine;
 
@@ -8,10 +7,11 @@ namespace SpaceGame.LevelManagement
     [RequireComponent(typeof(Volume))]
     public class VolumeFader : MonoBehaviour
     {
-        [SerializeField] private FloatGameEvent _fadeOutRequest;
-        [SerializeField] private FloatGameEvent _fadeInRequest;
+        [SerializeField] private FadeRequest _fadeRequest;
+        [SerializeField] private Ease _ease = Ease.Linear;
         
         private Volume _volume;
+        private Tween _tween;
 
         private void Awake()
         {
@@ -19,20 +19,15 @@ namespace SpaceGame.LevelManagement
             _volume.weight = 0f;
         }
 
-        private void OnEnable()
+        private void OnEnable() => _fadeRequest.OnEvent += Fade;
+
+        private void OnDisable() => _fadeRequest.OnEvent -= Fade;
+
+        private void Fade(float duration, bool fadeIn)
         {
-            _fadeOutRequest.OnEvent += FadeOut;
-            _fadeInRequest.OnEvent += FadeIn;
-        }
-
-        private void OnDisable()
-        {
-            _fadeOutRequest.OnEvent += FadeOut;
-            _fadeInRequest.OnEvent += FadeIn;
-        }
-
-        private void FadeOut(float duration) => DOTween.To(() => _volume.weight, w => _volume.weight = w, 1, duration);
-
-        private void FadeIn(float duration) => DOTween.To(() => _volume.weight, w => _volume.weight = w, 0, duration);
+            _tween?.Kill();
+            _tween = fadeIn ? DOTween.To(w => _volume.weight = w, 1f, 0f, duration) : DOTween.To(w => _volume.weight = w, 0f, 1f, duration);
+            _tween.SetEase(_ease);
+        } 
     }
 }
