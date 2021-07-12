@@ -2,6 +2,7 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace SpaceGame.LevelManagement
 {
@@ -10,8 +11,8 @@ namespace SpaceGame.LevelManagement
         [InlineButton("LoadGlobalScene", "Load")]
         [InlineProperty]
         [SerializeField] private SceneAsset _globalScene = new SceneAsset();
-        [SerializeField] private LevelEvent _loadLevelRequest;
-        [SerializeField] private Level _thisLevel; 
+        [SerializeField] private LocationEvent _loadLocationRequest;
+        [SerializeField] private Location _thisLocation; 
 
 #if UNITY_EDITOR
         private void LoadGlobalScene() => EditorSceneManager.OpenScene(_globalScene.ScenePath, OpenSceneMode.Additive);
@@ -20,10 +21,10 @@ namespace SpaceGame.LevelManagement
         private void Start()
         {
             if (_globalScene.Scene.isLoaded) {
-                _loadLevelRequest.Broadcast(_thisLevel);
+                _loadLocationRequest.Broadcast(_thisLocation);
             } else {
                 SceneManager.LoadSceneAsync(_globalScene.ScenePath, LoadSceneMode.Additive).completed +=
-                    operation => _loadLevelRequest.Broadcast(_thisLevel);
+                    operation => _loadLocationRequest.Broadcast(_thisLocation);
             }
         }
 
