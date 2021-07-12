@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194979314415834849}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2499508668660390436}
   - component: {fileID: 663233243211519412}
   - component: {fileID: 5334406431521763132}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 6865995859743971985}
   - component: {fileID: 2259917122583619473}
   - component: {fileID: 6479909472223087083}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 8118645729670015003}
   - component: {fileID: 2932174008213096532}
   - component: {fileID: 784950688689044681}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3398181683952773887}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Equipment Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 8128471359734966252}
   - component: {fileID: 8084602999561571634}
   - component: {fileID: 4342794912633028329}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Equipment Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 4972614527881147190}
   - component: {fileID: 4726844836408546625}
   - component: {fileID: 7017940613357150231}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 4615623822412006928}
   - component: {fileID: 9216504600735864347}
   - component: {fileID: 4779454401996637288}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 4567495538946186149}
   - component: {fileID: 4857929231678819972}
   - component: {fileID: 8174104019997303156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Load Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 6824100878305466620}
   - component: {fileID: 6223459754013308751}
   - component: {fileID: 4157311254544273597}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 3144963675862746253}
   - component: {fileID: 8547378625805181316}
   - component: {fileID: 6626948787643117239}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2230246275051285019}
   - component: {fileID: 2852794870874250472}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TabButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 3518782393269593857}
   - component: {fileID: 2871891546127261367}
   - component: {fileID: 2981229006466144889}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1237,7 @@ GameObject:
   - component: {fileID: 7787399627056361035}
   - component: {fileID: 1530446204935646911}
   - component: {fileID: 454978820659333156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1360,7 +1360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5312116029910675557}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1398,7 +1398,7 @@ GameObject:
   - component: {fileID: 7736879371483968853}
   - component: {fileID: 4584530326867957918}
   - component: {fileID: 5110734249623539693}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1533,7 +1533,7 @@ GameObject:
   - component: {fileID: 3656178168327205816}
   - component: {fileID: 2948779812044714256}
   - component: {fileID: 8751892372176664731}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1656,7 +1656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6176333848370877928}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1698,7 +1698,7 @@ GameObject:
   - component: {fileID: 8255225023756555122}
   - component: {fileID: 2829195986705897173}
   - component: {fileID: 7668194099168730267}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1811,7 +1811,7 @@ GameObject:
   - component: {fileID: 3261136651265848135}
   - component: {fileID: 1411864681157602948}
   - component: {fileID: 6135625650589807085}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1944,7 +1944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7070124729405529152}
   - component: {fileID: 8654682834790822241}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Game Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1997,7 +1997,7 @@ GameObject:
   - component: {fileID: 9207527811152191279}
   - component: {fileID: 8785971718131867930}
   - component: {fileID: 273353166521924336}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2129,7 +2129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4677634157465574222}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2169,7 @@ GameObject:
   - component: {fileID: 7853105742099740480}
   - component: {fileID: 5060447038861501445}
   - component: {fileID: 1044130068501028155}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2316,7 +2316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8670266804902737326}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crafting Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2355,7 +2355,7 @@ GameObject:
   - component: {fileID: 8634132431884471320}
   - component: {fileID: 8634132431884471318}
   - component: {fileID: 8634132431884471319}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 8634132432055667733}
   - component: {fileID: 8634132432055667731}
   - component: {fileID: 8634132432055667732}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shuttle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2510,7 +2510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634132432680612109}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2551,6 +2551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 364774666002527284}
   _background: {fileID: 8278240194971367778}
+  _shuttleAnchor: {fileID: 11400000, guid: f2ce7e9f8cea61f47b4d27fa659e45ab, type: 2}
 --- !u!1 &8634132433247976565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,7 +2564,7 @@ GameObject:
   - component: {fileID: 8634132433247976561}
   - component: {fileID: 8634132433247976562}
   - component: {fileID: 8634132433247976563}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Shuttle Equipment HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2600,7 +2601,7 @@ Canvas:
   m_GameObject: {fileID: 8634132433247976565}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2651,7 +2652,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1847
 --- !u!1 &8634132433322760207
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,7 +2662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634132433322760206}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2700,7 +2701,7 @@ GameObject:
   - component: {fileID: 8634132433347470495}
   - component: {fileID: 8634132433347470464}
   - component: {fileID: 4359120540518821153}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Tab Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2802,7 +2803,7 @@ GameObject:
   - component: {fileID: 8634132433625602178}
   - component: {fileID: 8634132433625602179}
   - component: {fileID: 8634132433625602180}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2925,7 +2926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634132433748481799}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2963,7 +2964,7 @@ GameObject:
   - component: {fileID: 8634132433849637261}
   - component: {fileID: 8634132433849637259}
   - component: {fileID: 8634132433849637260}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3059,7 +3060,7 @@ GameObject:
   - component: {fileID: 8634132433910704117}
   - component: {fileID: 8634132433910704118}
   - component: {fileID: 8634132433910704119}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3150,7 +3151,7 @@ GameObject:
   - component: {fileID: 8634132433965641371}
   - component: {fileID: 8634132433965641372}
   - component: {fileID: 5453982442642656042}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3287,7 +3288,7 @@ GameObject:
   - component: {fileID: 2034340628754732759}
   - component: {fileID: 4727894787294594532}
   - component: {fileID: 3679896366678839844}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Save Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3408,7 +3409,7 @@ GameObject:
   - component: {fileID: 8686410894867741858}
   - component: {fileID: 3890180382725184077}
   - component: {fileID: 7652761313041050006}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Game Tab Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3496,7 +3497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2858851478071006347}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3558,9 +3559,17 @@ PrefabInstance:
       propertyPath: m_text
       value: Hull Upgrade
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Hull Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -3657,6 +3666,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -4502,9 +4515,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Power System Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -4601,6 +4622,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -7672,9 +7697,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2705054380006060660, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4256820312261074785, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
       propertyPath: m_Name
       value: Tooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4256820312261074785, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770536541707518118, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7653280524068578092, guid: 99f9ae4ab47e99d4f91c7e2539ec3de3, type: 3}
       propertyPath: m_RaycastTarget
@@ -7884,9 +7921,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Engine Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -7983,6 +8028,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -8548,9 +8597,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Resource Scanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -8647,6 +8704,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -9046,9 +9107,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Storage Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -9145,6 +9214,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -10872,9 +10945,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: InertiaDamperUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -10972,6 +11053,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
@@ -11038,9 +11123,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2989126402832745554, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Name
       value: Mining Tool Upgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3588499022704458701, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3588499022704458702, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_Pivot.x
@@ -11137,6 +11230,10 @@ PrefabInstance:
     - target: {fileID: 8215275179505143416, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9214798559183970327, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 193436612489535041, guid: 5285be5413382aa40a276d64b42c9ac3, type: 3}
