@@ -15,6 +15,7 @@ MonoBehaviour:
   _guid: 188dc46533fab3641999b18b0edaf004
   _thumbnail: {fileID: 21300000, guid: 7209b356ee6cff34da3de166d42855f6, type: 3}
   _stackSize: 1
+  _canStack: 0
   _description: 
   _normalThrustPower: 2000
   _normalPowerConsumption: 0

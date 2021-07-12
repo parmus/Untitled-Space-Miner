@@ -15,6 +15,7 @@ MonoBehaviour:
   _guid: 0c659584b55825f4eb8bd9fe62a78623
   _thumbnail: {fileID: 21300000, guid: e55deebbb25d428479e1d5a6910fca63, type: 3}
   _stackSize: 1
+  _canStack: 0
   _description: 
   _drag: 1
   _angularDrag: 1

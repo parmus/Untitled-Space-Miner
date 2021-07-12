@@ -15,6 +15,7 @@ MonoBehaviour:
   _guid: b39d09716641c824b993d520d086762a
   _thumbnail: {fileID: 21300000, guid: 9e47a4c55fd69a14a99fbee8a752c803, type: 3}
   _stackSize: 1
+  _canStack: 0
   _description: 
   _strength: 20
   _range: 50

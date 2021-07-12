@@ -15,6 +15,7 @@ MonoBehaviour:
   _guid: 366d8d5970f862341adfd796a4939c59
   _thumbnail: {fileID: 21300000, guid: ed2c22927ab612a46908bcca11985d9d, type: 3}
   _stackSize: 1
+  _canStack: 0
   _description: 
   _slot: 7
   _stackMultiplier: 1

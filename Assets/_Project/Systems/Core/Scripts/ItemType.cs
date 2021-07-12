@@ -11,6 +11,7 @@ namespace SpaceGame.Core
         [SerializeField, HideInInspector] private string _guid;
         [SerializeField] protected Sprite _thumbnail;
         [SerializeField] protected uint _stackSize = 1;
+        [SerializeField] protected bool _canStack = true;
 
         public static T GetByGUID<T>(string name) where T: ItemType => string.IsNullOrEmpty(name) ? null : _runtimeSet[name] as T;
 
@@ -21,7 +22,7 @@ namespace SpaceGame.Core
         public abstract string Tooltip { get; }
         public Sprite Thumbnail => _thumbnail;
         public uint StackSize => _stackSize;
-        public bool CanStack => _stackSize > 1;
+        public bool CanStack => _canStack;
         
         protected virtual void OnEnable()
         {
@@ -29,6 +30,7 @@ namespace SpaceGame.Core
             var path = UnityEditor.AssetDatabase.GetAssetPath(this);
             var so = new UnityEditor.SerializedObject(this);
             so.FindProperty("_guid").stringValue = UnityEditor.AssetDatabase.GUIDFromAssetPath(path).ToString();
+            if (!_canStack) so.FindProperty("_stackSize").intValue = 1;
             so.ApplyModifiedProperties();
             if (_runtimeSet.TryGetValue(_guid, out var item)) Assert.AreEqual(item, this);
             #endif
