@@ -77,12 +77,18 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
         
         
         #region IPersistable
-        public object CaptureState() => Configuration.Value != null ? Configuration.Value.GUID : null;
+        [System.Serializable]
+        public class PersistentData: ShuttleUpgrade.PersistentData<Configuration>
+        {
+            public PersistentData(Configuration configuration): base(configuration) { }
+        }
+
+        public object CaptureState() => new PersistentData(Configuration.Value);
 
         public void RestoreState(object state)
         {
-            var GUID = (string) state;
-            Configuration.Set(ItemType.GetByGUID<Configuration>(GUID));
+            var persistentData = (PersistentData) state;
+            Configuration.Set(persistentData.Upgrade);
         }
         #endregion
     }

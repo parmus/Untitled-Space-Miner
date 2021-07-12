@@ -1,4 +1,3 @@
-using SpaceGame.Core;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -48,15 +47,9 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
 
         #region IPersistable
         [System.Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<InertiaDamperUpgrade>
         {
-            public readonly string GUID;
-
-            public InertiaDamperUpgrade InertiaDamperUpgrade =>
-                ItemType.GetByGUID<InertiaDamperUpgrade>(GUID);
-
-            public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade) =>
-                GUID = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.GUID : null;
+            public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade): base(inertiaDamperUpgrade) { }
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);
@@ -64,7 +57,7 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.InertiaDamperUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
         }
         #endregion
         

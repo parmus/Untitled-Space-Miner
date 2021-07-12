@@ -1,10 +1,8 @@
 ﻿using SpaceGame.Core;
-using SpaceGame.PlayerInput;
 using SpaceGame.ShuttleSystems.MiningTool.VFX;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace SpaceGame.ShuttleSystems.MiningTool {
     [AddComponentMenu("ShuttleSystems/MiningTool")]
@@ -111,15 +109,9 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
 
         #region IPersistable
         [System.Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<MiningToolUpgrade>
         {
-            public readonly string GUID;
-
-            public MiningToolUpgrade MiningToolUpgrade =>
-                ItemType.GetByGUID<MiningToolUpgrade>(GUID);
-
-            public PersistentData(MiningToolUpgrade miningToolUpgrade) =>
-                GUID = miningToolUpgrade != null ? miningToolUpgrade.GUID : null;
+            public PersistentData(MiningToolUpgrade miningToolUpgrade) : base(miningToolUpgrade) {}
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);
@@ -127,7 +119,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.MiningToolUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
         }
         #endregion
 

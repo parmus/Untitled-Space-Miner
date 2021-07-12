@@ -1,5 +1,4 @@
 ﻿using System;
-using SpaceGame.Core;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -50,17 +49,12 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
         
         #region IPersistable
         [Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<PowerSystemUpgrade>
         {
-            public readonly string GUID;
             public readonly float Charge;
 
-            public PowerSystemUpgrade PowerSystemUpgrade =>
-                ItemType.GetByGUID<PowerSystemUpgrade>(GUID);
-
-            public PersistentData(PowerSystemUpgrade powerSystemUpgrade, float charge)
+            public PersistentData(PowerSystemUpgrade powerSystemUpgrade, float charge): base(powerSystemUpgrade)
             {
-                GUID = powerSystemUpgrade != null ? powerSystemUpgrade.GUID : null;
                 Charge = charge;
             }
         }
@@ -70,7 +64,7 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.PowerSystemUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
             _charge.Set(persistentData.Charge);
         }
         #endregion

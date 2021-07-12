@@ -1,5 +1,4 @@
-﻿using SpaceGame.Core;
-using SpaceGame.Utility;
+﻿using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
 
@@ -71,15 +70,9 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
 
         #region IPersistable
         [System.Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<ThrusterUpgrade>
         {
-            public readonly string GUID;
-
-            public ThrusterUpgrade ThrusterUpgrade =>
-                ItemType.GetByGUID<ThrusterUpgrade>(GUID);
-
-            public PersistentData(ThrusterUpgrade thrusterUpgrade) =>
-                GUID = thrusterUpgrade != null ? thrusterUpgrade.GUID : null;
+            public PersistentData(ThrusterUpgrade thrusterUpgrade) : base(thrusterUpgrade) { }
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);
@@ -87,7 +80,7 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.ThrusterUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
         }
         #endregion
         

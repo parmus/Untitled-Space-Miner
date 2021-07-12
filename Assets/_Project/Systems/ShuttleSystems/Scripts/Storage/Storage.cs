@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using SpaceGame.Core;
-using SpaceGame.InventorySystem;
+﻿using SpaceGame.InventorySystem;
 using SpaceGame.InventorySystem.Utils;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace SpaceGame.ShuttleSystems.Storage
 {
@@ -28,16 +25,13 @@ namespace SpaceGame.ShuttleSystems.Storage
         
         #region IPersistable
         [System.Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<StorageUpgrade>
         {
-            public readonly string GUID;
             public readonly SerializableInventory Inventory;
-            public StorageUpgrade StorageUpgrade => ItemType.GetByGUID<StorageUpgrade>(GUID);
             public void RestoreInventory(IInventory inventory) => Inventory.RestoreInventory(inventory);
 
-            public PersistentData(StorageUpgrade storageUpgrade, IInventory inventory)
+            public PersistentData(StorageUpgrade storageUpgrade, IInventory inventory): base(storageUpgrade)
             {
-                GUID = storageUpgrade != null ? storageUpgrade.GUID : null;
                 Inventory = new SerializableInventory(inventory);
             }
         }
@@ -47,7 +41,7 @@ namespace SpaceGame.ShuttleSystems.Storage
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.StorageUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
             persistentData.RestoreInventory(Inventory);
         }
         #endregion

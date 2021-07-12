@@ -1,5 +1,4 @@
 ﻿using System;
-using SpaceGame.Core;
 using SpaceGame.Utility;
 using SpaceGame.Utility.SaveSystem;
 using UnityEngine;
@@ -62,18 +61,11 @@ namespace SpaceGame.ShuttleSystems.Hull {
 
         #region IPersistable
         [Serializable]
-        public class PersistentData
+        public class PersistentData: ShuttleUpgrade.PersistentData<HullUpgrade>
         {
-            public readonly string GUID;
             public readonly float Integrity;
 
-            public HullUpgrade HullUpgrade => ItemType.GetByGUID<HullUpgrade>(GUID);
-
-            public PersistentData(HullUpgrade hullUpgrade, float integrity)
-            {
-                GUID = hullUpgrade != null ? hullUpgrade.GUID : null;
-                Integrity = integrity;
-            }
+            public PersistentData(HullUpgrade hullUpgrade, float integrity): base(hullUpgrade) => Integrity = integrity;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value, _integrity.Value);
@@ -81,7 +73,7 @@ namespace SpaceGame.ShuttleSystems.Hull {
         public void RestoreState(object state)
         {
             var persistentData = (PersistentData) state;
-            Upgrade.Set(persistentData.HullUpgrade);
+            Upgrade.Set(persistentData.Upgrade);
             _integrity.Set(persistentData.Integrity);
         }
         #endregion
