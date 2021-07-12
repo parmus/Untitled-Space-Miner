@@ -13,14 +13,12 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
     {
         [SerializeField] private Image _image;
         [SerializeField] private Image _background;
+        [SerializeField] private ShuttleAnchor _shuttleAnchor;
         
         private FakeStack _stack;
         public IInventoryStack Stack => _stack;
 
-        private void Awake()
-        {
-            _stack = new FakeStack(Set, Get);
-        }
+        private void Awake() => _stack = new FakeStack(Set, Get);
 
 
         private void OnShuttleChange(Shuttle shuttle)
@@ -34,9 +32,9 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
 
         private Utility.IObservable<T> _upgrade;
         
-        private void OnEnable() => ShuttleSpawner.CurrentShuttle.Subscribe(OnShuttleChange);
+        private void OnEnable() => _shuttleAnchor.Subscribe(OnShuttleChange);
 
-        private void OnDisable() => ShuttleSpawner.CurrentShuttle.Unsubscribe(OnShuttleChange);
+        private void OnDisable() => _shuttleAnchor.Unsubscribe(OnShuttleChange);
 
         private void Set([CanBeNull] T upgrade)
         {

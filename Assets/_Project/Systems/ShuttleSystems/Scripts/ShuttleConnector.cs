@@ -16,11 +16,11 @@ namespace SpaceGame.ShuttleSystems
         [SerializeField] private UnityEvent<PowerSystem.PowerSystem> _connectPowerSystem;
         [SerializeField] private UnityEvent<ResourceScanner.ResourceScanner> _connectResourceScanner;
         [SerializeField] private UnityEvent<Thrusters.Thrusters> _connectThrusters;
-        
+        [SerializeField] private ShuttleAnchor _shuttleAnchor;
 
-        private void Awake() => ShuttleSpawner.CurrentShuttle.Subscribe(OnNewShuttleSpawned);
+        private void Awake() => _shuttleAnchor.Subscribe(OnNewShuttleSpawned);
 
-        private void OnDestroy() => ShuttleSpawner.CurrentShuttle.Unsubscribe(OnNewShuttleSpawned);
+        private void OnDestroy() => _shuttleAnchor.Unsubscribe(OnNewShuttleSpawned);
 
 
         private void OnNewShuttleSpawned(Shuttle shuttle)

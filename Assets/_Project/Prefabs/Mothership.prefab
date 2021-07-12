@@ -52,6 +52,7 @@ MonoBehaviour:
   _shuttlePrefab: {fileID: 4380200423970701858, guid: 5cd758c1ed659a649afa1d5a68b7733f, type: 3}
   _respawnDelay: 3
   _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
+  _shuttleAnchor: {fileID: 11400000, guid: f2ce7e9f8cea61f47b4d27fa659e45ab, type: 2}
 --- !u!114 &2835356400336405105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
   _connectThrusters:
     m_PersistentCalls:
       m_Calls: []
+  _shuttleAnchor: {fileID: 11400000, guid: f2ce7e9f8cea61f47b4d27fa659e45ab, type: 2}
 --- !u!1001 &4945498826497626561
 PrefabInstance:
   m_ObjectHideFlags: 0

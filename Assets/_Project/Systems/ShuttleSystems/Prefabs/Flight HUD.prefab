@@ -825,6 +825,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _shuttleAnchor: {fileID: 11400000, guid: f2ce7e9f8cea61f47b4d27fa659e45ab, type: 2}
 --- !u!114 &8424256011860340089
 MonoBehaviour:
   m_ObjectHideFlags: 0

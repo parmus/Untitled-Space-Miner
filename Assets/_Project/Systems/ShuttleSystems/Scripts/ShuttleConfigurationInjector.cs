@@ -14,8 +14,11 @@ namespace SpaceGame.ShuttleSystems {
         [SerializeField] private ResourceScanner.Configuration _resourceScannerConfiguration;
         [SerializeField] private Storage.StorageUpgrade _storageUpgrade;
         [SerializeField] private Thrusters.ThrusterUpgrade _thrusterUpgrade;
+        [SerializeField] private ShuttleAnchor _shuttleAnchor;
 
-        private void Start() => ShuttleSpawner.CurrentShuttle.Subscribe(OnNewShuttle);
+        private void OnEnable() => _shuttleAnchor.Subscribe(OnNewShuttle);
+
+        private void OnDisable() => _shuttleAnchor.Unsubscribe(OnNewShuttle);
 
         private void OnNewShuttle(Shuttle shuttle)
         {
@@ -29,14 +32,14 @@ namespace SpaceGame.ShuttleSystems {
             shuttle.Storage.Upgrade.Set(_storageUpgrade);
             shuttle.Thrusters.Upgrade.Set(_thrusterUpgrade);
 
-            if (_singleUse) ShuttleSpawner.CurrentShuttle.Unsubscribe(OnNewShuttle);
+            if (_singleUse) _shuttleAnchor.Unsubscribe(OnNewShuttle);
         }
 
         private void OnValidate()
         {
             if (!Application.isPlaying) return;
 
-            var shuttle = ShuttleSpawner.CurrentShuttle.Value;
+            var shuttle = _shuttleAnchor.Value;
             if (!shuttle) return;
             
             shuttle.Hull.Upgrade.Set(_hullUpgrade);
