@@ -8,8 +8,8 @@ namespace SpaceGame
     public class SessionManagerHUD : MonoBehaviour
     {
         [SerializeField] private InputReader _inputReader;
-        [SerializeField] private UnityEvent<IInventory> _onInventoryChange = default;
-        [SerializeField] private Canvas _HUD = default;
+        [SerializeField] private UnityEvent<IInventory> _onInventoryChange;
+        [SerializeField] private Canvas _HUD;
 
         private void Start() {
             _onInventoryChange.Invoke(SessionManager.Instance.Inventory);

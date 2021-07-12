@@ -5,9 +5,9 @@ using UnityEngine;
 namespace SpaceGame.ShuttleSystems.UI {
     [AddComponentMenu("Shuttle Systems/UI/Resource HUD")]
     public class ResourceHUD : MonoBehaviour {
-        [SerializeField] private ResourceHUDItem _iconPrefab = default;
+        [SerializeField] private ResourceHUDItem _iconPrefab;
         
-        private ResourceScanner.ResourceScanner _resourceScanner = default;
+        private ResourceScanner.ResourceScanner _resourceScanner;
 
         public void SetMainCamera(Camera camera) => ResourceHUDItem.Camera = camera;
 

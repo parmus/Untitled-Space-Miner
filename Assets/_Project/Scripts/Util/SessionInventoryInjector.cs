@@ -21,7 +21,7 @@ namespace SpaceGame.Util
         [System.Serializable]
         public class Item
         {
-            [SerializeField] private ItemType _type = default;
+            [SerializeField] private ItemType _type;
             [SerializeField] private uint _amount = 1;
 
             public ItemType Type => _type;
@@ -30,8 +30,9 @@ namespace SpaceGame.Util
 
         private void Reset()
         {
-            gameObject.name = GetType().Name;
-            gameObject.tag = "EditorOnly";
+            var go = gameObject;
+            go.name = GetType().Name;
+            go.tag = "EditorOnly";
         }
         
         [MenuItem("GameObject/Session Inventory Injector", false, 10)]

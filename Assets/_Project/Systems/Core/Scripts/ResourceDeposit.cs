@@ -7,7 +7,7 @@ namespace SpaceGame.Core
 {
     public class ResourceDeposit : MonoBehaviour, IPersistable
     {
-        [SerializeField] private ResourceType _type = default;
+        [SerializeField] private ResourceType _type;
         [SerializeField] private uint _amount = 1;
 
         public event Action<ResourceDeposit> OnDestroy;

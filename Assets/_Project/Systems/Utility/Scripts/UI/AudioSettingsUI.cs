@@ -1,15 +1,16 @@
 ﻿using SpaceGame.Utility.Settings;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceGame.Utility.UI
 {
     public class AudioSettingsUI : MonoBehaviour
     {
-        [SerializeField] private UnityEngine.UI.Slider _masterVolumeSlider = default;
-        [SerializeField] private UnityEngine.UI.Slider _sfxVolumeSlider = default;
+        [SerializeField] private Slider _masterVolumeSlider;
+        [SerializeField] private Slider _sfxVolumeSlider;
 
-        [SerializeField] private FMODBusVolume _masterBus = default;
-        [SerializeField] private FMODVCAVolume _sfxVca = default;
+        [SerializeField] private FMODBusVolume _masterBus;
+        [SerializeField] private FMODVCAVolume _sfxVca;
 
         private void Start()
         {
@@ -24,4 +25,3 @@ namespace SpaceGame.Utility.UI
         }
     }
 }
-    

@@ -6,8 +6,8 @@ namespace SpaceGame.ShuttleSystems.UI
 {
     public class MiningMessage : MonoBehaviour
     {
-        [SerializeField] private TMPro.TMP_Text _text = default;
-        [SerializeField] private CanvasGroup _canvasGroup = default;
+        [SerializeField] private TMPro.TMP_Text _text;
+        [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _fadeIn = 0.3f;
         [SerializeField] private float _delay = 2.5f;
         [SerializeField] private float _fadeOut = 1.0f;

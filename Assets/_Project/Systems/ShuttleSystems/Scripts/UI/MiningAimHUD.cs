@@ -4,8 +4,8 @@ using UnityEngine.UI;
 namespace SpaceGame.ShuttleSystems.UI {
     [AddComponentMenu("Shuttle Systems/UI/Mining Aim HUD")]
     public class MiningAimHUD: MonoBehaviour {
-        [SerializeField] private Image _icon = default;
-        [SerializeField] private Sprite _inRangeSprite = default;
+        [SerializeField] private Image _icon;
+        [SerializeField] private Sprite _inRangeSprite;
         [SerializeField] private Color _inRangeColor = Color.red;
 
         private Color _defaultColor;

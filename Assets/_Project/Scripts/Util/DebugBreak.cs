@@ -7,7 +7,7 @@ namespace SpaceGame.Util
 {
     public class DebugBreak : MonoBehaviour
     {
-        [SerializeField] private InputAction _shortcut = default;
+        [SerializeField] private InputAction _shortcut;
         
         private void Awake() => _shortcut.performed += ctx => EditorApplication.isPaused = true;
 
@@ -17,8 +17,9 @@ namespace SpaceGame.Util
 
         private void Reset()
         {
-            gameObject.name = GetType().Name;
-            gameObject.tag = "EditorOnly";
+            var go = gameObject;
+            go.name = GetType().Name;
+            go.tag = "EditorOnly";
         }
         
         [MenuItem("GameObject/Grumpy Bear/Space Game/Debug Break", false, 10)]

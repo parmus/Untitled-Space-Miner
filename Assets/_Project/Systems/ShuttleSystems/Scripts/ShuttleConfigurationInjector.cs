@@ -7,13 +7,13 @@ namespace SpaceGame.ShuttleSystems {
     {
         [SerializeField] private bool _singleUse = true;
         [Header("Shuttle configuration")]
-        [SerializeField] private Hull.HullUpgrade _hullUpgrade = default;
-        [SerializeField] private InertiaDampers.InertiaDamperUpgrade _inertiaDamperUpgrade = default;
-        [SerializeField] private MiningTool.MiningToolUpgrade _miningToolUpgrade = default;
-        [SerializeField] private PowerSystem.PowerSystemUpgrade _powerSystemUpgrade = default;
-        [SerializeField] private ResourceScanner.Configuration _resourceScannerConfiguration = default;
-        [SerializeField] private Storage.StorageUpgrade _storageUpgrade = default;
-        [SerializeField] private Thrusters.ThrusterUpgrade _thrusterUpgrade = default;
+        [SerializeField] private Hull.HullUpgrade _hullUpgrade;
+        [SerializeField] private InertiaDampers.InertiaDamperUpgrade _inertiaDamperUpgrade;
+        [SerializeField] private MiningTool.MiningToolUpgrade _miningToolUpgrade;
+        [SerializeField] private PowerSystem.PowerSystemUpgrade _powerSystemUpgrade;
+        [SerializeField] private ResourceScanner.Configuration _resourceScannerConfiguration;
+        [SerializeField] private Storage.StorageUpgrade _storageUpgrade;
+        [SerializeField] private Thrusters.ThrusterUpgrade _thrusterUpgrade;
 
         private void Start() => ShuttleSpawner.CurrentShuttle.Subscribe(OnNewShuttle);
 

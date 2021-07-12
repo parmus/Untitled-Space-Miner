@@ -5,7 +5,7 @@ namespace SpaceGame.Utility.UI
 {
     public class Draggable: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
     {
-        [SerializeField] private DraggableAvatar _draggableAvatar = default;
+        [SerializeField] private DraggableAvatar _draggableAvatar;
         
         private float _scaleFactor;
         private Vector3 _oldPosition;

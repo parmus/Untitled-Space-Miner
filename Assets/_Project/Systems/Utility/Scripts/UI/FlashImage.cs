@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SpaceGame.Utility.UI {
     public class FlashImage : MonoBehaviour
     {
-        [SerializeField] private UnityEngine.UI.Image _image = default;
+        [SerializeField] private UnityEngine.UI.Image _image;
         [Header("Tween settings")]
         [SerializeField] private Color _flashColor = Color.yellow;
         [SerializeField] private float _flashDuration = 1f;

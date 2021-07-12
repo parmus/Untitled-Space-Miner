@@ -8,7 +8,7 @@ namespace SpaceGame.Mothership {
         [SerializeField] private float _visibilityRadius = 200f;
         [SerializeField] private float _blendMargin = 50f;
 
-        private VisualEffect _vfx = default;
+        private VisualEffect _vfx;
 
         private void Awake() {
             _vfx = GetComponent<VisualEffect>();

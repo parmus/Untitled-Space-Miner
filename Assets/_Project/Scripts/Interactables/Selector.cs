@@ -6,9 +6,9 @@ namespace SpaceGame.Interactables
 {
     public class Selector : MonoBehaviour
     {
-        [SerializeField] private Transform _origin = default;
+        [SerializeField] private Transform _origin;
         [SerializeField] private float _range = 3f;
-        [SerializeField] private LayerMask _layerMask = default;
+        [SerializeField] private LayerMask _layerMask;
         [SerializeField] private InputReader _inputReader;
 
         public IReadonlyObservable<IInteractable> CurrentInteractable => _raycaster.CurrentTarget;

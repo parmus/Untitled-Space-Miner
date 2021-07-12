@@ -4,9 +4,9 @@ using UnityEngine.Events;
 namespace SpaceGame.ShuttleSystems.UI {
     [AddComponentMenu("Shuttle Systems/UI/Velocity HUD")]
     public class VelocityHUD : MonoBehaviour {
-        [SerializeField] private UnityEvent<float> _onChange = default;
+        [SerializeField] private UnityEvent<float> _onChange;
 
-        private Thrusters.Thrusters _thrusters = default;
+        private Thrusters.Thrusters _thrusters;
 
         public void SetThrusters(Thrusters.Thrusters thrusters) {
             if (_thrusters) _thrusters.Velocity.Unsubscribe(OnVelocityChange);

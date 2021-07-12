@@ -9,9 +9,9 @@ namespace SpaceGame.UI
 {
     public class LoadingScreen: Singleton<LoadingScreen>
     {
-        [SerializeField] private CanvasGroup _canvasGroup = default;
+        [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _fadeSpeed = 0.5f;
-        [SerializeField] private bool _initiallyFaded = false;
+        [SerializeField] private bool _initiallyFaded;
         [SerializeField] private int _skipFrames = 3;
 
         protected override void Awake()

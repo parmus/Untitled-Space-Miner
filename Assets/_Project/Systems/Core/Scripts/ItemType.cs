@@ -9,7 +9,7 @@ namespace SpaceGame.Core
     {
         private static readonly Dictionary<string, ItemType> _runtimeSet = new Dictionary<string, ItemType>();
         [SerializeField, HideInInspector] private string _guid;
-        [SerializeField] protected Sprite _thumbnail = default;
+        [SerializeField] protected Sprite _thumbnail;
         [SerializeField] protected uint _stackSize = 1;
 
         public static T GetByGUID<T>(string name) where T: ItemType => string.IsNullOrEmpty(name) ? null : _runtimeSet[name] as T;

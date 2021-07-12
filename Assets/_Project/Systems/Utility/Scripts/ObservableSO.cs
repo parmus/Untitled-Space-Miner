@@ -6,7 +6,7 @@ namespace SpaceGame.Utility
 {
     public class ObservableSO<T> : ScriptableObject, IObservable<T>, IReadonlyObservable<T>
     {
-        public event Action<T> OnChange = default;
+        public event Action<T> OnChange;
 
         public T Value {
             get => _value;

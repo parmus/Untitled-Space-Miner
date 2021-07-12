@@ -6,12 +6,12 @@ namespace SpaceGame.Interactables
     public class InteractableSwitch : MonoBehaviour, IInteractable
     {
         [SerializeField] private bool _enabled;
-        [SerializeField] private UnityEvent<bool> _onChange = default;
-        [SerializeField] private UnityEvent _onEnable = default;
-        [SerializeField] private UnityEvent _onDisable = default;
+        [SerializeField] private UnityEvent<bool> _onChange;
+        [SerializeField] private UnityEvent _onEnable;
+        [SerializeField] private UnityEvent _onDisable;
         [SerializeField] private bool _triggerOnStart = true;
-        [SerializeField] private string _enabledPrompt = default;
-        [SerializeField] private string _disabledPrompt = default;
+        [SerializeField] private string _enabledPrompt;
+        [SerializeField] private string _disabledPrompt;
         
         public string Prompt => _enabled ? _enabledPrompt : _disabledPrompt;
         

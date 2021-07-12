@@ -1,16 +1,18 @@
 ﻿using DG.Tweening;
 using SpaceGame.Core;
 using SpaceGame.Utility.UI;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceGame.InventorySystem.UI {
     [SelectionBase]
     public class InventorySlot : MonoBehaviour, IStackProvider, ITooltipProvider
     {
-        [SerializeField] private UnityEngine.UI.Image _frame = default;
-        [SerializeField] private TMPro.TextMeshProUGUI _amountLabel = default;
-        [SerializeField] private UnityEngine.UI.Image _thumbnail = default;
-        [SerializeField] private ProgressBar _stackFilledProgress = default;
+        [SerializeField] private Image _frame;
+        [SerializeField] private TextMeshProUGUI _amountLabel;
+        [SerializeField] private Image _thumbnail;
+        [SerializeField] private ProgressBar _stackFilledProgress;
         
         [Header("Tween settings")]
         [SerializeField] private float _duration = 1f;
@@ -22,7 +24,7 @@ namespace SpaceGame.InventorySystem.UI {
         private Vector3 _scaleVector; 
         private Sequence _seq;
 
-        private IInventoryStack _stack = null;
+        private IInventoryStack _stack;
         private ItemType _prevType;
         private uint _prevAmount;
         

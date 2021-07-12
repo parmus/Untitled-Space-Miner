@@ -6,7 +6,7 @@ namespace SpaceGame
 {
     public class Terminal : MonoBehaviour, IInteractable
     {
-        [SerializeField] private Canvas _terminalCanvas = default;
+        [SerializeField] private Canvas _terminalCanvas;
         [SerializeField] private string _prompt = "Open terminal";
         [SerializeField] private InputReader _inputReader;
 

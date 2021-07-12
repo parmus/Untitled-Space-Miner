@@ -40,7 +40,7 @@ namespace SpaceGame.CraftingSystem.Editor
         private float ElementHeightCallback(int index) =>
             EditorGUIUtility.singleLineHeight + 2 * EditorGUIUtility.standardVerticalSpacing;
       
-        private void DrawElementCallback(Rect rect, int index, bool isactive, bool isfocused)
+        private void DrawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
         {
             EditorGUI.PropertyField(
                 rect.WithMargin(

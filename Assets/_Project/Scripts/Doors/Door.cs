@@ -5,7 +5,7 @@ namespace SpaceGame.Doors
 {
     public class Door : MonoBehaviour, IDoor
     {
-        [SerializeField] private bool _locked = false;
+        [SerializeField] private bool _locked;
 
         [Header("Animation")]
         [SerializeField] private float _height = 2f;
@@ -41,7 +41,7 @@ namespace SpaceGame.Doors
     }
 
         private Sequence _seq;
-        private bool _open = false;
+        private bool _open;
 
         private void Awake()
         {

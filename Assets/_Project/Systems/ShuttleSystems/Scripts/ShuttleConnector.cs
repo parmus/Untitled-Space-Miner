@@ -8,14 +8,14 @@ namespace SpaceGame.ShuttleSystems
     public sealed class ShuttleConnector : MonoBehaviour
     {
         [SerializeField] private List<GameObject> _enabledWhenSet = new List<GameObject>();
-        [SerializeField] private UnityEvent<Shuttle> _connectShuttle = default;
-        [SerializeField] private UnityEvent<Hull.Hull> _connectHull = default;
-        [SerializeField] private UnityEvent<InertiaDampers.InertiaDampers> _connectInertiaDampers = default;
-        [SerializeField] private UnityEvent<IInventory> _connectInventory = default;
-        [SerializeField] private UnityEvent<MiningTool.MiningTool> _connectMiningTool = default;
-        [SerializeField] private UnityEvent<PowerSystem.PowerSystem> _connectPowerSystem = default;
-        [SerializeField] private UnityEvent<ResourceScanner.ResourceScanner> _connectResourceScanner = default;
-        [SerializeField] private UnityEvent<Thrusters.Thrusters> _connectThrusters = default;
+        [SerializeField] private UnityEvent<Shuttle> _connectShuttle;
+        [SerializeField] private UnityEvent<Hull.Hull> _connectHull;
+        [SerializeField] private UnityEvent<InertiaDampers.InertiaDampers> _connectInertiaDampers;
+        [SerializeField] private UnityEvent<IInventory> _connectInventory;
+        [SerializeField] private UnityEvent<MiningTool.MiningTool> _connectMiningTool;
+        [SerializeField] private UnityEvent<PowerSystem.PowerSystem> _connectPowerSystem;
+        [SerializeField] private UnityEvent<ResourceScanner.ResourceScanner> _connectResourceScanner;
+        [SerializeField] private UnityEvent<Thrusters.Thrusters> _connectThrusters;
         
 
         private void Awake() => ShuttleSpawner.CurrentShuttle.Subscribe(OnNewShuttleSpawned);

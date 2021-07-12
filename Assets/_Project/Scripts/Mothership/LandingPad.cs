@@ -13,7 +13,7 @@ namespace SpaceGame.Mothership
         private LandingPadVFX _landingPadVFX;
         private Shuttle _shuttle;
         private Transform _transform;
-        private bool _landingZoneEnabled = false;
+        private bool _landingZoneEnabled;
 
         private void Awake()
         {

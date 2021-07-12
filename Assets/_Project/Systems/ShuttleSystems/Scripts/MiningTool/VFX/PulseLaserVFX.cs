@@ -6,8 +6,8 @@ namespace SpaceGame.ShuttleSystems.MiningTool.VFX {
     [RequireComponent(typeof(VisualEffect))]
     [RequireComponent(typeof(FMODUnity.StudioEventEmitter))]
     public class PulseLaserVFX: MiningToolVFX {
-        private VisualEffect _vfx = default;
-        private FMODUnity.StudioEventEmitter _emitter = default;
+        private VisualEffect _vfx;
+        private FMODUnity.StudioEventEmitter _emitter;
 
         private void Awake() {
             _vfx = GetComponent<VisualEffect>();

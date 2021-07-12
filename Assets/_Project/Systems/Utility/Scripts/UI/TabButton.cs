@@ -8,8 +8,8 @@ namespace SpaceGame.Utility.UI
     [RequireComponent(typeof(Image))]
     public class TabButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private Image _image = default;
-        [SerializeField] private bool _disabled = false;
+        [SerializeField] private Image _image;
+        [SerializeField] private bool _disabled;
 
         public bool Disabled
         {

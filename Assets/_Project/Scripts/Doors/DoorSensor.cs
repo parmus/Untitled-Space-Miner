@@ -5,7 +5,7 @@ namespace SpaceGame.Doors
     public class DoorSensor : MonoBehaviour
     {
         [SerializeField] private Transform _sensorOrigin;
-        [SerializeField] private LayerMask _layerMask = default;
+        [SerializeField] private LayerMask _layerMask;
         [SerializeField] private float _sensorRange = 3f;
         
         private readonly Collider[] _sensorHits = new Collider[1];

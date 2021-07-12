@@ -7,8 +7,8 @@ namespace SpaceGame.Utility.UI
     [RequireComponent(typeof(Canvas))]
     public class TooltipUI : MonoBehaviour
     {
-        [SerializeField] private TMPro.TMP_Text _text = default;
-        [SerializeField] private Image  _frame = default;
+        [SerializeField] private TMPro.TMP_Text _text;
+        [SerializeField] private Image  _frame;
         [SerializeField] private Vector2 _cursorOffset = new Vector2(0, 0);
 
         #region Private variables

@@ -10,7 +10,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         [SerializeField] private float _powerConsumption = 2f;
 
         [Header("VFX")]
-        [SerializeField] private MiningToolVFX _vfxPrefab = default;
+        [SerializeField] private MiningToolVFX _vfxPrefab;
 
         public override string Name => name;
         public override string Description => $"{base.Description}\n<#00ff00>• Mining Strength: {_strength}\n• Range: {_range}m\n• Power Consumption: {_powerConsumption}</color>";

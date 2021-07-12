@@ -1,17 +1,18 @@
 using System;
 using System.Linq;
 using SpaceGame.Utility.Settings;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SpaceGame.Utility.UI
 {
     public class VideoSettingsUI: MonoBehaviour
     {
-        [SerializeField] private UnityEngine.UI.Toggle _fullscreenToggle = default;
-        [SerializeField] private TMPro.TMP_Dropdown _qualityIndexDropDown = default;
-        [SerializeField] private TMPro.TMP_Dropdown _resolutionIndexDropDown = default;
-
-        [SerializeField] private VideoSettings _videoSettings = default;
+        [SerializeField] private Toggle _fullscreenToggle;
+        [SerializeField] private TMP_Dropdown _qualityIndexDropDown;
+        [SerializeField] private TMP_Dropdown _resolutionIndexDropDown;
+        [SerializeField] private VideoSettings _videoSettings;
         
         private void Start()
         {

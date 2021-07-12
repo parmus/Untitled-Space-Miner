@@ -3,7 +3,7 @@ using UnityEngine;
 namespace SpaceGame.Utility.UI {
     public class ValueLabel : MonoBehaviour {
         [Header("UI elements")]
-        [SerializeField] private TMPro.TextMeshProUGUI _label = default;
+        [SerializeField] private TMPro.TextMeshProUGUI _label;
 
         [Header("Settings")]
         [SerializeField] private string _format = "<b>Value:</b> {0:P0}";

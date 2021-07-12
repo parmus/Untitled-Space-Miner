@@ -6,7 +6,7 @@ namespace SpaceGame.Utility.UI
     public class MessageFlasher : MonoBehaviour {
         #region Serialized fields
         [SerializeField] private Color _color = Color.white;
-        [SerializeField] private string _message = default;
+        [SerializeField] private string _message;
         [SerializeField] private float _blinkingSpeed = 0.1f;
         [SerializeField] private Ease _ease = Ease.Unset;
         [SerializeField] private LoopType _loopType = LoopType.Yoyo;

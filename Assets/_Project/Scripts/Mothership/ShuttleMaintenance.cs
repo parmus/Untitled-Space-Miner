@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using SpaceGame.ShuttleSystems;
@@ -10,9 +9,9 @@ namespace SpaceGame.Mothership
         [SerializeField] private float _inventoryTransferDelay = 1f;
         [SerializeField] private float _chargingSpeed = 10f;
 
-        private Shuttle _shuttle = default;
+        private Shuttle _shuttle;
         private Coroutine _emptyInventory;
-        private bool _charging = false;
+        private bool _charging;
 
         public void SetShuttle(Shuttle shuttle) {
             if (_shuttle) {

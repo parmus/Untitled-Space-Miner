@@ -30,7 +30,7 @@ namespace SpaceGame.Utility.SaveSystem
 
         
         #region Private variables
-        private Dictionary<string, object> _state = null;
+        private Dictionary<string, object> _state;
         private readonly string _filename;
         #endregion
         

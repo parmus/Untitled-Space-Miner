@@ -29,7 +29,7 @@ namespace SpaceGame.ShuttleSystems {
         public Thrusters.Thrusters Thrusters { get; private set; }
         #endregion
 
-        public PositionRotation LandingPad { get; private set; } = null;
+        public PositionRotation LandingPad { get; private set; }
         public IReadonlyObservable<ShuttleStateMachine.State> CurrentState => _shuttleStateMachine.CurrentState;
         private ShuttleStateMachine _shuttleStateMachine;
 

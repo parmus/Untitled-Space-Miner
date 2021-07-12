@@ -8,7 +8,7 @@ namespace SpaceGame.Utility
         [SerializeField] private Vector3 _rotationAxis = Vector3.up;
         [SerializeField] private Space _relativeTo = Space.Self;
     
-        private Transform _transform = default;
+        private Transform _transform;
 
         private void Awake() => _transform = transform;
 

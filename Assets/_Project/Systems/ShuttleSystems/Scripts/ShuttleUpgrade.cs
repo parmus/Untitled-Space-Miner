@@ -5,7 +5,7 @@ namespace SpaceGame.ShuttleSystems
 {
     public abstract class ShuttleUpgrade : ItemType
     {
-        [SerializeField] private string _description = default;
+        [SerializeField] private string _description;
 
         public override string Description => _description;
         public override string Tooltip => $"<b></u>{Name}</u><b>\n{Description}";

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SpaceGame.Utility
 {
     public class Observable<T>: IObservable<T>, IReadonlyObservable<T> {
-        public event Action<T> OnChange = default;
+        public event Action<T> OnChange;
 
         public T Value {
             get => _value;

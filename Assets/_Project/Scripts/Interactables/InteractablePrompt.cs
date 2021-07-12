@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace SpaceGame.Interactables
 {
     public class InteractablePrompt : MonoBehaviour
     {
-        [SerializeField] private Selector _selector = default;
-        [SerializeField] private GameObject _prompt = default;
-        [SerializeField] private TMPro.TMP_Text _promptLabel = default;
+        [SerializeField] private Selector _selector;
+        [SerializeField] private GameObject _prompt;
+        [SerializeField] private TMP_Text _promptLabel;
 
         private void Start() => _selector.CurrentInteractable.Subscribe(OnChange);
 

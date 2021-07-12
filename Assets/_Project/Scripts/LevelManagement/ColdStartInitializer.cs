@@ -2,7 +2,6 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace SpaceGame.LevelManagement
 {
@@ -31,8 +30,9 @@ namespace SpaceGame.LevelManagement
 #if UNITY_EDITOR
         private void Reset()
         {
-            gameObject.name = GetType().Name;
-            gameObject.tag = "EditorOnly";
+            var go = gameObject;
+            go.name = GetType().Name;
+            go.tag = "EditorOnly";
         }
         
         [UnityEditor.MenuItem("GameObject/ColdStartInitializer", false, 10)]

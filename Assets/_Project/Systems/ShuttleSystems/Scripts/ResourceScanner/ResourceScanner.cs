@@ -9,8 +9,8 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
     [AddComponentMenu("Shuttle Systems/Resource Scanner")]
     public class ResourceScanner : MonoBehaviour, IPersistable {
         #region Serialized fields
-        [SerializeField] private LayerMask _layerMask = default;
-        [SerializeField] private Transform _origin = default;
+        [SerializeField] private LayerMask _layerMask;
+        [SerializeField] private Transform _origin;
         #endregion
 
         #region Public variables
@@ -77,7 +77,7 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
         
         
         #region IPersistable
-        [System.Serializable]
+        [Serializable]
         public class PersistentData: ShuttleUpgrade.PersistentData<Configuration>
         {
             public PersistentData(Configuration configuration): base(configuration) { }

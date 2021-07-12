@@ -9,12 +9,12 @@ namespace SpaceGame.CraftingSystem.UI
     [SelectionBase]
     public class RecipeButton : MonoBehaviour, ITooltipProvider
     {
-        [SerializeField] private Crafter _crafter = default;
-        [SerializeField] private Recipe _recipe = default;
+        [SerializeField] private Crafter _crafter;
+        [SerializeField] private Recipe _recipe;
 
-        [SerializeField] private Button _button = default;
-        [SerializeField] private Image _thumbnail = default;
-        [SerializeField] private UnityEvent<float> _onProgress = default;
+        [SerializeField] private Button _button;
+        [SerializeField] private Image _thumbnail;
+        [SerializeField] private UnityEvent<float> _onProgress;
 
         private IInventory _inventory;
         

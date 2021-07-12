@@ -5,7 +5,7 @@ namespace SpaceGame.Utility
     public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T _instance;
-        private static bool _applicationQuitting = false;
+        private static bool _applicationQuitting;
         public static T Instance {
             get {
                 if (_applicationQuitting) return null;

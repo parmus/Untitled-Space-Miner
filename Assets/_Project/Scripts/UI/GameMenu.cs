@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,9 +9,9 @@ namespace SpaceGame.UI
 {
     public class GameMenu : MonoBehaviour
     {
-        [SerializeField] private Button _loadButton = default;
-        [SerializeField] private Button _saveButton = default;
-        [SerializeField] private Button _quitButton = default;
+        [SerializeField] private Button _loadButton;
+        [SerializeField] private Button _saveButton;
+        [SerializeField] private Button _quitButton;
 
         private void Start()
         {

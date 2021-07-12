@@ -13,7 +13,7 @@ namespace SpaceGame.ShuttleSystems.UI {
         [SerializeField] private StateComparison<LandingState> _landing = new StateComparison<LandingState>();
         [SerializeField] private StateComparison<ShutdownState> _shutdown = new StateComparison<ShutdownState>();
 
-        private Shuttle _shuttle = default;
+        private Shuttle _shuttle;
 
         public void SetShuttle(Shuttle shuttle) {
             if (_shuttle) _shuttle.CurrentState.Unsubscribe(OnStateChange);
@@ -40,10 +40,10 @@ namespace SpaceGame.ShuttleSystems.UI {
 
         [Serializable]
         public class StateComparison<T> {
-            private ShuttleStateMachine.State _oldState = default;
+            private ShuttleStateMachine.State _oldState;
 
-            [SerializeField] private UnityEvent _onEnter = default;
-            [SerializeField] private UnityEvent _onLeave = default;
+            [SerializeField] private UnityEvent _onEnter;
+            [SerializeField] private UnityEvent _onLeave;
             [SerializeField] private List<GameObject> _enabledInState = new List<GameObject>();
 
             public void StateChange(ShuttleStateMachine.State newState) {

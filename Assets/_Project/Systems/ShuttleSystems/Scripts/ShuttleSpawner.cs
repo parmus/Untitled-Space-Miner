@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using SpaceGame.PlayerInput;
 using SpaceGame.Utility;
@@ -7,7 +6,7 @@ using UnityEngine;
 namespace SpaceGame.ShuttleSystems {
     [AddComponentMenu("Shuttle Systems/Shuttle Spawner")]
     public class ShuttleSpawner : MonoBehaviour {
-        [SerializeField] private Shuttle _shuttlePrefab = default;
+        [SerializeField] private Shuttle _shuttlePrefab;
         [SerializeField] private float _respawnDelay = 3.0f;
         [SerializeField] private InputReader _inputReader;
         

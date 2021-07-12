@@ -1,14 +1,13 @@
-﻿using System;
-using SpaceGame.PlayerInput;
+﻿using SpaceGame.PlayerInput;
 using UnityEngine;
 
 namespace SpaceGame
 {
     public class SimpleCharacterController : MonoBehaviour
     {
-        [SerializeField] private Transform _body = default;
-        [SerializeField] private Transform _head = default;
-        [SerializeField] private CharacterController _characterController = default;
+        [SerializeField] private Transform _body;
+        [SerializeField] private Transform _head;
+        [SerializeField] private CharacterController _characterController;
         [SerializeField] private InputReader _inputReader;
 
         [Header("Movement parameters")]

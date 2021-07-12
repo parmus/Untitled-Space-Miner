@@ -60,7 +60,7 @@ namespace SpaceGame.CraftingSystem {
         #region Ingredient class
         [Serializable]
         public class Ingredient {
-            [SerializeField] private ItemType _type = default;
+            [SerializeField] private ItemType _type;
             [SerializeField] private uint _amount = 1;
 
             public ItemType Type => _type;

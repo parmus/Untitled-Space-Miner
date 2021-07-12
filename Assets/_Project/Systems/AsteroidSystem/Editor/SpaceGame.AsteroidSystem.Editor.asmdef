@@ -1,5 +1,6 @@
 {
     "name": "SpaceGame.AsteroidSystem.Editor",
+    "rootNamespace": "SpaceGame",
     "references": [
         "GUID:45fbb32d21ad69b44a346563a87a3c51",
         "GUID:db481fdde84a80341a84f09b7fc0052a",

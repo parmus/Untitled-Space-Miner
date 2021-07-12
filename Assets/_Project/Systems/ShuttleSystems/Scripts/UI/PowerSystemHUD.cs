@@ -5,18 +5,18 @@ using UnityEngine.Events;
 namespace SpaceGame.ShuttleSystems.UI {
     [AddComponentMenu("Shuttle Systems/Power System HUD")]
     public class PowerSystemHUD : MonoBehaviour {
-        [SerializeField] private UnityEvent<float> _onChargeChange = default;
-        [SerializeField] private UnityEvent<float> _onCapacityChange = default;
+        [SerializeField] private UnityEvent<float> _onChargeChange;
+        [SerializeField] private UnityEvent<float> _onCapacityChange;
         
         [Header("Power Level Messages")]
         [SerializeField] private float _lowPowerThreshold = 15f;
-        [SerializeField] private UnityEvent _onPowerLevelNormal = default;
-        [SerializeField] private UnityEvent _onPowerLevelLow = default;
-        [SerializeField] private UnityEvent _onPowerLevelLost = default;
+        [SerializeField] private UnityEvent _onPowerLevelNormal;
+        [SerializeField] private UnityEvent _onPowerLevelLow;
+        [SerializeField] private UnityEvent _onPowerLevelLost;
 
         private PowerLevel _powerLevel = PowerLevel.Lost;
 
-        private PowerSystem.PowerSystem _powerSystem = default;
+        private PowerSystem.PowerSystem _powerSystem;
 
         public void SetPowerSystem(PowerSystem.PowerSystem powerSystem) {
             if (_powerSystem) {

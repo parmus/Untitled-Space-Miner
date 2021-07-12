@@ -3,10 +3,10 @@ using UnityEngine;
 namespace SpaceGame.Utility.UI {
     public class ProgressBar : MonoBehaviour {
         [Header("UI elements")]
-        [SerializeField] private UnityEngine.UI.Image _bar = default;
+        [SerializeField] private UnityEngine.UI.Image _bar;
 
         [Header("Settings")]
-        [SerializeField] private Gradient _barColor = default;
+        [SerializeField] private Gradient _barColor;
         [Space]
 
         [SerializeField][Delayed] private float _min = 0f;

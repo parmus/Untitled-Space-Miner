@@ -5,7 +5,7 @@ namespace SpaceGame.InventorySystem.UI
 {
     public class InventorySlotDropZone: MonoBehaviour, IDropHandler
     {
-        [SerializeField] private InventorySlot _inventorySlot = default;
+        [SerializeField] private InventorySlot _inventorySlot;
         
         public void OnDrop(PointerEventData eventData)
         {

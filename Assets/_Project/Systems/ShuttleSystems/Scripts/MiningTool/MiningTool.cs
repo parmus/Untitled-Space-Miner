@@ -85,14 +85,14 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         }
 
         private void UpdateVFX() {
-            var isHittingGameobject = enabled && _targetGameObject.Value && Vector3.Distance(_origin.position, _laserTarget) < _currentMiningTool.Range;
-            _resourceDepositInRange.Value = isHittingGameobject && _resourceDeposit;
+            var isHittingGameObject = enabled && _targetGameObject.Value && Vector3.Distance(_origin.position, _laserTarget) < _currentMiningTool.Range;
+            _resourceDepositInRange.Value = isHittingGameObject && _resourceDeposit;
 
             if (!_vfx) return;
             var isFiringLaser = enabled && _use && !_shuttle.PowerSystem.IsEmpty;
             _vfx.IsMining = isFiringLaser;
             _vfx.TargetPosition = _laserTarget;
-            _vfx.IsHitting = isFiringLaser && isHittingGameobject;
+            _vfx.IsHitting = isFiringLaser && isHittingGameObject;
         }
 
         private void Update()
@@ -131,7 +131,7 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
             [SerializeField] private float _powerConsumption = 2f;
 
             [Header("VFX")]
-            [SerializeField] private MiningToolVFX _vfxPrefab = default;
+            [SerializeField] private MiningToolVFX _vfxPrefab;
 
             public float Strength => _strength;
             public float Range => _range;

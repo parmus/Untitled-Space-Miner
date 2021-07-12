@@ -11,8 +11,8 @@ namespace SpaceGame.ShuttleSystems.UI.UpgradeSlot {
     [SelectionBase]
     public abstract class ShuttleUpgradeSlot<T>: MonoBehaviour, IDropHandler, ITooltipProvider, IStackProvider where T: ShuttleUpgrade
     {
-        [SerializeField] private Image _image = default;
-        [SerializeField] private Image _background = default;
+        [SerializeField] private Image _image;
+        [SerializeField] private Image _background;
         
         private FakeStack _stack;
         public IInventoryStack Stack => _stack;

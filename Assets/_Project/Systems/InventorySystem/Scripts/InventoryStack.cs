@@ -7,8 +7,8 @@ namespace SpaceGame.InventorySystem
     [Serializable]
     public class InventoryStack: IInventoryStack
     {
-        [SerializeField] private ItemType _type = null;
-        [SerializeField] private uint _amount = 0;
+        [SerializeField] private ItemType _type;
+        [SerializeField] private uint _amount;
         
         public ItemType Type { get => _type; set => _type = value; }
         public uint Amount { get => _amount; private set => _amount = value; }

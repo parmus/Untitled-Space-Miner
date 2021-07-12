@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace SpaceGame.InventorySystem.UI {
     public class InventoryPanel : MonoBehaviour {
-        [SerializeField] private RectTransform _content = default;
-        [SerializeField] private InventorySlot _slotPrefab = default;
+        [SerializeField] private RectTransform _content;
+        [SerializeField] private InventorySlot _slotPrefab;
 
         private void Awake()
         {
             if (_inventory == null) _content.DestroyAllChildren();
         }
 
-        private IInventory _inventory = null;
+        private IInventory _inventory;
         public IInventory Inventory {
             get => _inventory;
             set {
