@@ -10,13 +10,13 @@ namespace SpaceGame.InventorySystem.Utils
         [System.Serializable]
         public class InventorySlot
         {
-            public readonly string TypeName;
+            public readonly string TypeGuid;
             public readonly uint Amount;
-            public ItemType Type => ItemType.GetByName<ItemType>(TypeName);
+            public ItemType Type => ItemType.GetByGUID<ItemType>(TypeGuid);
 
             public InventorySlot(ItemType type, uint amount)
             {
-                TypeName = type != null ? type.Name : null;
+                TypeGuid = type != null ? type.GUID : null;
                 Amount = amount;
             }
         }

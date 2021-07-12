@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd3a9a34eda4df7adc12d29b0a74158, type: 3}
   m_Name: Improved Power Cells
   m_EditorClassIdentifier: 
+  _guid: bb14959b4be2ef4489f24552e5ec09cb
   _thumbnail: {fileID: 21300000, guid: b4075cfd87b1d504ebbc8484d70e71bd, type: 3}
   _stackSize: 1
+  _description: 
   _capacity: 200

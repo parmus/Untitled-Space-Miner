@@ -52,15 +52,15 @@ namespace SpaceGame.ShuttleSystems.PowerSystem
         [Serializable]
         public class PersistentData
         {
-            public readonly string PowerSystemUpgradeName;
+            public readonly string GUID;
             public readonly float Charge;
 
             public PowerSystemUpgrade PowerSystemUpgrade =>
-                ItemType.GetByName<PowerSystemUpgrade>(PowerSystemUpgradeName);
+                ItemType.GetByGUID<PowerSystemUpgrade>(GUID);
 
             public PersistentData(PowerSystemUpgrade powerSystemUpgrade, float charge)
             {
-                PowerSystemUpgradeName = powerSystemUpgrade != null ? powerSystemUpgrade.Name : null;
+                GUID = powerSystemUpgrade != null ? powerSystemUpgrade.GUID : null;
                 Charge = charge;
             }
         }

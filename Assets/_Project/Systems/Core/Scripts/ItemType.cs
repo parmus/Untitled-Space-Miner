@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,12 +8,14 @@ namespace SpaceGame.Core
     public abstract class ItemType : ScriptableObject
     {
         private static readonly Dictionary<string, ItemType> _runtimeSet = new Dictionary<string, ItemType>();
+        [SerializeField, HideInInspector] private string _guid;
         [SerializeField] protected Sprite _thumbnail = default;
         [SerializeField] protected uint _stackSize = 1;
 
-        public static T GetByName<T>(string name) where T: ItemType => string.IsNullOrEmpty(name) ? null : _runtimeSet[name] as T;
+        public static T GetByGUID<T>(string name) where T: ItemType => string.IsNullOrEmpty(name) ? null : _runtimeSet[name] as T;
 
-        
+        [ShowInInspector, PropertyOrder(-1), PropertySpace(SpaceAfter = 5f)]
+        public string GUID => _guid;
         public abstract string Name { get; }
         public abstract string Description { get; }
         public abstract string Tooltip { get; }
@@ -23,9 +26,14 @@ namespace SpaceGame.Core
         protected virtual void OnEnable()
         {
             #if UNITY_EDITOR
-            if (_runtimeSet.TryGetValue(name, out var item)) Assert.AreEqual(item, this);
+            var path = UnityEditor.AssetDatabase.GetAssetPath(this);
+            var so = new UnityEditor.SerializedObject(this);
+            so.FindProperty("_guid").stringValue = UnityEditor.AssetDatabase.GUIDFromAssetPath(path).ToString();
+            so.ApplyModifiedProperties();
+            if (_runtimeSet.TryGetValue(_guid, out var item)) Assert.AreEqual(item, this);
             #endif
-            _runtimeSet[name] = this;
+            
+            _runtimeSet[_guid] = this;
         }
     }
 }

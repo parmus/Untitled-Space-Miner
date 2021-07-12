@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77b37eeb6dfa64ab4cf5669578d177, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
+  _guid: 8e12d595186f7db4fbd1059723207e0e
   _thumbnail: {fileID: 21300000, guid: 3849516eb69b414459fa31258d9d2a1e, type: 3}
   _stackSize: 5
+  _description: 
   _hardness: 200

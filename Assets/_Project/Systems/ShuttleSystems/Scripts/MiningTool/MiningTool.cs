@@ -113,13 +113,13 @@ namespace SpaceGame.ShuttleSystems.MiningTool {
         [System.Serializable]
         public class PersistentData
         {
-            public readonly string MiningToolUpgradeName;
+            public readonly string GUID;
 
             public MiningToolUpgrade MiningToolUpgrade =>
-                ItemType.GetByName<MiningToolUpgrade>(MiningToolUpgradeName);
+                ItemType.GetByGUID<MiningToolUpgrade>(GUID);
 
             public PersistentData(MiningToolUpgrade miningToolUpgrade) =>
-                MiningToolUpgradeName = miningToolUpgrade != null ? miningToolUpgrade.Name : null;
+                GUID = miningToolUpgrade != null ? miningToolUpgrade.GUID : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);

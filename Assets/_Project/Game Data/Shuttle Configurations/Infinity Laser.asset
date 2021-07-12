@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983d708c8b17e6c479b5166d20c42ba5, type: 3}
   m_Name: Infinity Laser
   m_EditorClassIdentifier: 
+  _guid: da505e7a66979c74797db6ab860a83a7
   _thumbnail: {fileID: 21300000, guid: c98b45e1fbfb5af46ac61a2a8d489f35, type: 3}
   _stackSize: 1
+  _description: 
   _strength: 100
   _range: 100
   _powerConsumption: 1
-  _vfxPrefab: {fileID: 4348456146119283245, guid: 1664d64b257738244a6092610fa92c90,
-    type: 3}
+  _vfxPrefab: {fileID: 4348456146119283245, guid: 1664d64b257738244a6092610fa92c90, type: 3}

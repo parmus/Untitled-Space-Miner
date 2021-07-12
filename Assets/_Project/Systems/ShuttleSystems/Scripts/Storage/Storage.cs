@@ -30,14 +30,14 @@ namespace SpaceGame.ShuttleSystems.Storage
         [System.Serializable]
         public class PersistentData
         {
-            public readonly string StorageUpgradeName;
+            public readonly string GUID;
             public readonly SerializableInventory Inventory;
-            public StorageUpgrade StorageUpgrade => ItemType.GetByName<StorageUpgrade>(StorageUpgradeName);
+            public StorageUpgrade StorageUpgrade => ItemType.GetByGUID<StorageUpgrade>(GUID);
             public void RestoreInventory(IInventory inventory) => Inventory.RestoreInventory(inventory);
 
             public PersistentData(StorageUpgrade storageUpgrade, IInventory inventory)
             {
-                StorageUpgradeName = storageUpgrade != null ? storageUpgrade.Name : null;
+                GUID = storageUpgrade != null ? storageUpgrade.GUID : null;
                 Inventory = new SerializableInventory(inventory);
             }
         }

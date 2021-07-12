@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77b37eeb6dfa64ab4cf5669578d177, type: 3}
   m_Name: Uranium
   m_EditorClassIdentifier: 
+  _guid: 5c79b75cb52e9af4cb630f34c02e9c8d
   _thumbnail: {fileID: 21300000, guid: 4631a06add902c842b57f95f82709907, type: 3}
   _stackSize: 2
   _description: 

@@ -73,13 +73,13 @@ namespace SpaceGame.ShuttleSystems.Thrusters {
         [System.Serializable]
         public class PersistentData
         {
-            public readonly string ThrusterUpgradeName;
+            public readonly string GUID;
 
             public ThrusterUpgrade ThrusterUpgrade =>
-                ItemType.GetByName<ThrusterUpgrade>(ThrusterUpgradeName);
+                ItemType.GetByGUID<ThrusterUpgrade>(GUID);
 
             public PersistentData(ThrusterUpgrade thrusterUpgrade) =>
-                ThrusterUpgradeName = thrusterUpgrade != null ? thrusterUpgrade.Name : null;
+                GUID = thrusterUpgrade != null ? thrusterUpgrade.GUID : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);

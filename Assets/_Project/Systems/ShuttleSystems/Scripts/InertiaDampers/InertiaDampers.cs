@@ -50,13 +50,13 @@ namespace SpaceGame.ShuttleSystems.InertiaDampers {
         [System.Serializable]
         public class PersistentData
         {
-            public readonly string InertiaDamperUpgradeName;
+            public readonly string GUID;
 
             public InertiaDamperUpgrade InertiaDamperUpgrade =>
-                ItemType.GetByName<InertiaDamperUpgrade>(InertiaDamperUpgradeName);
+                ItemType.GetByGUID<InertiaDamperUpgrade>(GUID);
 
             public PersistentData(InertiaDamperUpgrade inertiaDamperUpgrade) =>
-                InertiaDamperUpgradeName = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.Name : null;
+                GUID = inertiaDamperUpgrade != null ? inertiaDamperUpgrade.GUID : null;
         }
 
         public object CaptureState() => new PersistentData(Upgrade.Value);

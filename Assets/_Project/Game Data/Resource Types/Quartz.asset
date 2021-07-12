@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77b37eeb6dfa64ab4cf5669578d177, type: 3}
   m_Name: Quartz
   m_EditorClassIdentifier: 
+  _guid: daba750bf0f0a164a97153144a917a1d
   _thumbnail: {fileID: 21300000, guid: 0bb562981a337674a89bbf1ffa4048df, type: 3}
   _stackSize: 5
   _description: 

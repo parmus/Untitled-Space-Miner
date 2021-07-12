@@ -64,14 +64,14 @@ namespace SpaceGame.ShuttleSystems.Hull {
         [Serializable]
         public class PersistentData
         {
-            public readonly string HullUpgradeName;
+            public readonly string GUID;
             public readonly float Integrity;
 
-            public HullUpgrade HullUpgrade => ItemType.GetByName<HullUpgrade>(HullUpgradeName);
+            public HullUpgrade HullUpgrade => ItemType.GetByGUID<HullUpgrade>(GUID);
 
             public PersistentData(HullUpgrade hullUpgrade, float integrity)
             {
-                HullUpgradeName = hullUpgrade != null ? hullUpgrade.Name : null;
+                GUID = hullUpgrade != null ? hullUpgrade.GUID : null;
                 Integrity = integrity;
             }
         }

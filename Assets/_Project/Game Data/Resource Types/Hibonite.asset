@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77b37eeb6dfa64ab4cf5669578d177, type: 3}
   m_Name: Hibonite
   m_EditorClassIdentifier: 
+  _guid: fd362a9deb03b8648b5ea83bd592ceaf
   _thumbnail: {fileID: 21300000, guid: 0c3e79ce02b631141bde0e7315bcf0a9, type: 3}
   _stackSize: 3
   _description: 

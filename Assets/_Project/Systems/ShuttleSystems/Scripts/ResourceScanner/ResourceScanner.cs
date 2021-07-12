@@ -77,12 +77,12 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner {
         
         
         #region IPersistable
-        public object CaptureState() => Configuration.Value != null ? Configuration.Value.Name : null;
+        public object CaptureState() => Configuration.Value != null ? Configuration.Value.GUID : null;
 
         public void RestoreState(object state)
         {
-            var configurationName = (string) state;
-            Configuration.Set(ItemType.GetByName<Configuration>(configurationName));
+            var GUID = (string) state;
+            Configuration.Set(ItemType.GetByGUID<Configuration>(GUID));
         }
         #endregion
     }
