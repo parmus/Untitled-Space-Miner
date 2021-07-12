@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using SpaceGame.PlayerInput;
+using SpaceGame.Utility.GameEvents;
 using UnityEngine;
 
 namespace SpaceGame.ShuttleSystems {
@@ -9,12 +11,16 @@ namespace SpaceGame.ShuttleSystems {
         [SerializeField] private float _respawnDelay = 3.0f;
         [SerializeField] private InputReader _inputReader;
         [SerializeField] private ShuttleAnchor _shuttleAnchor;
+        [SerializeField] private GameEvent _locationReadyEvent;
         
         private Transform _spawnPoint;
 
         private void Awake() => _spawnPoint = transform;
 
-        private void Start() => SpawnNewShuttle();
+        private void Start() => _locationReadyEvent.OnEvent += SpawnNewShuttle;
+
+        private void OnDestroy() => _locationReadyEvent.OnEvent -= SpawnNewShuttle;
+
 
         private void SpawnNewShuttle()
         {

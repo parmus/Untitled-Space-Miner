@@ -53,6 +53,7 @@ MonoBehaviour:
   _respawnDelay: 3
   _inputReader: {fileID: 11400000, guid: 70fa1e8b852c5f149a9515e93c40858b, type: 2}
   _shuttleAnchor: {fileID: 11400000, guid: f2ce7e9f8cea61f47b4d27fa659e45ab, type: 2}
+  _locationReadyEvent: {fileID: 11400000, guid: bdd7a6a2de177664cb3257ef5be190ed, type: 2}
 --- !u!114 &2835356400336405105
 MonoBehaviour:
   m_ObjectHideFlags: 0

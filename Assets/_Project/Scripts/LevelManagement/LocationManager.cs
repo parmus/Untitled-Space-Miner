@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SpaceGame.Utility.GameEvents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ namespace SpaceGame.LevelManagement
     public class LocationManager : MonoBehaviour
     {
         [SerializeField] private LocationEvent _loadLocationRequest;
+        [SerializeField] private GameEvent _locationReadyEvent;
         
         [Header("Fading")]
         [SerializeField] private FadeRequest _fadeRequest;
@@ -48,6 +50,7 @@ namespace SpaceGame.LevelManagement
                 yield return new UnloadGroup(_currentLocation.Scenes).WaitForCompleted();
             
             _currentLocation = location;
+            _locationReadyEvent.Broadcast();
 
             if (_fadeRequest != null)
             {

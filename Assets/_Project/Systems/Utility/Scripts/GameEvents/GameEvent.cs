@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace SpaceGame.Utility.GameEvents
 {
+    [CreateAssetMenu(fileName = "Game Event", menuName = "Game Events/Game Event")]
     public class GameEvent : ScriptableObject
     {
         public event Action OnEvent;
