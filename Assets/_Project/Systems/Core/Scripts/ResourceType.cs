@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace SpaceGame.Core
 {
     [CreateAssetMenu(fileName = "New Resource Type", menuName = "Game Data/Resource Type", order = 1)]
     public class ResourceType : ItemType
     {
+        [TitleGroup("Resource specifications", GroupID = "Base/Right/Resources"), Multiline(5)]
         [SerializeField] private string _description;
+        
+        [TitleGroup("Resource specifications", GroupID = "Base/Right/Resources")]
         [SerializeField] private float _hardness = 100f;
         
         public override string Name => name;

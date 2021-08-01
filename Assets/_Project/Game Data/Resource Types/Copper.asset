@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c77b37eeb6dfa64ab4cf5669578d177, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: 
-  _guid: 0443c7616f3fedc40a93c1a3393596bd
   _thumbnail: {fileID: 21300000, guid: 6c26eec51694ede45bd79da68b795442, type: 3}
+  _guid: 0443c7616f3fedc40a93c1a3393596bd
+  _canStack: 1
   _stackSize: 5
   _description: 
   _hardness: 100
