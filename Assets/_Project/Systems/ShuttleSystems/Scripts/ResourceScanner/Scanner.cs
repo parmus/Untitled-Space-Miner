@@ -8,14 +8,26 @@ namespace SpaceGame.ShuttleSystems.ResourceScanner
     {
         public event Action<T> OnEnter;
         public event Action<T> OnLeave;
-
+        public IReadOnlyCollection<T> InRange => _colliderRuntimeSet.Values;
+        
         private readonly Dictionary<Collider, T> _colliderRuntimeSet = new Dictionary<Collider, T>();
         private readonly HashSet<Collider> _toDelete = new HashSet<Collider>();
+        private readonly Collider[] _colliders;
 
+        public Scanner(int maxColliders = 100)
+        {
+            _colliders = new Collider[maxColliders];
+        }
+        
         public void Scan(Transform origin, float range, LayerMask layerMask = default) {
             _toDelete.Clear();
             _toDelete.UnionWith(_colliderRuntimeSet.Keys);
-            foreach(var collider in Physics.OverlapSphere(origin.position, range, layerMask)) {
+            
+            var numColliders = Physics.OverlapSphereNonAlloc(origin.position, range, _colliders, layerMask);
+
+            for (var i = 0; i < numColliders; i++)
+            {
+                var collider = _colliders[i];
                 _toDelete.Remove(collider);
                 if (_colliderRuntimeSet.ContainsKey(collider)) continue;
                 var component = collider.GetComponentInParent<T>();

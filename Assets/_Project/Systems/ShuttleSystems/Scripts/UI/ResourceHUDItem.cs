@@ -1,4 +1,5 @@
-using SpaceGame.ShuttleSystems.ResourceScanner;
+using System;
+using SpaceGame.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,46 +15,52 @@ namespace SpaceGame.ShuttleSystems.UI {
         [SerializeField] private Slider _healthBar;
         [SerializeField] private string _distanceFormat = "{0:0}m";
 
-        private IResourceScannerItem _resourceScannerItem;
+        private ResourceDeposit _resourceDeposit;
+        private Transform _scannerOrigin;
 
-        public void Bind(IResourceScannerItem item) {
-            _resourceScannerItem = item;
-            var resourceDeposit = _resourceScannerItem.ResourceDeposit;
-            _healthBar.maxValue = resourceDeposit.MaxHealth;
+        private Canvas _canvas;
+        private RectTransform _canvasRectTransform;
+        
+        private void Awake()
+        {
+            _canvas = GetComponentInParent<Canvas>();
+            _canvasRectTransform = _canvas.GetComponent<RectTransform>();
+        }
 
-            resourceDeposit.Health.Subscribe(OnResourceDepositDamaged);
-
-            _resourceTypeLabel.text = resourceDeposit.Type.name;
-            _resourceScannerItem.OnDestroy += OnResourceScannerItemDestroy;
+        public void Bind(ResourceDeposit item, Transform scannerOrigin) {
+            _resourceDeposit = item;
+            _scannerOrigin = scannerOrigin;
+            
+            _healthBar.maxValue = _resourceDeposit.MaxHealth;
+            _resourceDeposit.Health.Subscribe(OnResourceDepositDamaged);
+            _resourceTypeLabel.text = _resourceDeposit.Type.name;
         }
 
         private void OnResourceDepositDamaged(float health) => _healthBar.value = health;
 
-        private void OnResourceScannerItemDestroy() => Destroy(gameObject);
-
-        private bool IsBehindCamera => transform.position.z < Mathf.Epsilon;
-
         private void Update() {
-            if (_resourceScannerItem == null)
+            if (_resourceDeposit == null)
             {
                 Debug.LogError("this should not happen", this);
                 Debug.Break();
                 return;
             }
 
-            transform.position = Camera.WorldToScreenPoint(_resourceScannerItem.Transform.position);
-            if (IsBehindCamera || !_resourceScannerItem.InRange) {
+            var screenPos = Camera.WorldToScreenPoint(_resourceDeposit.Bounds.center);
+            if (screenPos.z < Mathf.Epsilon) {
                 _canvasGroup.alpha = 0;
                 return;
             }
 
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(_canvasRectTransform, screenPos, _canvas.worldCamera, out var pos);
+
+            transform.position = pos;
+            
             _canvasGroup.alpha = 1;
-            _distanceLabel.text = string.Format(_distanceFormat, _resourceScannerItem.Distance);
+            var distance = Vector3.Distance(_scannerOrigin.position, _resourceDeposit.Bounds.center);
+            _distanceLabel.text = string.Format(_distanceFormat, distance);
         }
 
-        private void OnDestroy() {
-            _resourceScannerItem.OnDestroy -= OnResourceScannerItemDestroy;
-            _resourceScannerItem.ResourceDeposit.Health.Unsubscribe(OnResourceDepositDamaged);
-        }
+        private void OnDestroy() => _resourceDeposit.Health.Unsubscribe(OnResourceDepositDamaged);
     }
 }

@@ -9,9 +9,11 @@ namespace SpaceGame.Core
     {
         [SerializeField] private ResourceType _type;
         [SerializeField] private uint _amount = 1;
-
+        [SerializeField] private Renderer _mainRenderer;
+        
         public event Action<ResourceDeposit> OnDestroy;
 
+        public Bounds Bounds => _mainRenderer.bounds;
         public ResourceType Type => _type;
         public uint Amount => _amount;
 
